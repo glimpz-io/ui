@@ -30,7 +30,7 @@ export default function Page(): JSX.Element {
             <Text type="h3" alignment="centre">
                 <Text type="bold">Jump</Text> on our wait list! Bag <Text type="bold">exclusive updates</Text> and a shot at <Text type="bold">early access</Text>!
             </Text>
-            <Input type="email" form={formId} name={fieldName} placeholder="johndoe@xyz.com" />
+            <Input type="email" form={formId} name={fieldName} placeholder="awesomeuser@xyz.com" />
             <Button type="submit" form={formId} size="large" icon={() => <Mail />}>
                 Join Wait List
             </Button>
