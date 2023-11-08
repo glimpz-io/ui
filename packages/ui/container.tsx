@@ -11,5 +11,5 @@ export function Container({ children, className, direction, size }: Props): JSX.
 
     const global = `${alignment} ${length} ${className}`;
 
-    return <div className={"flex mx-auto p-4 justify-between items-center " + global}>{children}</div>;
+    return <div className={"flex mx-auto p-6 justify-between items-center " + global}>{children}</div>;
 }
