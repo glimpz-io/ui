@@ -1,0 +1,1 @@
+# `@glimpz-io/config`
