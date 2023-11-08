@@ -1,2 +1,3 @@
-// component exports
-export { Card } from "./card";
+export function TestComponent() {
+    return <h1>Hello World</h1>;
+}
