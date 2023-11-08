@@ -5,7 +5,9 @@ import { Mail } from "tabler-icons-react";
 export default function Page(): JSX.Element {
     const formId = "list";
     const fieldName = "email";
+    const mailIcon = () => <Mail />;
 
+    // eslint-disable-next-line @typescript-eslint/require-await -- this is a server action
     async function action(formData: FormData) {
         "use server";
 
@@ -18,7 +20,7 @@ export default function Page(): JSX.Element {
     return (
         <Container direction="vertical" size="half">
             <Text type="title" alignment="centre">
-                We're still <Text type="highlight">building</Text>... care for a sneak <Text type="highlight">peek</Text>?
+                We&apos;re still <Text type="highlight">building</Text>... care for a sneak <Text type="highlight">peek</Text>?
             </Text>
             <Text type="p" alignment="centre">
                 Swipe left on swiping and quit overthinking your opening lines! Introducing <Text type="bold">Glimpz</Text>, your new best mate for all face-to-face interactions!
@@ -31,9 +33,10 @@ export default function Page(): JSX.Element {
                 <Text type="bold">Jump</Text> on our wait list! Bag <Text type="bold">exclusive updates</Text> and a shot at <Text type="bold">early access</Text>!
             </Text>
             <Input type="email" form={formId} name={fieldName} placeholder="awesomeuser@xyz.com" />
-            <Button type="submit" form={formId} size="large" icon={() => <Mail />}>
+            <Button type="submit" form={formId} size="large" icon={mailIcon}>
                 Join Wait List
             </Button>
+            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises -- this is a server action  */}
             <form action={action} id={formId} />
         </Container>
     );
