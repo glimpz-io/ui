@@ -18,7 +18,7 @@ export function Text({ children, className, type, alignment }: Props): JSX.Eleme
         return (
             <span
                 style={{
-                    background: "linear-gradient(to right, orange , yellow)",
+                    background: "linear-gradient(to right, #f97316 , #f59e0b)",
                     WebkitBackgroundClip: "text",
                     MozBackgroundClip: "text",
                     backgroundClip: "text",
