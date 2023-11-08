@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
     return (
-        <html lang="en">
+        <html lang="en" className="bg-gradient-to-r from-neutral-50 to-white">
             <body className={GeistSans.className}>{children}</body>
         </html>
     );

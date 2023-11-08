@@ -1,5 +1,9 @@
-import { TestComponent } from "@glimpz-io/ui";
+import { Text } from "@glimpz-io/ui";
 
 export default function Page(): JSX.Element {
-    return <TestComponent />;
+    return (
+        <Text type="h1" alignment="centre">
+            Hello <Text type="highlight">World</Text>
+        </Text>
+    );
 }
