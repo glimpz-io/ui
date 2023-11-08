@@ -1,6 +1,7 @@
 import { Text, Container, Button, Input } from "@glimpz-io/ui";
 import { redirect } from "next/navigation";
 import { Mail } from "tabler-icons-react";
+import sg from "@sendgrid/client";
 
 export default function Page(): JSX.Element {
     const formId = "list";
@@ -11,8 +12,30 @@ export default function Page(): JSX.Element {
     async function action(formData: FormData) {
         "use server";
 
-        const out = formData.get(fieldName);
-        if (!out) return;
+        const email = formData.get(fieldName);
+        if (!email) return;
+
+        console.log(email);
+
+        const apiKey = process.env.SENDGRID_API_KEY;
+        const listId = process.env.SENDGRID_LIST_ID;
+        if (!apiKey || !listId) throw Error("missing sendgrid api key");
+
+        sg.setApiKey(apiKey);
+
+        const [response, body] = await sg.request({
+            url: "/v3/marketing/contacts",
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: {
+                list_ids: [listId],
+                contacts: [{ email }],
+            },
+        });
+
+        if (response.statusCode < 200 || response.statusCode >= 300) throw Error("call failed for reason '" + response.body + "'");
 
         redirect("/subscribed");
     }
