@@ -1,7 +1,20 @@
 import { Text, Container, Button, Input } from "@glimpz-io/ui";
+import { redirect } from "next/navigation";
 import { Mail } from "tabler-icons-react";
 
 export default function Page(): JSX.Element {
+    const formId = "list";
+    const fieldName = "email";
+
+    async function action(formData: FormData) {
+        "use server";
+
+        const out = formData.get(fieldName);
+        if (!out) return;
+
+        redirect("/subscribed");
+    }
+
     return (
         <Container direction="vertical" size="half">
             <Text type="title" alignment="centre">
@@ -17,10 +30,11 @@ export default function Page(): JSX.Element {
             <Text type="h3" alignment="centre">
                 <Text type="bold">Jump</Text> on our wait list! Bag <Text type="bold">exclusive updates</Text> and a shot at <Text type="bold">early access</Text>!
             </Text>
-            <Input type="email" placeholder="johndoe@xyz.com" />
-            <Button type="button" size="large" icon={() => <Mail />}>
+            <Input type="email" form={formId} name={fieldName} placeholder="johndoe@xyz.com" />
+            <Button type="submit" form={formId} size="large" icon={() => <Mail />}>
                 Join Wait List
             </Button>
+            <form action={action} id={formId} />
         </Container>
     );
 }
