@@ -6,7 +6,7 @@ interface Props {
 }
 
 export function Container({ children, className, direction, size }: Props): JSX.Element {
-    let alignment = direction === "horizontal" ? "flex-row space-x-4" : "flex-col space-y-4";
+    let alignment = direction === "horizontal" ? "flex-row space-x-8" : "flex-col space-y-8";
     let length = size === "full" ? "w-full" : size === "half" ? "w-1/2" : "w-1/3";
 
     const global = `${alignment} ${length} ${className}`;
