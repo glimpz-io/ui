@@ -14,7 +14,7 @@ export default function Page(): JSX.Element {
                 their <Text type="bold">number</Text>? <Text type="bold">Glimpz</Text> has got your back, streamlining all these social snags!
             </Text>
             <Text type="h3" alignment="centre">
-                <Text type="bold">Join</Text> the wait-list to receive <Text type="bold">exclusive updates</Text> and the chance to gain <Text type="bold">early access</Text>!
+                <Text type="bold">Jump</Text> on our wait-list! Bag <Text type="bold">exclusive updates</Text> and the shot at <Text type="bold">early access</Text>!
             </Text>
         </Container>
     );
