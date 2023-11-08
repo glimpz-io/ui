@@ -8,14 +8,11 @@ export default function Page(): JSX.Element {
     const fieldName = "email";
     const mailIcon = () => <Mail />;
 
-    // eslint-disable-next-line @typescript-eslint/require-await -- this is a server action
     async function action(formData: FormData) {
         "use server";
 
         const email = formData.get(fieldName);
         if (!email) return;
-
-        console.log(email);
 
         const apiKey = process.env.SENDGRID_API_KEY;
         const listId = process.env.SENDGRID_LIST_ID;
@@ -23,7 +20,7 @@ export default function Page(): JSX.Element {
 
         sg.setApiKey(apiKey);
 
-        const [response, body] = await sg.request({
+        const [response] = await sg.request({
             url: "/v3/marketing/contacts",
             method: "PUT",
             headers: {
@@ -35,7 +32,7 @@ export default function Page(): JSX.Element {
             },
         });
 
-        if (response.statusCode < 200 || response.statusCode >= 300) throw Error("call failed for reason '" + response.body + "'");
+        if (response.statusCode < 200 || response.statusCode >= 300) throw Error("call failed for reason '" + JSON.stringify(response.body) + "'");
 
         redirect("/subscribed");
     }
