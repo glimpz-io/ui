@@ -1,4 +1,4 @@
-import { Text, Container, Button } from "@glimpz-io/ui";
+import { Text, Container, Button, Input } from "@glimpz-io/ui";
 import { Mail } from "tabler-icons-react";
 
 export default function Page(): JSX.Element {
@@ -15,8 +15,9 @@ export default function Page(): JSX.Element {
                 their <Text type="bold">number</Text>? <Text type="bold">Glimpz</Text> has got your back, streamlining all these social snags!
             </Text>
             <Text type="h3" alignment="centre">
-                <Text type="bold">Jump</Text> on our wait list! Bag <Text type="bold">exclusive updates</Text> and the shot at <Text type="bold">early access</Text>!
+                <Text type="bold">Jump</Text> on our wait list! Bag <Text type="bold">exclusive updates</Text> and a shot at <Text type="bold">early access</Text>!
             </Text>
+            <Input type="email" placeholder="johndoe@xyz.com" />
             <Button type="button" size="large" icon={() => <Mail />}>
                 Join Wait List
             </Button>
