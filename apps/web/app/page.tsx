@@ -28,7 +28,7 @@ export default function Page(): JSX.Element {
             <Text type="h3" alignment="centre">
                 <Text type="bold">Jump</Text> on our wait list! Bag <Text type="bold">exclusive updates</Text> and a shot at <Text type="bold">early access</Text>!
             </Text>
-            <Form action={async (formData) => await submitEmail(fieldName, formData)} direction="vertical" size="full">
+            <Form action={async (formData) => await submitEmail(fieldName, formData, referral ? referral : undefined)} direction="vertical" size="full">
                 <Input type="email" name={fieldName} placeholder="awesomeuser@xyz.com" />
                 <Button type="submit" size="large" icon={mailIcon}>
                     Join Wait List

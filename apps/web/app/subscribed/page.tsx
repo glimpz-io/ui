@@ -14,7 +14,6 @@ export default function Page(): JSX.Element {
             <Text type="p" alignment="centre">
                 In the meantime, share our mission with your friends to increase your chance of getting early access!
             </Text>
-            {referral}
         </Container>
     );
 }
