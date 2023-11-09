@@ -3,21 +3,15 @@
 import { Text, Container, Button, Input, Form } from "@glimpz-io/ui";
 import { Mail } from "tabler-icons-react";
 import { submitEmail } from "./actions";
-import { useEffect } from "react";
-import { LOCAL_STORAGE_REFERRAL } from "@glimpz-io/config";
 import { useRouter } from "next/navigation";
+import { useIsReferred, useReferral } from "@glimpz-io/hooks";
 
 export default function Page(): JSX.Element {
-    const router = useRouter();
-
     const fieldName = "email";
     const mailIcon = () => <Mail />;
 
-    useEffect(() => {
-        const referral = localStorage.getItem(LOCAL_STORAGE_REFERRAL);
-
-        if (referral) router.push(`/subscribed?referral=${referral}`);
-    }, [router]);
+    useIsReferred(useRouter());
+    const referral = useReferral(false);
 
     return (
         <Container direction="vertical" size="half">
