@@ -1,5 +1,7 @@
 "use server";
 
+import { v4 } from "uuid";
+
 import sg from "@sendgrid/client";
 import { redirect } from "next/navigation";
 
@@ -12,6 +14,10 @@ export async function submitEmail(fieldName: string, formData: FormData, referra
     if (!apiKey || !listId) throw Error("missing sendgrid api key");
 
     sg.setApiKey(apiKey);
+
+    const code = v4();
+
+    // **** I need to add these referral codes to the email list (and the referrer)
 
     // **** Here we will need to generate a unique code
 
@@ -29,5 +35,5 @@ export async function submitEmail(fieldName: string, formData: FormData, referra
 
     // if (response.statusCode < 200 || response.statusCode >= 300) throw Error("call failed for reason '" + JSON.stringify(response.body) + "'");
 
-    redirect("/subscribed");
+    redirect(`/subscribed?referral=${code}`);
 }

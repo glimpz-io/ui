@@ -1,4 +1,6 @@
-import { useContext, useTransition } from "react";
+"use client";
+
+import { useContext } from "react";
 import { contextLoading } from "./form";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}

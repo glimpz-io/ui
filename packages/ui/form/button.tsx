@@ -1,3 +1,5 @@
+"use client";
+
 import { useContext } from "react";
 import { IconProps } from "tabler-icons-react";
 import { contextLoading } from "./form";
