@@ -5,13 +5,13 @@ interface Props {
     alignment?: "left" | "centre" | "right";
 }
 
-export function Text({ children, className, type, alignment }: Props): JSX.Element {
-    let textDirection = "text-left";
-    if (alignment === "left") textDirection = "text-left";
+export function Text({ children, className, type, alignment = "left" }: Props): JSX.Element {
+    let textDirection: string;
     if (alignment === "centre") textDirection = "text-center";
-    if (alignment === "right") textDirection = "text-right";
+    else if (alignment === "right") textDirection = "text-right";
+    else textDirection = "text-left";
 
-    const global = `${textDirection} w-full ${className}`;
+    const global = `w-full ${textDirection} ${className}`;
 
     if (type === "title") return <h1 className={"text-8xl text-white font-bold " + global}>{children}</h1>;
     if (type === "highlight")
