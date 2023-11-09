@@ -1,7 +1,1 @@
-module.exports = {
-    reactStrictMode: true,
-    transpilePackages: ["@glimpz-io/ui"],
-    experimental: {
-        serverActions: true,
-    },
-};
+module.exports = require("@glimpz-io/config/next/next.config");

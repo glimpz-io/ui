@@ -1,41 +1,12 @@
-import { Text, Container, Button, Input } from "@glimpz-io/ui";
-import { redirect } from "next/navigation";
+"use client";
+
+import { Text, Container, Button, Input, Form } from "@glimpz-io/ui";
 import { Mail } from "tabler-icons-react";
-import sg from "@sendgrid/client";
+import { submitEmail } from "./actions";
 
 export default function Page(): JSX.Element {
-    const formId = "list";
     const fieldName = "email";
     const mailIcon = () => <Mail />;
-
-    async function action(formData: FormData) {
-        "use server";
-
-        const email = formData.get(fieldName);
-        if (!email) return;
-
-        const apiKey = process.env.SENDGRID_API_KEY;
-        const listId = process.env.SENDGRID_LIST_ID;
-        if (!apiKey || !listId) throw Error("missing sendgrid api key");
-
-        sg.setApiKey(apiKey);
-
-        const [response] = await sg.request({
-            url: "/v3/marketing/contacts",
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: {
-                list_ids: [listId],
-                contacts: [{ email }],
-            },
-        });
-
-        if (response.statusCode < 200 || response.statusCode >= 300) throw Error("call failed for reason '" + JSON.stringify(response.body) + "'");
-
-        redirect("/subscribed");
-    }
 
     return (
         <Container direction="vertical" size="half">
@@ -52,12 +23,12 @@ export default function Page(): JSX.Element {
             <Text type="h3" alignment="centre">
                 <Text type="bold">Jump</Text> on our wait list! Bag <Text type="bold">exclusive updates</Text> and a shot at <Text type="bold">early access</Text>!
             </Text>
-            <Input type="email" form={formId} name={fieldName} placeholder="awesomeuser@xyz.com" />
-            <Button type="submit" form={formId} size="large" icon={mailIcon}>
-                Join Wait List
-            </Button>
-            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises -- this is a server action  */}
-            <form action={action} id={formId} />
+            <Form action={async (formData) => await submitEmail(fieldName, formData)} direction="vertical" size="full">
+                <Input type="email" name={fieldName} placeholder="awesomeuser@xyz.com" />
+                <Button type="submit" size="large" icon={mailIcon}>
+                    Join Wait List
+                </Button>
+            </Form>
         </Container>
     );
 }
