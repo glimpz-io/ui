@@ -20,7 +20,6 @@ export function Index({ referral }: ReferralProps): JSX.Element {
               `Just discovered #Glimpz, a cool app that takes the awkward out of meeting people face-to-face. Can't wait to try it! 🥳\n\nJoin the early access wait list with me: ${signupUrl}`
           )
         : null;
-
     const twitterLink = socialText ? `https://twitter.com/intent/tweet?text=${socialText}` : null;
 
     return (
