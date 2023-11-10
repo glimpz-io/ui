@@ -30,13 +30,38 @@ export function Index({ referral }: ReferralProps): JSX.Element {
 
     return (
         <>
-            {signupUrl && <Copy value={signupUrl} onClick={() => analytics.track("Copy Code")} />}
+            {signupUrl && (
+                <Copy
+                    value={signupUrl}
+                    onClick={() => {
+                        analytics.track("Copy Code");
+                    }}
+                />
+            )}
             {twitterLink && (
-                <Link href={twitterLink} color="lightblue" icon={twitterIcon} size="large" newTab={true} onClick={() => analytics.track("Share Twitter")}>
+                <Link
+                    href={twitterLink}
+                    color="lightblue"
+                    icon={twitterIcon}
+                    size="large"
+                    newTab={true}
+                    onClick={() => {
+                        analytics.track("Share Twitter");
+                    }}
+                >
                     Share To Twitter
                 </Link>
             )}
-            <Link href={facebookLink} color="darkblue" icon={facebookIcon} size="large" newTab={true} onClick={() => analytics.track("Share Facebook")}>
+            <Link
+                href={facebookLink}
+                color="darkblue"
+                icon={facebookIcon}
+                size="large"
+                newTab={true}
+                onClick={() => {
+                    analytics.track("Share Facebook");
+                }}
+            >
                 Share To FaceBook
             </Link>
         </>
