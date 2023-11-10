@@ -1,17 +1,15 @@
-"use client";
+import { Text } from "@glimpz-io/ui/text";
+import { Container } from "@glimpz-io/ui/container";
+import { Index } from "./components/page";
 
-import { Text, Container, Button, Input, Form } from "@glimpz-io/ui";
-import { Mail } from "tabler-icons-react";
-import { submitEmail } from "./actions";
-import { useRouter } from "next/navigation";
-import { useIsReferred, useReferral } from "@glimpz-io/hooks";
+interface Request {
+    searchParams: {
+        referral?: string;
+    };
+}
 
-export default function Page(): JSX.Element {
-    const fieldName = "email";
-    const mailIcon = () => <Mail />;
-
-    useIsReferred(useRouter());
-    const referral = useReferral(false);
+export default function Page(req: Request): JSX.Element {
+    const referral = req.searchParams.referral;
 
     return (
         <Container direction="vertical" size="half">
@@ -28,19 +26,7 @@ export default function Page(): JSX.Element {
             <Text type="h3" alignment="centre">
                 <Text type="bold">Jump</Text> on our wait list! Bag <Text type="bold">exclusive updates</Text> and a shot at <Text type="bold">early access</Text>!
             </Text>
-            <Form
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
-                action={async (formData) => {
-                    await submitEmail(fieldName, formData, referral ? referral : undefined);
-                }}
-                direction="vertical"
-                size="full"
-            >
-                <Input type="email" name={fieldName} placeholder="awesomeuser@xyz.com" />
-                <Button type="submit" size="large" icon={mailIcon} color="orange">
-                    Join Wait List
-                </Button>
-            </Form>
+            <Index referral={referral} />
         </Container>
     );
 }

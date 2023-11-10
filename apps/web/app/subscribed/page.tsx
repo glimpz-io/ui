@@ -1,24 +1,20 @@
-"use client";
-
-import { Container, Copy, Link, Text } from "@glimpz-io/ui";
-import { useReferral } from "@glimpz-io/hooks";
+import { Container } from "@glimpz-io/ui/container";
+import { Link } from "@glimpz-io/ui/link";
+import { Text } from "@glimpz-io/ui/text";
 import { BASE_URL } from "@glimpz-io/config";
-import { BrandFacebook, BrandTwitter } from "tabler-icons-react";
+import { BrandFacebook } from "tabler-icons-react";
+import { Index } from "../components/subscribed/page";
 
-export default function Page(): JSX.Element {
-    const referral = useReferral(true);
+interface Request {
+    searchParams: {
+        referral?: string;
+    };
+}
 
-    const twitterIcon = () => <BrandTwitter />;
+export default function Page(req: Request): JSX.Element {
+    const referral = req.searchParams.referral;
+
     const facebookIcon = () => <BrandFacebook />;
-
-    const signupUrl = referral ? `${BASE_URL}?referral=${referral}` : null;
-    const socialText = signupUrl
-        ? encodeURIComponent(
-              `Just discovered #Glimpz, a cool app that takes the awkward out of meeting people face-to-face. Can't wait to try it! 🥳\n\nJoin the early access wait list with me: ${signupUrl}`
-          )
-        : null;
-
-    const twitterLink = socialText ? `https://twitter.com/intent/tweet?text=${socialText}` : null;
     const facebookLink = `https://www.facebook.com/share.php?u=${BASE_URL}`;
 
     return (
@@ -32,12 +28,7 @@ export default function Page(): JSX.Element {
             <Text type="h3" alignment="centre">
                 Share your unique code with your friends! (click to copy)
             </Text>
-            {signupUrl && <Copy value={signupUrl} />}
-            {twitterLink && (
-                <Link href={twitterLink} color="lightblue" icon={twitterIcon} size="large" newTab={true}>
-                    Share To Twitter
-                </Link>
-            )}
+            <Index referral={referral} />
             <Link href={facebookLink} color="darkblue" icon={facebookIcon} size="large" newTab={true}>
                 Share To FaceBook
             </Link>
