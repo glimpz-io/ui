@@ -10,10 +10,11 @@
     },
     "dependencies": {
         "@glimpz-io/config": "*",
-        "@glimpz-io/ui": "*",
         "@glimpz-io/hooks": "*",
+        "@glimpz-io/ui": "*",
         "@sendgrid/client": "^7.7.0",
         "geist": "^1.0.1",
+        "mixpanel": "^0.18.0",
         "next": "^13.4.19",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
