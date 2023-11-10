@@ -1,6 +1,6 @@
 import { Text } from "@glimpz-io/ui/text";
 import { Container } from "@glimpz-io/ui/container";
-import { Index } from "./components/page";
+import { Index } from "./components";
 
 interface Request {
     searchParams: {

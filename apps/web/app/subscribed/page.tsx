@@ -3,7 +3,7 @@ import { Link } from "@glimpz-io/ui/link";
 import { Text } from "@glimpz-io/ui/text";
 import { BASE_URL } from "@glimpz-io/config";
 import { BrandFacebook } from "tabler-icons-react";
-import { Index } from "../components/subscribed/page";
+import { Index } from "../components/subscribed";
 
 interface Request {
     searchParams: {
