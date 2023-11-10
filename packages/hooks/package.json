@@ -3,8 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "dependencies": {
-        "react": "^0.0.0-experimental-746890329-20231108",
-        "react-dom": "^0.0.0-experimental-746890329-20231108",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "next": "^13.4.19",
         "eslint-custom-config": "*",
         "tsconfig": "*"

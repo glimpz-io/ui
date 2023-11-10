@@ -1,3 +1,5 @@
+"use client";
+
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LOCAL_STORAGE_REFERRAL } from "./useIsReferred";

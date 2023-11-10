@@ -12,9 +12,9 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export function Button({ children, className = "", icon, onChange, type, disabled = false, color }: Props): JSX.Element {
-    const IconComponent = icon;
-
     const isLoading = useContext(contextLoading);
+
+    const IconComponent = icon;
 
     let length = "px-6 py-4 text-xl font-semibold space-x-8 border-4";
 
