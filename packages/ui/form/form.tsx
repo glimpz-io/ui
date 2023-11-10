@@ -10,7 +10,7 @@ interface Props extends React.HTMLAttributes<HTMLFormElement> {
 
 export const contextLoading = createContext<boolean>(false);
 
-export function Form({ children, className, direction, size, action }: Props): JSX.Element {
+export function Form({ children, className = "", direction, size, action }: Props): JSX.Element {
     const [isPending, startTransition] = useTransition();
 
     let alignment = direction === "horizontal" ? "flex-row space-x-8 lg:space-x-0 lg:flow-col lg:space-y-8" : "flex-col space-y-8";
