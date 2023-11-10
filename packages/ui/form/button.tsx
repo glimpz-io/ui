@@ -11,7 +11,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     color: "orange";
 }
 
-export function Button({ children, className = "", icon, onChange, type, disabled = false, color }: Props): JSX.Element {
+export function Button({ children, className = "", icon, onClick, type, disabled = false, color }: Props): JSX.Element {
     const isLoading = useContext(contextLoading);
 
     const IconComponent = icon;
@@ -29,7 +29,7 @@ export function Button({ children, className = "", icon, onChange, type, disable
 
     return (
         <button
-            onChange={onChange}
+            onClick={onClick}
             type={type}
             className={`${!isLoading && !disabled ? outColor : loadingColor} w-full text-center flex items-center justify-center duration-200 transition-colors ${global}`}
             disabled={isLoading || disabled}

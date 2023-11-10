@@ -1,8 +1,5 @@
 import { Container } from "@glimpz-io/ui/container";
-import { Link } from "@glimpz-io/ui/link";
 import { Text } from "@glimpz-io/ui/text";
-import { BASE_URL } from "@glimpz-io/config";
-import { BrandFacebook } from "tabler-icons-react";
 import { Index } from "../components/subscribed";
 
 interface Request {
@@ -13,9 +10,6 @@ interface Request {
 
 export default function Page(req: Request): JSX.Element {
     const referral = req.searchParams.referral;
-
-    const facebookIcon = () => <BrandFacebook />;
-    const facebookLink = `https://www.facebook.com/share.php?u=${BASE_URL}`;
 
     return (
         <Container direction="vertical" size="half">
@@ -29,9 +23,6 @@ export default function Page(req: Request): JSX.Element {
                 Share your unique code with your friends! (click to copy)
             </Text>
             <Index referral={referral} />
-            <Link href={facebookLink} color="darkblue" icon={facebookIcon} size="large" newTab={true}>
-                Share To FaceBook
-            </Link>
         </Container>
     );
 }

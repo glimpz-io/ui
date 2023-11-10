@@ -5,13 +5,14 @@ interface Props {
     children: any;
     className?: string;
     icon?: (props: IconProps) => JSX.Element;
+    newTab?: boolean;
+    onClick?: () => void;
     size: "large";
     href: string;
     color: "lightblue" | "darkblue";
-    newTab?: boolean;
 }
 
-export function Link({ children, className = "", href, color, icon, size, newTab = false }: Props): JSX.Element {
+export function Link({ children, className = "", href, color, icon, newTab = false, onClick }: Props): JSX.Element {
     const IconComponent = icon;
 
     let length = "px-6 py-4 text-xl font-semibold space-x-8 border-4";
@@ -31,7 +32,7 @@ export function Link({ children, className = "", href, color, icon, size, newTab
         : {};
 
     return (
-        <NextLink className={`w-full text-center flex items-center justify-center duration-200 transition-colors ${global}`} href={href} {...newTabProps}>
+        <NextLink onClick={onClick} className={`w-full text-center flex items-center justify-center duration-200 transition-colors ${global}`} href={href} {...newTabProps}>
             <span>{IconComponent && <IconComponent />}</span>
             <span>{children}</span>
         </NextLink>

@@ -2,10 +2,11 @@ import { useState } from "react";
 
 interface Props {
     className?: string;
+    onClick?: () => void;
     value: string;
 }
 
-export function Copy({ className = "", value }: Props): JSX.Element {
+export function Copy({ className = "", value, onClick }: Props): JSX.Element {
     const [copied, setCopied] = useState<boolean>(false);
 
     const global = `${className}`;
@@ -17,6 +18,7 @@ export function Copy({ className = "", value }: Props): JSX.Element {
                 onClick={() => {
                     navigator.clipboard.writeText(value);
                     setCopied(true);
+                    onClick && onClick();
                 }}
             >
                 {value}
