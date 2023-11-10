@@ -27,7 +27,7 @@ export default function Page(): JSX.Element {
                 <Text type="highlight">Thank You</Text>, you&apos;re awesome!
             </Text>
             <Text type="p" alignment="centre">
-                You've now been added to our wait list! In the meantime, share our mission with <Text type="bold">your friends</Text> to increase your chance of gaining early access!
+                You&apos;ve now been added to our wait list! In the meantime, share our mission with <Text type="bold">your friends</Text> to increase your chance of gaining early access!
             </Text>
             <Text type="h3" alignment="centre">
                 Share your unique code with your friends! (click to copy)
