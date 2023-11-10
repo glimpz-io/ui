@@ -1,4 +1,5 @@
 import "@glimpz-io/ui/styles.css";
+import { GeistSans } from "geist/font";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
-            <body>{children}</body>
+        <html lang="en" className="bg-gradient-to-r from-neutral-950 to-zinc-950 min-w-fit">
+            <body className={GeistSans.className}>{children}</body>
         </html>
     );
 }
