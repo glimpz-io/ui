@@ -13,7 +13,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
     useReferral(referral);
     const analytics = useAnalytics();
 
-    analytics.identify(referral);
+    if (referral) analytics.identify(referral);
 
     const twitterIcon = () => <BrandTwitter />;
     const facebookIcon = () => <BrandFacebook />;
