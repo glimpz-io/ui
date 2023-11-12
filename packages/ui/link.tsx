@@ -9,7 +9,7 @@ interface Props {
     onClick?: () => void;
     size: "large";
     href: string;
-    color: "lightblue" | "darkblue";
+    color: "lightblue" | "darkblue" | "orangepurple";
 }
 
 export function Link({ children, className = "", href, color, icon, newTab = false, onClick }: Props): JSX.Element {
@@ -20,6 +20,7 @@ export function Link({ children, className = "", href, color, icon, newTab = fal
     let outColor: string;
     if (color === "lightblue") outColor = "text-cyan-500 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-sky-500 hover:text-white border-cyan-500";
     else if (color === "darkblue") outColor = "text-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-500 hover:text-white border-blue-500";
+    else if (color === "orangepurple") outColor = "text-orange-500 hover:bg-gradient-to-r hover:from-orange-500 hover:to-purple-600 hover:text-white border-orange-500";
     else throw Error("invalid color");
 
     const global = `${length} ${outColor} ${className}`;
