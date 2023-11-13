@@ -20,15 +20,16 @@ export function Index({ referral }: ReferralProps): JSX.Element {
     const linkedInIcon = () => <BrandLinkedin />;
 
     const signupUrl = referral ? `${BASE_URL}?referral=${referral}` : null;
+    const signupUrlEncoded = signupUrl ? encodeURIComponent(signupUrl) : null;
     const socialText = signupUrl
         ? encodeURIComponent(
               `Excited to share #Glimpz, an app designed to streamline in-person networking. Looking forward to leveraging its potential! 👔🔗\n\nJoin the early access wait list with me: ${signupUrl}`
           )
         : null;
 
-    const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${BASE_URL}`;
+    const linkedInLink = signupUrlEncoded ? `https://www.linkedin.com/sharing/share-offsite/?url=${signupUrlEncoded}` : null;
     const twitterLink = socialText ? `https://twitter.com/intent/tweet?text=${socialText}` : null;
-    const facebookLink = `https://www.facebook.com/share.php?u=${BASE_URL}`;
+    const facebookLink = signupUrlEncoded ? `https://www.facebook.com/share.php?u=${signupUrlEncoded}` : null;
 
     return (
         <>
@@ -40,18 +41,20 @@ export function Index({ referral }: ReferralProps): JSX.Element {
                     }}
                 />
             )}
-            <Link
-                href={linkedInLink}
-                color="darkblue"
-                icon={linkedInIcon}
-                size="large"
-                newTab={true}
-                onClick={() => {
-                    analytics.track("Share LinkedIn");
-                }}
-            >
-                Share To LinkedIn
-            </Link>
+            {linkedInLink && (
+                <Link
+                    href={linkedInLink}
+                    color="darkblue"
+                    icon={linkedInIcon}
+                    size="large"
+                    newTab={true}
+                    onClick={() => {
+                        analytics.track("Share LinkedIn");
+                    }}
+                >
+                    Share To LinkedIn
+                </Link>
+            )}
             {twitterLink && (
                 <Link
                     href={twitterLink}
@@ -66,18 +69,20 @@ export function Index({ referral }: ReferralProps): JSX.Element {
                     Share To Twitter
                 </Link>
             )}
-            <Link
-                href={facebookLink}
-                color="indigo"
-                icon={facebookIcon}
-                size="large"
-                newTab={true}
-                onClick={() => {
-                    analytics.track("Share Facebook");
-                }}
-            >
-                Share To FaceBook
-            </Link>
+            {facebookLink && (
+                <Link
+                    href={facebookLink}
+                    color="indigo"
+                    icon={facebookIcon}
+                    size="large"
+                    newTab={true}
+                    onClick={() => {
+                        analytics.track("Share Facebook");
+                    }}
+                >
+                    Share To FaceBook
+                </Link>
+            )}
         </>
     );
 }
