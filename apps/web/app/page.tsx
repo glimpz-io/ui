@@ -20,8 +20,9 @@ export default function Page(req: Request): JSX.Element {
                 In-person networking no longer has to be daunting with <Text type="bold">Glimpz</Text>, your ultimate partner for professional engagements!
             </Text>
             <Text type="p" alignment="centre">
-                Ever wondered if someone is in your industry and <Text type="bold">available for collaboration</Text>? Ever had an engaging conversation with a professional but didn&apos;t exchange{" "}
-                <Text type="bold">contact details</Text>? <Text type="bold">Glimpz</Text> has you covered, resolving these problems for you!
+                Ever attended an event with <Text type="bold">too many professionals</Text> to talk to, or wondered if a stranger was in your industry and{" "}
+                <Text type="bold">available for collaboration</Text>? Ever had an engaging conversation with a professional but forgot to exchange <Text type="bold">contact details</Text>?{" "}
+                <Text type="bold">Glimpz</Text> has you covered, resolving these problems for you!
             </Text>
             <Text type="h3" alignment="centre">
                 <Text type="bold">Join</Text> our wait list! Gain <Text type="bold">exclusive updates</Text> and the opportunity for <Text type="bold">early access</Text>!
