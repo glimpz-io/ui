@@ -31,7 +31,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
                 type="submit"
                 size="large"
                 icon={mailIcon}
-                color="orange"
+                color="blue"
                 onClick={() => {
                     analytics.track("Email Signup", { "Signup Type": referral ? "Referral" : "Direct", Referrer: referral });
                 }}

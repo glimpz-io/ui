@@ -18,7 +18,7 @@ export function Text({ children, className, type, alignment = "left" }: Props): 
         return (
             <span
                 style={{
-                    background: "linear-gradient(to right, #f97316 , #f59e0b)",
+                    background: "linear-gradient(to right, #0ea5e9, #3b82f6)",
                     WebkitBackgroundClip: "text",
                     MozBackgroundClip: "text",
                     backgroundClip: "text",

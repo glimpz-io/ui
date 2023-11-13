@@ -8,7 +8,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     icon?: (props: IconProps) => JSX.Element;
     size: "large";
     disabled?: boolean;
-    color: "orange";
+    color: "blue";
 }
 
 export function Button({ children, className = "", icon, onClick, type, disabled = false, color }: Props): JSX.Element {
@@ -20,9 +20,9 @@ export function Button({ children, className = "", icon, onClick, type, disabled
 
     let outColor: string;
     let loadingColor: string;
-    if (color === "orange") {
-        outColor = "text-orange-500 hover:bg-gradient-to-r hover:from-orange-500 hover:to-amber-500 hover:text-white border-orange-500";
-        loadingColor = "bg-gradient-to-r from-orange-500 to-amber-500 text-white border-orange-500";
+    if (color === "blue") {
+        outColor = "text-sky-500 hover:bg-gradient-to-r hover:from-sky-500 hover:to-blue-500 hover:text-white border-sky-500";
+        loadingColor = "bg-gradient-to-r from-sky-500 to-blue-500 text-white border-sky-500";
     } else throw Error("invalid color");
 
     const global = `${length} ${className}`;

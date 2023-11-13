@@ -7,8 +7,8 @@ import type { Metadata } from "next";
 const TITLE = "Join The Wait List - Glimpz";
 const DESCRIPTION =
     "Say goodbye to awkward encounters with Glimpz! Streamline your social interactions and never miss a chance to connect. No more overthinking, just genuine face-to-face connections.";
-const COLOR = "#f97316";
-const IMAGE = "https://i.imgur.com/DVFU6Yg.png";
+const COLOR = "#0ea5e9";
+const IMAGE = "https://i.imgur.com/g2ddNJg.png";
 
 export const metadata: Metadata = {
     metadataBase: new URL(BASE_URL),
