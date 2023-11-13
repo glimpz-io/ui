@@ -1,9 +1,9 @@
 "use client";
 
-import { BASE_URL, INSTAGRAM_URL } from "@glimpz-io/config";
+import { BASE_URL } from "@glimpz-io/config";
 import { useAnalytics, useReferral } from "@glimpz-io/hooks";
 import { Copy, Link } from "@glimpz-io/ui";
-import { BrandFacebook, BrandInstagram, BrandTwitter } from "tabler-icons-react";
+import { BrandFacebook, BrandTwitter } from "tabler-icons-react";
 
 interface ReferralProps {
     referral?: string;
@@ -17,18 +17,16 @@ export function Index({ referral }: ReferralProps): JSX.Element {
 
     const twitterIcon = () => <BrandTwitter />;
     const facebookIcon = () => <BrandFacebook />;
-    const instagramIcon = () => <BrandInstagram />;
 
     const signupUrl = referral ? `${BASE_URL}?referral=${referral}` : null;
     const socialText = signupUrl
         ? encodeURIComponent(
-              `Just discovered #Glimpz, a cool app that takes the awkward out of meeting people face-to-face. Can't wait to try it! 🥳\n\nJoin the early access wait list with me: ${signupUrl}`
+              `Excited to share #Glimpz, an app designed to streamline in-person networking. Looking forward to leveraging its potential! 👔🔗\n\nJoin the early access wait list with me: ${signupUrl}`
           )
         : null;
 
     const twitterLink = socialText ? `https://twitter.com/intent/tweet?text=${socialText}` : null;
     const facebookLink = `https://www.facebook.com/share.php?u=${BASE_URL}`;
-    const instagramLink = INSTAGRAM_URL;
 
     return (
         <>
@@ -65,18 +63,6 @@ export function Index({ referral }: ReferralProps): JSX.Element {
                 }}
             >
                 Share To FaceBook
-            </Link>
-            <Link
-                href={instagramLink}
-                color="orangepurple"
-                icon={instagramIcon}
-                size="large"
-                newTab={true}
-                onClick={() => {
-                    analytics.track("Follow Instagram");
-                }}
-            >
-                Follow Our Instagram
             </Link>
         </>
     );

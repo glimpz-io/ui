@@ -17,14 +17,14 @@ export default function Page(req: Request): JSX.Element {
                 We&apos;re still <Text type="highlight">building</Text>... care for a sneak <Text type="highlight">peek</Text>?
             </Text>
             <Text type="p" alignment="centre">
-                Meeting people in person doesn&apos;t have to be awkward anymore with <Text type="bold">Glimpz</Text>, your new best mate for all face-to-face interactions!
+                In-person networking no longer has to be daunting with <Text type="bold">Glimpz</Text>, your ultimate partner for professional engagements!
             </Text>
             <Text type="p" alignment="centre">
-                Ever wondered if someone was <Text type="bold">single</Text> and been hesitatant to approach them? Ever <Text type="bold">hit it off</Text> with someone at a social event but forgot to
-                get their <Text type="bold">number</Text>? <Text type="bold">Glimpz</Text> has got your back, streamlining all these social snags!
+                Ever wondered if someone is in your industry and <Text type="bold">available for collaboration</Text>? Ever had an engaging conversation with a professional but didn&apos;t exchange{" "}
+                <Text type="bold">contact details</Text>? <Text type="bold">Glimpz</Text> has you covered, resolving these problems for you!
             </Text>
             <Text type="h3" alignment="centre">
-                <Text type="bold">Jump</Text> on our wait list! Bag <Text type="bold">exclusive updates</Text> and a shot at <Text type="bold">early access</Text>!
+                <Text type="bold">Join</Text> our wait list! Gain <Text type="bold">exclusive updates</Text> and the opportunity for <Text type="bold">early access</Text>!
             </Text>
             <Index referral={referral} />
         </Container>

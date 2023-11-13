@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 
 const TITLE = "Join The Wait List - Glimpz";
 const DESCRIPTION =
-    "Say goodbye to awkward encounters with Glimpz! Streamline your social interactions and never miss a chance to connect. No more overthinking, just genuine face-to-face connections.";
+    "Say goodbye to awkward introductions with Glimpz! Streamline in-person networking and never lose an opportunity to make a meaningful connection. No more hesitation - just business!";
 const COLOR = "#0ea5e9";
 const IMAGE = "https://i.imgur.com/g2ddNJg.png";
 
