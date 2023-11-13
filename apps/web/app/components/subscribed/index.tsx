@@ -3,7 +3,7 @@
 import { BASE_URL } from "@glimpz-io/config";
 import { useAnalytics, useReferral } from "@glimpz-io/hooks";
 import { Copy, Link } from "@glimpz-io/ui";
-import { BrandFacebook, BrandTwitter } from "tabler-icons-react";
+import { BrandFacebook, BrandLinkedin, BrandTwitter } from "tabler-icons-react";
 
 interface ReferralProps {
     referral?: string;
@@ -17,6 +17,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
 
     const twitterIcon = () => <BrandTwitter />;
     const facebookIcon = () => <BrandFacebook />;
+    const linkedInIcon = () => <BrandLinkedin />;
 
     const signupUrl = referral ? `${BASE_URL}?referral=${referral}` : null;
     const socialText = signupUrl
@@ -25,6 +26,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
           )
         : null;
 
+    const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${BASE_URL}`;
     const twitterLink = socialText ? `https://twitter.com/intent/tweet?text=${socialText}` : null;
     const facebookLink = `https://www.facebook.com/share.php?u=${BASE_URL}`;
 
@@ -38,6 +40,18 @@ export function Index({ referral }: ReferralProps): JSX.Element {
                     }}
                 />
             )}
+            <Link
+                href={linkedInLink}
+                color="darkblue"
+                icon={linkedInIcon}
+                size="large"
+                newTab={true}
+                onClick={() => {
+                    analytics.track("Share LinkedIn");
+                }}
+            >
+                Share To LinkedIn
+            </Link>
             {twitterLink && (
                 <Link
                     href={twitterLink}
@@ -54,7 +68,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
             )}
             <Link
                 href={facebookLink}
-                color="darkblue"
+                color="indigo"
                 icon={facebookIcon}
                 size="large"
                 newTab={true}
