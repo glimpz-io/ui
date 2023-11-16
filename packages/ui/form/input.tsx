@@ -4,9 +4,9 @@ import { useContext } from "react";
 import { contextLoading } from "./form";
 
 interface Props {
-    className: string;
+    className?: string;
     type: React.InputHTMLAttributes<HTMLInputElement>["type"];
-    onChange: React.InputHTMLAttributes<HTMLInputElement>["onChange"];
+    onChange?: React.InputHTMLAttributes<HTMLInputElement>["onChange"];
     placeholder?: string;
     name: string;
     disabled?: boolean;

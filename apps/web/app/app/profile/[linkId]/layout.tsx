@@ -1,3 +1,4 @@
+import { META_COLOR, META_IMAGE, META_URL } from "@glimpz-io/config";
 import "@glimpz-io/ui/styles.css";
 import type { Metadata } from "next";
 
@@ -12,12 +13,20 @@ export async function generateMetadata(req: Request): Promise<Metadata> {
 
     // throw Error("link is either expired or invalid");
 
+    const title = "test";
+    const description = "test";
+    const url = `${META_URL}/app/profile/${linkId}`;
+
     return {
-        title: "test",
-        description: "test",
+        metadataBase: new URL(META_URL),
+        title: title,
+        description: description,
+        themeColor: META_COLOR,
         openGraph: {
-            title: "test",
-            description: "test",
+            title: title,
+            description: description,
+            images: META_IMAGE,
+            url: url,
         },
     };
 }

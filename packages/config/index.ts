@@ -1,1 +1,2 @@
-export const BASE_URL = "https://glimpz.io";
+export * from "./metadata";
+export * from "./constants";

@@ -1,25 +1,19 @@
-import { BASE_URL } from "@glimpz-io/config";
+import { META_COLOR, META_DESCRIPTION, META_IMAGE, META_TITLE, META_URL } from "@glimpz-io/config";
 import { AnalyticsProvider } from "@glimpz-io/hooks";
 import "@glimpz-io/ui/styles.css";
 import { GeistSans } from "geist/font";
 import type { Metadata } from "next";
 
-const TITLE = "Join The Wait List - Glimpz";
-const DESCRIPTION =
-    "Say goodbye to awkward introductions with Glimpz! Streamline in-person networking and never lose an opportunity to make a meaningful connection. No more hesitation - just business!";
-const COLOR = "#0ea5e9";
-const IMAGE = "https://i.imgur.com/g2ddNJg.png";
-
 export const metadata: Metadata = {
-    metadataBase: new URL(BASE_URL),
-    title: TITLE,
-    description: DESCRIPTION,
-    themeColor: COLOR,
+    metadataBase: new URL(META_URL),
+    title: META_TITLE,
+    description: META_DESCRIPTION,
+    themeColor: META_COLOR,
     openGraph: {
-        title: TITLE,
-        description: DESCRIPTION,
-        images: IMAGE,
-        url: BASE_URL,
+        title: META_TITLE,
+        description: META_DESCRIPTION,
+        images: META_IMAGE,
+        url: META_URL,
     },
 };
 
