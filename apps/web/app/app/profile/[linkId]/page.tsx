@@ -38,8 +38,7 @@ export default function Page(req: Request): JSX.Element {
         publicProfile: {
             name: "Ben Osborn",
             bio: "Software engineer and computer science graduate at the University of Newcastle. Building Glimpz.io, a mobile app making lead generation at in-person networking events easy.",
-            profilePicture:
-                "https://media.licdn.com/dms/image/D5603AQHEpz4r_o-VSw/profile-displayphoto-shrink_200_200/0/1670035625179?e=1705536000&v=beta&t=2GoohIQG05aPQb94kP6H9GAoZqNdKvILzM8HOL-7Hsg",
+            profilePicture: null,
             profile: {
                 email: "test@xyz.com",
                 phone: "61 2 8503 8000",
