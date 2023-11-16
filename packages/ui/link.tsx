@@ -34,7 +34,7 @@ export function Link({ children, className = "", href, color, icon, newTab = fal
         : {};
 
     return (
-        <NextLink onClick={onClick} className={`w-full text-center flex items-center justify-center duration-200 transition-colors ${global}`} href={href} {...newTabProps}>
+        <NextLink onClick={onClick} className={`w-full text-center flex items-center justify-center duration-200 transition-colors whitespace-nowrap ${global}`} href={href} {...newTabProps}>
             <span>{IconComponent && <IconComponent />}</span>
             <span>{children}</span>
         </NextLink>

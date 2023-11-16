@@ -35,7 +35,7 @@ export function Button({ children, className = "", icon, onClick, type, disabled
         <button
             onClick={onClick}
             type={type}
-            className={`${!isLoading && !disabled ? outColor : loadingColor} w-full text-center flex items-center justify-center duration-200 transition-colors ${global}`}
+            className={`${!isLoading && !disabled ? outColor : loadingColor} w-full text-center flex items-center justify-center duration-200 transition-colors whitespace-nowrap ${global}`}
             disabled={isLoading || disabled}
         >
             <span>{IconComponent && <IconComponent />}</span>
