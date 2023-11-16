@@ -2,7 +2,9 @@
 
 import { createContext, useTransition } from "react";
 
-interface Props extends React.HTMLAttributes<HTMLFormElement> {
+interface Props {
+    children: any;
+    className?: string;
     direction: "horizontal" | "vertical";
     size: "full" | "half" | "third";
     action?: (formData: FormData) => void;

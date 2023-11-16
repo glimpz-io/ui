@@ -4,7 +4,11 @@ import { useContext } from "react";
 import { IconProps } from "tabler-icons-react";
 import { contextLoading } from "./form";
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props {
+    children: any;
+    className?: string;
+    onClick?: (e: any) => void;
+    type: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
     icon?: (props: IconProps) => JSX.Element;
     size: "large";
     disabled?: boolean;

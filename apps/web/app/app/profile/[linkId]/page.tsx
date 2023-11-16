@@ -38,7 +38,8 @@ export default function Page(req: Request): JSX.Element {
         publicProfile: {
             name: "Ben Osborn",
             bio: "Software engineer and computer science graduate at the University of Newcastle. Building Glimpz.io, a mobile app making lead generation at in-person networking events easy.",
-            profilePicture: "https://i.imgur.com/imnPLIl.png",
+            profilePicture:
+                "https://media.licdn.com/dms/image/D5603AQHEpz4r_o-VSw/profile-displayphoto-shrink_200_200/0/1670035625179?e=1705536000&v=beta&t=2GoohIQG05aPQb94kP6H9GAoZqNdKvILzM8HOL-7Hsg",
             profile: {
                 email: "test@xyz.com",
                 phone: "61 2 8503 8000",
@@ -50,7 +51,9 @@ export default function Page(req: Request): JSX.Element {
 
     return (
         <Container direction="vertical" size="half">
-            {data.publicProfile.profilePicture && <Image src={data.publicProfile.profilePicture} alt="Profile picture." width={250} height={250} className="rounded-full" />}
+            <Container direction="vertical" size="full" className="bg-sky-500 rounded-md">
+                {data.publicProfile.profilePicture && <Image src={data.publicProfile.profilePicture} alt="Profile picture." width={250} height={250} className="rounded-full drop-shadow-md" />}
+            </Container>
             <Text type="h2" alignment="centre">
                 {data.publicProfile.name}
             </Text>

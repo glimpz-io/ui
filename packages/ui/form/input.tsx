@@ -3,7 +3,14 @@
 import { useContext } from "react";
 import { contextLoading } from "./form";
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface Props {
+    className: string;
+    type: React.InputHTMLAttributes<HTMLInputElement>["type"];
+    onChange: React.InputHTMLAttributes<HTMLInputElement>["onChange"];
+    placeholder?: string;
+    name: string;
+    disabled?: boolean;
+}
 
 export function Input({ className = "", type, onChange, placeholder, name, disabled = false }: Props): JSX.Element {
     const isLoading = useContext(contextLoading);
