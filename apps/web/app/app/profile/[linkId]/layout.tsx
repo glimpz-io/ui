@@ -11,13 +11,17 @@ interface Request {
     };
 }
 
+interface Data {
+    link: { publicProfile: { name: string; bio: string } };
+}
+
 export async function generateMetadata(req: Request): Promise<Metadata> {
     const linkId = req.params.linkId;
 
     const apiUrl = process.env.API_URL;
     if (!apiUrl) throw Error("missing API url");
 
-    const client = getClient(apiUrl);
+    const client = await getClient(apiUrl);
 
     const query = gql`
         query GetLink($id: ID!) {
@@ -30,7 +34,7 @@ export async function generateMetadata(req: Request): Promise<Metadata> {
         }
     `;
 
-    const { data } = await client().query({ query, variables: { id: linkId } });
+    const { data } = await client().query<Data>({ query, variables: { id: linkId } });
 
     const userName = data.link.publicProfile.name;
     const userBio = data.link.publicProfile.bio;

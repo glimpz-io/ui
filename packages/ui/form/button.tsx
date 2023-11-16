@@ -38,7 +38,11 @@ export function Button({ children, className = "", icon, onClick, type, disabled
             className={`${!isLoading && !disabled ? outColor : loadingColor} w-full text-center flex items-center justify-center duration-200 transition-colors whitespace-nowrap ${global}`}
             disabled={isLoading || disabled}
         >
-            <span>{IconComponent && <IconComponent />}</span>
+            {IconComponent && (
+                <span>
+                    <IconComponent />
+                </span>
+            )}
             <span>{children}</span>
         </button>
     );
