@@ -15,7 +15,7 @@ interface Props {
 export function Link({ children, className = "", href, color, icon, newTab = false, onClick }: Props): JSX.Element {
     const IconComponent = icon;
 
-    let length = "px-16 py-4 text-xl font-semibold space-x-8 border-4";
+    let length = "px-6 py-4 text-xl font-semibold space-x-8 border-4";
 
     let outColor: string;
     if (color === "lightblue") outColor = "text-cyan-500 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-sky-500 hover:text-white border-cyan-500";

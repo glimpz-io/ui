@@ -3,7 +3,7 @@
 import { BASE_URL } from "@glimpz-io/config";
 import { useAnalytics, useReferral } from "@glimpz-io/hooks";
 import { Copy, Link } from "@glimpz-io/ui";
-import { BrandFacebook, BrandLinkedin, BrandTwitter } from "tabler-icons-react";
+import { BrandFacebook, BrandLinkedin, BrandTwitter, Link as LinkIcon } from "tabler-icons-react";
 
 interface ReferralProps {
     referral?: string;
@@ -15,6 +15,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
 
     if (referral) analytics.identify(referral);
 
+    const linkIcon = () => <LinkIcon />;
     const twitterIcon = () => <BrandTwitter />;
     const facebookIcon = () => <BrandFacebook />;
     const linkedInIcon = () => <BrandLinkedin />;
@@ -35,6 +36,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
         <>
             {signupUrl && (
                 <Copy
+                    icon={linkIcon}
                     value={signupUrl}
                     onClick={() => {
                         analytics.track("Copy Code");
