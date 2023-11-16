@@ -2,6 +2,9 @@ import { META_COLOR, META_IMAGE, META_URL } from "@glimpz-io/config";
 import "@glimpz-io/ui/styles.css";
 import type { Metadata } from "next";
 
+import { gql } from "@apollo/client";
+import { getClient } from "@glimpz-io/hooks/graphql";
+
 interface Request {
     params: {
         linkId: string;
@@ -11,10 +14,29 @@ interface Request {
 export async function generateMetadata(req: Request): Promise<Metadata> {
     const linkId = req.params.linkId;
 
-    // throw Error("link is either expired or invalid");
+    const apiUrl = process.env.API_URL;
+    if (!apiUrl) throw Error("missing API url");
 
-    const title = "test";
-    const description = "test";
+    const client = getClient(apiUrl);
+
+    const query = gql`
+        query GetLink($id: ID!) {
+            link(id: $id) {
+                publicProfile {
+                    name
+                    bio
+                }
+            }
+        }
+    `;
+
+    const { data } = await client().query({ query, variables: { id: linkId } });
+
+    const userName = data.link.publicProfile.name;
+    const userBio = data.link.publicProfile.bio;
+
+    const title = `${userName} - Glimpz`;
+    const description = `${userBio}`;
     const url = `${META_URL}/app/profile/${linkId}`;
 
     return {
