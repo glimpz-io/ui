@@ -24,7 +24,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
     const signupUrlEncoded = signupUrl ? encodeURIComponent(signupUrl) : null;
     const socialText = signupUrl
         ? encodeURIComponent(
-              `Excited to share #Glimpz, an app designed to streamline in-person networking. Looking forward to leveraging its potential! 👔🔗\n\nJoin the early access wait list with me: ${signupUrl}`
+              `Excited to share #Glimpz, an app designed to streamline in-person networking. Looking forward to leveraging its potential! 👔🔗\n\nJoin the early access waitlist with me: ${signupUrl}`
           )
         : null;
 

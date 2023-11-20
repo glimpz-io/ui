@@ -36,7 +36,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
                     analytics.track("Email Signup", { "Signup Type": referral ? "Referral" : "Direct", Referrer: referral });
                 }}
             >
-                Join Wait List
+                Join Waitlist
             </Button>
         </Form>
     );

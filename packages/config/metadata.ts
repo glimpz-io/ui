@@ -1,8 +1,8 @@
 import { BASE_URL } from "./constants";
 
-export const META_TITLE = "Join The Wait List - Glimpz";
+export const META_TITLE = "Join The Waitlist - Glimpz";
 export const META_DESCRIPTION =
-    "Say goodbye to awkward introductions with Glimpz! Streamline in-person networking and never lose an opportunity to make a meaningful connection. No more hesitation - just business!";
+    "Turbocharge your lead generation and conversions at in-person networking events, effortlessly follow-up on connections, and ditch annoying business cards. Join our waitlist today!";
 export const META_COLOR = "#0ea5e9";
-export const META_IMAGE = "https://i.imgur.com/g2ddNJg.png";
+export const META_IMAGE = "https://i.imgur.com/9sw4AUN.png";
 export const META_URL = BASE_URL;
