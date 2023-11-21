@@ -45,7 +45,13 @@ export function Save(props: ReferralProps): JSX.Element {
                     🌟 to save their details.
                 </Text>
             )}
-            <Modal title={`Connect With ${props.publicProfile.firstName}`} showModal={showModal} setShowModal={(show) => setShowModal(show)}>
+            <Modal
+                title={`Connect With ${props.publicProfile.firstName}`}
+                showModal={showModal}
+                setShowModal={(show) => {
+                    setShowModal(show);
+                }}
+            >
                 <Text type="warning">
                     Your access to {props.publicProfile.firstName}&apos;s profile will expire in {remainingHours} hours.
                 </Text>
