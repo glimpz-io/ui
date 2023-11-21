@@ -14,7 +14,7 @@ export async function submitEmail(fieldName: string, formData: FormData, referra
 
     sg.setApiKey(apiKey);
 
-    const code = "rid:" + v4();
+    const code = "rid-" + v4();
 
     const [response] = await sg.request({
         url: "/v3/marketing/contacts",

@@ -7,16 +7,16 @@ import { getClient } from "@glimpz-io/hooks/graphql";
 
 interface Request {
     params: {
-        linkId: string;
+        inviteId: string;
     };
 }
 
 interface Data {
-    link: { publicProfile: { name: string; bio: string } };
+    invite: { publicProfile: { firstName: string; lastName: string; bio: string } };
 }
 
 export async function generateMetadata(req: Request): Promise<Metadata> {
-    const linkId = req.params.linkId;
+    const inviteId = req.params.inviteId;
 
     const apiUrl = process.env.API_URL;
     if (!apiUrl) throw Error("missing API url");
@@ -24,24 +24,26 @@ export async function generateMetadata(req: Request): Promise<Metadata> {
     const client = await getClient(apiUrl);
 
     const query = gql`
-        query GetLink($id: ID!) {
-            link(id: $id) {
+        query GetInvite($id: ID!) {
+            invite(id: $id) {
                 publicProfile {
-                    name
+                    firstName
+                    lastName
                     bio
                 }
             }
         }
     `;
 
-    const { data } = await client().query<Data>({ query, variables: { id: linkId } });
+    const { data: invite } = await client().query<Data>({ query, variables: { id: inviteId } });
+    const data = invite.invite;
 
-    const userName = data.link.publicProfile.name;
-    const userBio = data.link.publicProfile.bio;
+    const userName = `${data.publicProfile.firstName} ${data.publicProfile.lastName}`;
+    const userBio = data.publicProfile.bio;
 
-    const title = `${userName} - Glimpz`;
+    const title = `${userName} - Glimpz Profile`;
     const description = `${userBio}`;
-    const url = `${META_URL}/app/profile/${linkId}`;
+    const url = `${META_URL}/app/profile/${inviteId}`;
 
     return {
         metadataBase: new URL(META_URL),

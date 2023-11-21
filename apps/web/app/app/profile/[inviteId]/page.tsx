@@ -8,17 +8,18 @@ import { Banner } from "../../../components/app/profile/banner";
 
 interface Request {
     params: {
-        linkId: string;
+        inviteId: string;
     };
 }
 
 interface Data {
-    link: {
+    invite: {
         id: string;
         userId: string;
         expiresAt: number;
         publicProfile: {
-            name: string;
+            firstName: string;
+            lastName: string;
             bio: string;
             profilePicture: string | null;
             profile: {
@@ -32,7 +33,7 @@ interface Data {
 }
 
 export default async function Page(req: Request): Promise<JSX.Element> {
-    const linkId = req.params.linkId;
+    const inviteId = req.params.inviteId;
 
     const apiUrl = process.env.API_URL;
     if (!apiUrl) throw Error("missing API url");
@@ -40,13 +41,14 @@ export default async function Page(req: Request): Promise<JSX.Element> {
     const client = await getClient(apiUrl);
 
     const query = gql`
-        query GetLink($id: ID!) {
-            link(id: $id) {
+        query GetInvite($id: ID!) {
+            invite(id: $id) {
                 id
                 userId
                 expiresAt
                 publicProfile {
-                    name
+                    firstName
+                    lastName
                     bio
                     profilePicture
                     profile {
@@ -60,8 +62,8 @@ export default async function Page(req: Request): Promise<JSX.Element> {
         }
     `;
 
-    const { data: link } = await client().query<Data>({ query, variables: { id: linkId } });
-    const data = link.link;
+    const { data: invite } = await client().query<Data>({ query, variables: { id: inviteId } });
+    const data = invite.invite;
 
     return (
         <Container direction="vertical" size="half">
@@ -76,7 +78,7 @@ export default async function Page(req: Request): Promise<JSX.Element> {
                 />
             </Container>
             <Text type="title" alignment="centre">
-                {data.publicProfile.name}
+                {data.publicProfile.firstName} {data.publicProfile.lastName}
             </Text>
             <Text type="p" alignment="centre">
                 {data.publicProfile.bio}

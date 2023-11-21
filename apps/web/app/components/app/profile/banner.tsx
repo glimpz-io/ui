@@ -16,7 +16,7 @@ export function Banner({ linkId, userId }: ReferralProps): JSX.Element {
             <Text alignment="centre" type="h3">
                 🚀 Want to boost your own leads at networking events? Click{" "}
                 <Link
-                    href="/"
+                    href={`/?referral=uido-${userId}`}
                     color="lightblue"
                     size="small"
                     newTab={true}
