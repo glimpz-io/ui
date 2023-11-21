@@ -12,6 +12,7 @@ export async function submitEmail(fieldNameEmail: string, fieldNameSubscribe: st
     const query = gql`
         mutation ConnectByEmail($inviteId: ID!, $email: String!, $subscribe: Boolean!) {
             connectByEmail(inviteId: $inviteId, email: $email, subscribe: $subscribe) {
+                id
             }
         }
     `;
@@ -23,7 +24,7 @@ export async function submitEmail(fieldNameEmail: string, fieldNameSubscribe: st
     if (rawSubscribe === "on") subscribe = true;
     else subscribe = false;
 
-    const { data } = await client().mutate({
+    await client().mutate({
         mutation: query,
         variables: {
             inviteId,

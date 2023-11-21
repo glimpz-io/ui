@@ -1,4 +1,4 @@
-import { META_COLOR, META_DESCRIPTION, META_IMAGE, META_TITLE, META_URL } from "@glimpz-io/config";
+import { META_COLOR, META_DESCRIPTION, META_IMAGE, META_TITLE, META_URL, MODAL_PORTAL_ID } from "@glimpz-io/config";
 import { AnalyticsProvider } from "@glimpz-io/hooks";
 import "@glimpz-io/ui/styles.css";
 import { GeistSans } from "geist/font";
@@ -27,7 +27,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en" className="bg-gradient-to-r from-neutral-950 to-zinc-950 min-w-fit">
             <AnalyticsProvider mixpanelToken={MIXPANEL_TOKEN} facebookId={FACEBOOK_ID}>
-                <body className={GeistSans.className}>{children}</body>
+                <body className={GeistSans.className}>
+                    <div id={MODAL_PORTAL_ID} />
+                    {children}
+                </body>
             </AnalyticsProvider>
         </html>
     );

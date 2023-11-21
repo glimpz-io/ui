@@ -1,8 +1,7 @@
 "use client";
 
 import { Button, Checkbox, Form, Input, Link, Modal, Text } from "@glimpz-io/ui";
-import { useAnalytics } from "@glimpz-io/hooks";
-import { useEffect, useState } from "react";
+import { useAnalytics, useExchange } from "@glimpz-io/hooks";
 import { submitEmail } from "./actions";
 
 interface ReferralProps {
@@ -16,34 +15,36 @@ interface ReferralProps {
 
 export function Save(props: ReferralProps): JSX.Element {
     const analytics = useAnalytics();
-    const [showModal, setShowModal] = useState<boolean>(false);
-
-    useEffect(() => {
-        setTimeout(() => setShowModal(true), 3000);
-    }, [setShowModal]);
+    const { setShowModal, setSuccess, showModal, success } = useExchange(props.userId);
 
     const fieldNameEmail = "email";
     const fieldNameSubscribe = "subscribe";
 
-    const remainingHours = new Date(props.expiresAt - Math.floor(Date.now() / 1000)).getHours();
+    const remainingHours = Math.ceil((props.expiresAt - Math.floor(Date.now() / 1000)) / (60 * 60));
 
     return (
         <>
-            <Text type="warning" alignment="centre">
-                Your access to {props.publicProfile.firstName}&apos;s profile will expire in {remainingHours} hours. Click{" "}
-                <Link
-                    href="#"
-                    onClick={() => {
-                        setShowModal(true);
-                        analytics.track("Open Connect Modal", { "User ID": props.userId });
-                    }}
-                    color="yellow"
-                    size="small"
-                >
-                    here
-                </Link>{" "}
-                to connect with them now.
-            </Text>
+            {success ? (
+                <Text type="success" alignment="centre">
+                    You exchanged contact details with {props.publicProfile.firstName}! Check your email to find them.
+                </Text>
+            ) : (
+                <Text type="warning" alignment="centre">
+                    Your access to {props.publicProfile.firstName}&apos;s profile will expire in {remainingHours} hours. Click{" "}
+                    <Link
+                        href="#"
+                        onClick={() => {
+                            setShowModal(true);
+                            analytics.track("Open Connect Modal", { "User ID": props.userId });
+                        }}
+                        color="yellow"
+                        size="small"
+                    >
+                        here
+                    </Link>{" "}
+                    to connect with them now.
+                </Text>
+            )}
             <Modal title={`Connect With ${props.publicProfile.firstName}`} showModal={showModal} setShowModal={(show) => setShowModal(show)}>
                 <Text type="warning">
                     Your access to {props.publicProfile.firstName}&apos;s profile will expire in {remainingHours} hours.
@@ -58,7 +59,7 @@ export function Save(props: ReferralProps): JSX.Element {
                     // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
                     action={async (formData) => {
                         await submitEmail(fieldNameEmail, fieldNameSubscribe, formData, props.inviteId);
-                        setShowModal(false);
+                        setSuccess();
                     }}
                 >
                     <Input name={fieldNameEmail} type="email" placeholder="youremail@xyz.com" required={true} />
