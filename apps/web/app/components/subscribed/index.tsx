@@ -82,7 +82,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
                         analytics.track("Share Facebook");
                     }}
                 >
-                    Share To FaceBook
+                    Share To Facebook
                 </Link>
             )}
         </>
