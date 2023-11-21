@@ -68,8 +68,8 @@ export default async function Page(req: Request): Promise<JSX.Element> {
 
     return (
         <Container direction="vertical" size="half">
-            <Banner linkId={data.id} userId={data.userId} />
-            <Save linkId={data.id} userId={data.userId} expiresAt={data.expiresAt} publicProfile={data.publicProfile} />
+            <Banner userId={data.userId} />
+            <Save inviteId={data.id} userId={data.userId} expiresAt={data.expiresAt} publicProfile={data.publicProfile} />
             <Container direction="vertical" size="full" className="bg-sky-500 rounded-md">
                 <Image
                     src={data.publicProfile.profilePicture || "https://i.imgur.com/H1eyXTn.png"}

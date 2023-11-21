@@ -4,11 +4,10 @@ import { Link, Text } from "@glimpz-io/ui";
 import { useAnalytics } from "@glimpz-io/hooks";
 
 interface ReferralProps {
-    linkId: string;
     userId: string;
 }
 
-export function Banner({ linkId, userId }: ReferralProps): JSX.Element {
+export function Banner({ userId }: ReferralProps): JSX.Element {
     const analytics = useAnalytics();
 
     return (
@@ -20,7 +19,7 @@ export function Banner({ linkId, userId }: ReferralProps): JSX.Element {
                 size="small"
                 newTab={true}
                 onClick={() => {
-                    analytics.track("Create Profile Banner Referral", { "Link ID": linkId, "User ID": userId });
+                    analytics.track("Create Profile Banner Referral", { "User ID": userId });
                 }}
             >
                 here
