@@ -1,8 +1,8 @@
 "use client";
 
-import { Button, Form, Input, Link, Modal, Text } from "@glimpz-io/ui";
+import { Button, Checkbox, Form, Input, Link, Modal, Text } from "@glimpz-io/ui";
 import { useAnalytics } from "@glimpz-io/hooks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ReferralProps {
     linkId: string;
@@ -13,18 +13,27 @@ interface ReferralProps {
     };
 }
 
-// **** Now we need to create the save modal...
-
 export function Save(props: ReferralProps): JSX.Element {
     const analytics = useAnalytics();
+    const [showModal, setShowModal] = useState<boolean>(false);
 
-    const [showModal, setShowModal] = useState<boolean>(true);
+    useEffect(() => {
+        setTimeout(() => setShowModal(true), 3000);
+    }, [setShowModal]);
 
     return (
         <>
             <Text type="warning" alignment="centre">
                 Your access to {props.publicProfile.firstName}&apos;s profile will expire in {new Date(props.expiresAt).getHours()} hours. Click{" "}
-                <Link href="#" onClick={() => setShowModal(true)} color="yellow" size="small">
+                <Link
+                    href="#"
+                    onClick={() => {
+                        setShowModal(true);
+                        analytics.track("Open Connect Modal", { "User ID": props.userId });
+                    }}
+                    color="yellow"
+                    size="small"
+                >
                     here
                 </Link>{" "}
                 to connect with them now.
@@ -38,8 +47,16 @@ export function Save(props: ReferralProps): JSX.Element {
                     can reach out to you.
                 </Text>
                 <Form direction="vertical" size="full">
-                    <Input name="email" type="email" placeholder="awesomeuser@xyz.com" />
-                    <Button type="submit" color="indigo" size="large">
+                    <Input name="email" type="email" placeholder="youremail@xyz.com" required={true} />
+                    <Checkbox label="Keep this box checked to receive additional marketing emails from Glimpz." name="checkbox" defaultChecked={true} />
+                    <Button
+                        type="submit"
+                        color="indigo"
+                        size="large"
+                        onClick={() => {
+                            analytics.track("Submit Connect Email", { "User ID": props.userId });
+                        }}
+                    >
                         Submit
                     </Button>
                 </Form>

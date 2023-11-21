@@ -85,7 +85,7 @@ export default async function Page(req: Request): Promise<JSX.Element> {
             <Text type="p" alignment="centre">
                 {data.publicProfile.bio}
             </Text>
-            <Contact linkId={data.id} userId={data.userId} profile={data.publicProfile.profile} />
+            <Contact userId={data.userId} profile={data.publicProfile.profile} />
         </Container>
     );
 }

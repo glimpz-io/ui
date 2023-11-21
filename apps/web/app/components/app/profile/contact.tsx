@@ -5,7 +5,6 @@ import { Copy, Link } from "@glimpz-io/ui";
 import { useAnalytics } from "@glimpz-io/hooks";
 
 interface ReferralProps {
-    linkId: string;
     userId: string;
     profile: {
         email: string | null;
@@ -15,7 +14,7 @@ interface ReferralProps {
     };
 }
 
-export function Contact({ linkId, userId, profile }: ReferralProps): JSX.Element {
+export function Contact({ userId, profile }: ReferralProps): JSX.Element {
     const analytics = useAnalytics();
 
     const phoneIcon = () => <Phone />;
@@ -30,7 +29,7 @@ export function Contact({ linkId, userId, profile }: ReferralProps): JSX.Element
                     icon={emailIcon}
                     value={profile.email}
                     onClick={() => {
-                        analytics.track("Copy Profile Email", { "Link ID": linkId, "User ID": userId });
+                        analytics.track("Copy Profile Email", { "User ID": userId });
                     }}
                 />
             )}
@@ -39,7 +38,7 @@ export function Contact({ linkId, userId, profile }: ReferralProps): JSX.Element
                     icon={phoneIcon}
                     value={"+" + profile.phone}
                     onClick={() => {
-                        analytics.track("Copy Profile Phone", { "Link ID": linkId, "User ID": userId });
+                        analytics.track("Copy Profile Phone", { "User ID": userId });
                     }}
                 />
             )}
@@ -51,7 +50,7 @@ export function Contact({ linkId, userId, profile }: ReferralProps): JSX.Element
                     newTab={true}
                     icon={webIcon}
                     onClick={() => {
-                        analytics.track("Goto Profile Website", { "Link ID": linkId, "User ID": userId });
+                        analytics.track("Goto Profile Website", { "User ID": userId });
                     }}
                 >
                     Website
@@ -65,7 +64,7 @@ export function Contact({ linkId, userId, profile }: ReferralProps): JSX.Element
                     size="large"
                     newTab={true}
                     onClick={() => {
-                        analytics.track("Goto Profile LinkedIn", { "Link ID": linkId, "User ID": userId });
+                        analytics.track("Goto Profile LinkedIn", { "User ID": userId });
                     }}
                 >
                     LinkedIn

@@ -10,9 +10,10 @@ interface Props {
     placeholder?: string;
     name: string;
     disabled?: boolean;
+    required?: boolean;
 }
 
-export function Input({ className = "", type, onChange, placeholder, name, disabled = false }: Props): JSX.Element {
+export function Input({ className = "", type, onChange, placeholder, name, disabled = false, required }: Props): JSX.Element {
     const isLoading = useContext(contextLoading);
 
     const global = `${className}`;
@@ -24,6 +25,7 @@ export function Input({ className = "", type, onChange, placeholder, name, disab
             onChange={onChange}
             placeholder={placeholder}
             name={name}
+            required={required}
             className={`${!isLoading && !disabled ? "text-white" : "text-neutral-400"} bg-neutral-800 w-full px-6 py-4 outline-none font-light ${global}`}
         />
     );

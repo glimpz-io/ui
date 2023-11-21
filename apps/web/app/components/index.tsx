@@ -26,7 +26,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
             direction="vertical"
             size="full"
         >
-            <Input type="email" name={fieldName} placeholder="awesomeuser@xyz.com" />
+            <Input type="email" name={fieldName} placeholder="youremail@xyz.com" required={true} />
             <Button
                 type="submit"
                 size="large"
