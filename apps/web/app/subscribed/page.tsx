@@ -20,7 +20,7 @@ export default function Page(req: Request): JSX.Element {
                 You&apos;ve now been added to our waitlist! In the meantime, share our mission with <Text type="bold">your network</Text> to increase your chance of gaining early access!
             </Text>
             <Text type="h3" alignment="centre">
-                Share your unique code with your network! (click to copy)
+                🚀 Share your unique code with your network! (click to copy)
             </Text>
             <Index referral={referral} />
         </Container>

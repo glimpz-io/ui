@@ -20,13 +20,13 @@ export function Button({ children, className = "", icon, onClick, type, disabled
 
     const IconComponent = icon;
 
-    let length = "px-6 py-4 text-xl font-semibold space-x-8 border-4";
+    let length = "px-6 py-6 text-xl font-semibold space-x-8";
 
     let outColor: string;
     let loadingColor: string;
     if (color === "blue") {
-        outColor = "text-sky-500 hover:bg-gradient-to-r hover:from-sky-500 hover:to-blue-500 hover:text-white border-sky-500";
-        loadingColor = "bg-gradient-to-r from-sky-500 to-blue-500 text-white border-sky-500";
+        outColor = "bg-gradient-to-r text-white from-sky-500 to-blue-500 hover:from-sky-600 hover:to-blue-600 hover:text-white";
+        loadingColor = "bg-gradient-to-r from-sky-600 to-blue-600 text-white border-sky-500";
     } else throw Error("invalid color");
 
     const global = `${length} ${className}`;
@@ -35,7 +35,7 @@ export function Button({ children, className = "", icon, onClick, type, disabled
         <button
             onClick={onClick}
             type={type}
-            className={`${!isLoading && !disabled ? outColor : loadingColor} w-full text-center flex items-center justify-center duration-200 transition-colors whitespace-nowrap ${global}`}
+            className={`${!isLoading && !disabled ? outColor : loadingColor} w-full text-center flex items-center justify-center whitespace-nowrap ${global}`}
             disabled={isLoading || disabled}
         >
             {IconComponent && (
