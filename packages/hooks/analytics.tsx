@@ -46,7 +46,7 @@ export function useAnalytics() {
 
         analytics.track(eventName, options);
         // @ts-ignore
-        fbq("track", eventName, options);
+        fbq("trackCustom", eventName, options);
     }
 
     function identify(userId: string) {

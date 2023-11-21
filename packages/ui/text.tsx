@@ -1,7 +1,9 @@
+import { AlertTriangle } from "tabler-icons-react";
+
 interface Props {
     children: any;
     className?: string;
-    type: "title" | "h2" | "h3" | "p" | "highlight" | "small" | "bold";
+    type: "title" | "h2" | "h3" | "p" | "highlight" | "small" | "bold" | "warning";
     alignment?: "left" | "centre" | "right";
 }
 
@@ -33,6 +35,15 @@ export function Text({ children, className, type, alignment = "left" }: Props): 
     if (type === "h3") return <h3 className={"text-xl text-neutral-300 font-medium w-full " + global}>{children}</h3>;
     if (type === "p") return <p className={"text-lg text-neutral-400 font-normal w-full " + global}>{children}</p>;
     if (type === "small") return <p className={"text-md text-neutral-500 font-normal w-full " + global}>{children}</p>;
+    if (type === "warning")
+        return (
+            <div className={"flex justify-between items-start w-full space-x-4 text-yellow-500 font-normal"}>
+                <span>
+                    <AlertTriangle />
+                </span>
+                <span className={"w-full " + global}>{children}</span>
+            </div>
+        );
 
     throw Error("invalid type");
 }

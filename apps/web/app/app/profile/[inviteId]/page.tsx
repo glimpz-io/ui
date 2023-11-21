@@ -5,6 +5,7 @@ import { Contact } from "../../../components/app/profile/contact";
 import { getClient } from "@glimpz-io/hooks/graphql";
 import { gql } from "@apollo/client";
 import { Banner } from "../../../components/app/profile/banner";
+import { Save } from "../../../components/app/profile/save";
 
 interface Request {
     params: {
@@ -68,6 +69,7 @@ export default async function Page(req: Request): Promise<JSX.Element> {
     return (
         <Container direction="vertical" size="half">
             <Banner linkId={data.id} userId={data.userId} />
+            <Save linkId={data.id} userId={data.userId} expiresAt={data.expiresAt} publicProfile={data.publicProfile} />
             <Container direction="vertical" size="full" className="bg-sky-500 rounded-md">
                 <Image
                     src={data.publicProfile.profilePicture || "https://i.imgur.com/H1eyXTn.png"}

@@ -12,7 +12,7 @@ interface Props {
     icon?: (props: IconProps) => JSX.Element;
     size: "large";
     disabled?: boolean;
-    color: "blue";
+    color: "blue" | "indigo";
 }
 
 export function Button({ children, className = "", icon, onClick, type, disabled = false, color }: Props): JSX.Element {
@@ -25,8 +25,11 @@ export function Button({ children, className = "", icon, onClick, type, disabled
     let outColor: string;
     let loadingColor: string;
     if (color === "blue") {
-        outColor = "bg-gradient-to-r text-white from-sky-500 to-blue-500 hover:from-sky-600 hover:to-blue-600 hover:text-white";
-        loadingColor = "bg-gradient-to-r from-sky-600 to-blue-600 text-white border-sky-500";
+        outColor = "bg-gradient-to-r text-white from-sky-500 to-blue-500 hover:from-sky-600 hover:to-blue-600";
+        loadingColor = "bg-gradient-to-r from-sky-600 to-blue-600 text-white";
+    } else if (color === "indigo") {
+        outColor = "bg-gradient-to-r text-white from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700";
+        loadingColor = "bg-gradient-to-r from-blue-600 to-indigo-700 text-white";
     } else throw Error("invalid color");
 
     const global = `${length} ${className}`;
