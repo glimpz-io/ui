@@ -42,7 +42,7 @@ export function Save(props: ReferralProps): JSX.Element {
                     >
                         here
                     </Link>{" "}
-                    to connect with them now.
+                    🌟 to save their details.
                 </Text>
             )}
             <Modal title={`Connect With ${props.publicProfile.firstName}`} showModal={showModal} setShowModal={(show) => setShowModal(show)}>

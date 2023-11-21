@@ -37,7 +37,7 @@ export function Text({ children, className, type, alignment = "left" }: Props): 
     if (type === "small") return <p className={"text-md text-neutral-500 font-normal w-full " + global}>{children}</p>;
     if (type === "warning")
         return (
-            <div className={"flex justify-between items-start w-full space-x-4 text-yellow-500 text-md font-normal"}>
+            <div className={"flex justify-between items-start w-full space-x-4 text-yellow-400 text-lg font-normal"}>
                 <span>
                     <AlertTriangle />
                 </span>
@@ -46,7 +46,7 @@ export function Text({ children, className, type, alignment = "left" }: Props): 
         );
     if (type === "success")
         return (
-            <div className={"flex justify-between items-start w-full space-x-4 text-green-500 text-md font-normal"}>
+            <div className={"flex justify-between items-start w-full space-x-4 text-green-500 text-lg font-normal"}>
                 <span>
                     <Check />
                 </span>

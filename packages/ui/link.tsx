@@ -22,16 +22,16 @@ export function Link({ children, className = "", href, color, icon, newTab = fal
     let outColor: string;
     if (color === "lightblue") {
         if (size === "large") outColor = "text-white bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-600 hover:to-sky-600";
-        else outColor = "text-sky-400 hover:text-sky-500";
+        else outColor = "text-sky-400 hover:text-sky-500 underline decoration-sky-400 hover:decoration-sky-500";
     } else if (color === "indigo") {
         if (size === "large") outColor = "text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700";
-        else outColor = "text-indigo-600 hover:text-indigo-700";
+        else outColor = "text-indigo-600 hover:text-indigo-700 500 underline decoration-indigo-600 hover:decoration-indigo-700";
     } else if (color === "darkblue") {
         if (size === "large") outColor = "text-white bg-gradient-to-r from-blue-700 to-cyan-700 hover:from-blue-800 hover:to-cyan-800";
-        else outColor = "text-blue-700 hover:text-blue-800";
+        else outColor = "text-blue-700 hover:text-blue-800 underline decoration-blue-700 hover:decoration-blue-800";
     } else if (color === "yellow") {
         if (size === "large") outColor = "text-white bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600";
-        else outColor = "text-yellow-500 hover:text-amber-500";
+        else outColor = "text-yellow-500 hover:text-amber-500 underline decoration-yellow-500 hover:decoration-amber-500";
     } else throw Error("invalid color");
 
     let block;
