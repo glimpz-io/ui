@@ -11,9 +11,9 @@
     "dependencies": {
         "@apollo/client": "^3.8.0-rc.2",
         "@apollo/experimental-nextjs-app-support": "^0.5.1",
-        "@glimpz-io/config": "*",
-        "@glimpz-io/hooks": "*",
-        "@glimpz-io/ui": "*",
+        "@glimpzio/config": "*",
+        "@glimpzio/hooks": "*",
+        "@glimpzio/ui": "*",
         "@sendgrid/client": "^7.7.0",
         "geist": "^1.0.1",
         "next": "^13.4.19",

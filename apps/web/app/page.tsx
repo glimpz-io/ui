@@ -1,5 +1,5 @@
-import { Text } from "@glimpz-io/ui/text";
-import { Container } from "@glimpz-io/ui/container";
+import { Text } from "@glimpzio/ui/text";
+import { Container } from "@glimpzio/ui/container";
 import { Index } from "./components";
 
 interface Request {

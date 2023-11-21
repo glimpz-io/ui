@@ -1,9 +1,9 @@
 {
-    "name": "@glimpz-io/ui",
+    "name": "@glimpzio/ui",
     "version": "0.0.0",
     "private": true,
     "devDependencies": {
-        "@glimpz-io/config": "*",
+        "@glimpzio/config": "*",
         "@types/node": "^20.5.2",
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.0",
@@ -16,6 +16,6 @@
         "next": "^13.4.19",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "@glimpz-io/config": "*"
+        "@glimpzio/config": "*"
     }
 }

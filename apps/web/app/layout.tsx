@@ -1,6 +1,6 @@
-import { META_COLOR, META_DESCRIPTION, META_IMAGE, META_TITLE, META_URL, MODAL_PORTAL_ID } from "@glimpz-io/config";
-import { AnalyticsProvider } from "@glimpz-io/hooks";
-import "@glimpz-io/ui/styles.css";
+import { META_COLOR, META_DESCRIPTION, META_IMAGE, META_TITLE, META_URL, MODAL_PORTAL_ID } from "@glimpzio/config";
+import { AnalyticsProvider } from "@glimpzio/hooks";
+import "@glimpzio/ui/styles.css";
 import { GeistSans } from "geist/font";
 import type { Metadata } from "next";
 

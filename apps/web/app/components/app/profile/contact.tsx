@@ -1,8 +1,8 @@
 "use client";
 
 import { BrandLinkedin, World, Mail, Phone } from "tabler-icons-react";
-import { Copy, Link } from "@glimpz-io/ui";
-import { useAnalytics } from "@glimpz-io/hooks";
+import { Copy, Link } from "@glimpzio/ui";
+import { useAnalytics } from "@glimpzio/hooks";
 
 interface ReferralProps {
     userId: string;

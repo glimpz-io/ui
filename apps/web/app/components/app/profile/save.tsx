@@ -1,7 +1,7 @@
 "use client";
 
-import { Button, Checkbox, Form, Input, Link, Modal, Text } from "@glimpz-io/ui";
-import { useAnalytics, useExchange } from "@glimpz-io/hooks";
+import { Button, Checkbox, Form, Input, Link, Modal, Text } from "@glimpzio/ui";
+import { useAnalytics, useExchange } from "@glimpzio/hooks";
 import { submitEmail } from "./actions";
 
 interface ReferralProps {

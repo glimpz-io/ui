@@ -3,8 +3,8 @@
 import { Mail } from "tabler-icons-react";
 import { submitEmail } from "./actions";
 import { useRouter } from "next/navigation";
-import { useAnalytics, useIsReferred } from "@glimpz-io/hooks";
-import { Button, Form, Input } from "@glimpz-io/ui";
+import { useAnalytics, useIsReferred } from "@glimpzio/hooks";
+import { Button, Form, Input } from "@glimpzio/ui";
 
 interface ReferralProps {
     referral?: string;

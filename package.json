@@ -12,7 +12,7 @@
     "tsconfig": "*",
     "turbo": "latest"
   },
-  "name": "ui",
+  "name": "web",
   "packageManager": "npm@10.2.3",
   "workspaces": [
     "apps/*",

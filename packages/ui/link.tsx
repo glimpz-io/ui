@@ -35,7 +35,7 @@ export function Link({ children, className = "", href, color, icon, newTab = fal
     } else throw Error("invalid color");
 
     let block;
-    if (size === "large") block = "w-full text-center flex items-center justify-center duration-200 transition-colors whitespace-nowrap";
+    if (size === "large") block = "w-full text-center flex items-center justify-center duration-200 transition-colors";
     else block = "inline-flex items-center justify-between";
 
     const global = `${block} ${length} ${outColor} ${className}`;

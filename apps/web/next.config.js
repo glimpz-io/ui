@@ -1,1 +1,1 @@
-module.exports = require("@glimpz-io/config/next/next.config");
+module.exports = require("@glimpzio/config/next/next.config");

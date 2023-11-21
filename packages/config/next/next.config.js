@@ -1,6 +1,6 @@
 module.exports = {
     reactStrictMode: true,
-    transpilePackages: ["@glimpz-io/ui"],
+    transpilePackages: ["@glimpzio/ui"],
     experimental: {
         serverActions: true,
     },

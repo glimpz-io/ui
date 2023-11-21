@@ -1,7 +1,7 @@
 "use server";
 
 import { gql } from "@apollo/client";
-import { getClient } from "@glimpz-io/hooks/graphql";
+import { getClient } from "@glimpzio/hooks/graphql";
 
 export async function submitEmail(fieldNameEmail: string, fieldNameSubscribe: string, formData: FormData, inviteId: string) {
     const apiUrl = process.env.API_URL;

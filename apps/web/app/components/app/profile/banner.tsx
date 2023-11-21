@@ -1,7 +1,7 @@
 "use client";
 
-import { Link, Text } from "@glimpz-io/ui";
-import { useAnalytics } from "@glimpz-io/hooks";
+import { Link, Text } from "@glimpzio/ui";
+import { useAnalytics } from "@glimpzio/hooks";
 
 interface ReferralProps {
     userId: string;

@@ -1,9 +1,9 @@
-import { META_COLOR, META_IMAGE, META_URL } from "@glimpz-io/config";
-import "@glimpz-io/ui/styles.css";
+import { META_COLOR, META_IMAGE, META_URL } from "@glimpzio/config";
+import "@glimpzio/ui/styles.css";
 import type { Metadata } from "next";
 
 import { gql } from "@apollo/client";
-import { getClient } from "@glimpz-io/hooks/graphql";
+import { getClient } from "@glimpzio/hooks/graphql";
 
 interface Request {
     params: {

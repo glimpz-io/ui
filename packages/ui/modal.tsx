@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "tabler-icons-react";
-import { MODAL_PORTAL_ID } from "@glimpz-io/config";
+import { MODAL_PORTAL_ID } from "@glimpzio/config";
 
 interface Props {
     children: any;

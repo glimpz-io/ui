@@ -1,8 +1,8 @@
 "use client";
 
-import { BASE_URL } from "@glimpz-io/config";
-import { useAnalytics, useReferral } from "@glimpz-io/hooks";
-import { Copy, Link } from "@glimpz-io/ui";
+import { BASE_URL } from "@glimpzio/config";
+import { useAnalytics, useReferral } from "@glimpzio/hooks";
+import { Copy, Link } from "@glimpzio/ui";
 import { BrandFacebook, BrandLinkedin, BrandTwitter, Link as LinkIcon } from "tabler-icons-react";
 
 interface ReferralProps {

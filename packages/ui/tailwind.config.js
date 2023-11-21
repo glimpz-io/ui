@@ -1,1 +1,1 @@
-module.exports = require("@glimpz-io/config/tailwindcss/tailwind.config.js");
+module.exports = require("@glimpzio/config/tailwindcss/tailwind.config.js");
