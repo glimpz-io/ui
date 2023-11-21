@@ -21,8 +21,9 @@ export default function Page(req: Request): JSX.Element {
                 engagements!
             </Text>
             <Text type="p" alignment="centre">
-                Glimpz makes it easy to <Text type="bold">connect and follow up</Text> with relevant professionals at in-person networking events, whether that be a potential business partner, client,
-                or key industry player. Say goodbye to annoying business cards with a digital approach to share your business information and capture the details of the professionals you meet.
+                Glimpz makes it easy to <Text type="bold">connect and follow up</Text> with relevant professionals at in-person networking events, whether that be a potential{" "}
+                <Text type="bold">business partner</Text>, <Text type="bold">client</Text>, or <Text type="bold">key industry player</Text>. Say goodbye to annoying business cards with a digital
+                approach to <Text type="bold">share your details</Text> and <Text type="bold">connect with professionals you meet</Text>.
             </Text>
             <Text type="h3" alignment="centre">
                 So what are you waiting for? <Text type="bold">Join</Text> our waitlist to be notified when the product <Text type="bold">goes public</Text>, and the opportunity to{" "}
