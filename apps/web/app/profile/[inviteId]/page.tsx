@@ -1,11 +1,11 @@
 import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import Image from "next/image";
-import { Contact } from "../../../components/app/profile/contact";
+import { Contact } from "../../components/profile/contact";
 import { getClient } from "@glimpzio/hooks/graphql";
 import { gql } from "@apollo/client";
-import { Banner } from "../../../components/app/profile/banner";
-import { Save } from "../../../components/app/profile/save";
+import { Banner } from "../../components/profile/banner";
+import { Save } from "../../components/profile/save";
 
 interface Request {
     params: {

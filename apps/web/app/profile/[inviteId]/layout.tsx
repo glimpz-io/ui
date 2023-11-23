@@ -43,7 +43,7 @@ export async function generateMetadata(req: Request): Promise<Metadata> {
 
     const title = `${userName} - Glimpz Profile`;
     const description = `${userBio}`;
-    const url = `${META_URL}/app/profile/${inviteId}`;
+    const url = `${META_URL}/profile/${inviteId}`;
 
     return {
         metadataBase: new URL(META_URL),
