@@ -1,7 +1,7 @@
 import { META_COLOR, META_DESCRIPTION, META_IMAGE, META_TITLE, META_URL, MODAL_PORTAL_ID } from "@glimpzio/config";
 import { AnalyticsProvider } from "@glimpzio/hooks";
 import "@glimpzio/ui/styles.css";
-import { GeistSans } from "geist/font";
+import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
