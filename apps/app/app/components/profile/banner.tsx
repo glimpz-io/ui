@@ -10,14 +10,11 @@ interface ReferralProps {
 export function Banner({ userId }: ReferralProps): JSX.Element {
     const analytics = useAnalytics();
 
-    const landingBaseUrl = process.env.NEXT_PUBLIC_LANDING_BASE_URL;
-    if (!landingBaseUrl) throw Error("missing landing base url");
-
     return (
         <Text alignment="centre" type="h3">
             🚀 Want to boost your own leads at networking events? Click{" "}
             <Link
-                href={`${landingBaseUrl}/?referral=uidp-${userId}`}
+                href={`/auth/createAccount/?referral=uidp-${userId}`}
                 color="lightblue"
                 size="small"
                 newTab={true}
