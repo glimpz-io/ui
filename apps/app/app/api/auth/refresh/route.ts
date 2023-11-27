@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 interface Data {
     access_token: string;
-    refresh_token: string;
     scope: string;
     expires_in: number;
     token_type: string;
@@ -17,13 +16,12 @@ export async function GET(req: NextRequest) {
 
     const params = req.nextUrl.searchParams;
 
-    const code = params.get("code");
-    if (!code) throw Error("missing code");
+    const referrer = params.get("referrer");
 
-    const state = params.get("state");
+    const refreshTokenCookie = cookie.get(REFRESH_TOKEN_COOKIE);
 
-    const apiUrl = process.env.API_URL;
-    if (!apiUrl) throw Error("missing API url");
+    const refreshToken = refreshTokenCookie?.value;
+    if (!refreshToken) return NextResponse.redirect(new URL("/api/auth/signin", req.url));
 
     const auth0Domain = process.env.AUTH0_DOMAIN;
     const auth0ClientId = process.env.AUTH0_CLIENT_ID;
@@ -32,7 +30,8 @@ export async function GET(req: NextRequest) {
 
     if (!auth0Domain || !auth0ClientId || !auth0Redirect) throw Error("missing auth0 variables");
 
-    const payload = `grant_type=authorization_code&client_id=${auth0ClientId}&client_secret=${auth0ClientSecret}&code=${code}&redirect_uri=${auth0Redirect}`;
+    const payload = `grant_type=refresh_token&client_id=${auth0ClientId}&client_secret=${auth0ClientSecret}&refresh_token=${refreshToken}`;
+
     const options = {
         method: "POST",
         headers: {
@@ -43,12 +42,13 @@ export async function GET(req: NextRequest) {
 
     const response = await fetch(`https://${auth0Domain}/oauth/token`, options);
 
-    if (!response.ok) throw new Error("failed to signin");
+    if (!response.ok) throw new Error("failed to refresh");
 
     const token: Data = await response.json();
 
-    cookie.set(ACCESS_TOKEN_COOKIE, token.access_token, { maxAge: token.expires_in, secure: true, sameSite: "strict", httpOnly: true, path: "/" });
-    cookie.set(REFRESH_TOKEN_COOKIE, token.refresh_token, { maxAge: Number.MAX_SAFE_INTEGER, secure: true, sameSite: "strict", httpOnly: true, path: "/" });
+    console.log(token);
 
-    return NextResponse.redirect(new URL(`/auth/status?status=success&referrer=${state ? state : ""}`, req.url));
+    cookie.set(ACCESS_TOKEN_COOKIE, token.access_token, { maxAge: token.expires_in, secure: true, sameSite: "strict", httpOnly: true, path: "/" });
+
+    return NextResponse.redirect(new URL(`/auth/status?status=success&referrer=${referrer ? referrer : ""}`, req.url));
 }

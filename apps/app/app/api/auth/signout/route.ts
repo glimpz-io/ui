@@ -1,14 +1,14 @@
 import { ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE } from "@glimpzio/config";
+import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
     const cookie = cookies();
-    cookie.set(ACCESS_TOKEN_COOKIE, "", { expires: 0 });
-    cookie.set(REFRESH_TOKEN_COOKIE, "", { expires: 0 });
 
-    redirect("/");
+    cookie.set(ACCESS_TOKEN_COOKIE, "", { maxAge: 0 });
+    cookie.set(REFRESH_TOKEN_COOKIE, "", { maxAge: 0 });
+
+    return NextResponse.redirect(new URL("/auth/status?status=logout", req.url));
 }

@@ -1,10 +1,21 @@
+import { ACCESS_TOKEN_COOKIE, AUTH_HEADER } from "@glimpzio/config";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
-    console.log("Hello world");
+export function middleware(req: NextRequest) {
+    const cookie = cookies();
 
-    return NextResponse.next();
+    const accessTokenCookie = cookie.get(ACCESS_TOKEN_COOKIE);
+
+    const accessToken = accessTokenCookie?.value;
+    if (!accessToken) return NextResponse.redirect(new URL(`/api/auth/refresh?referrer=${encodeURIComponent(req.url)}`, req.url));
+
+    const res = NextResponse.next();
+
+    res.headers.set(AUTH_HEADER, accessToken);
+
+    return res;
 }
 
 export const config = {
