@@ -4,14 +4,14 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 interface ReferralProps {
-    referrer?: string;
+    referer?: string;
 }
 
-export function Index({ referrer }: ReferralProps): null {
+export function Index({ referer }: ReferralProps): null {
     const router = useRouter();
 
     useEffect(() => {
-        if (referrer) router.push(decodeURIComponent(referrer));
+        if (referer) router.push(decodeURIComponent(referer));
         else router.push("/");
     }, [router]);
 

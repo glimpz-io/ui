@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 
     const params = req.nextUrl.searchParams;
 
-    const referrer = params.get("referrer");
+    const referer = params.get("referer");
 
     const refreshTokenCookie = cookie.get(REFRESH_TOKEN_COOKIE);
 
@@ -50,5 +50,5 @@ export async function GET(req: NextRequest) {
 
     cookie.set(ACCESS_TOKEN_COOKIE, token.access_token, { maxAge: token.expires_in, secure: true, sameSite: "strict", httpOnly: true, path: "/" });
 
-    return NextResponse.redirect(new URL(`/auth/status?status=success&referrer=${referrer ? referrer : ""}`, req.url));
+    return NextResponse.redirect(new URL(`/auth/status?status=success&referer=${referer ? referer : ""}`, req.url));
 }

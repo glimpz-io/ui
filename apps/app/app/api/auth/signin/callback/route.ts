@@ -50,5 +50,5 @@ export async function GET(req: NextRequest) {
     cookie.set(ACCESS_TOKEN_COOKIE, token.access_token, { maxAge: token.expires_in, secure: true, sameSite: "strict", httpOnly: true, path: "/" });
     cookie.set(REFRESH_TOKEN_COOKIE, token.refresh_token, { maxAge: Number.MAX_SAFE_INTEGER, secure: true, sameSite: "strict", httpOnly: true, path: "/" });
 
-    return NextResponse.redirect(new URL(`/auth/status?status=success&referrer=${state ? state : ""}`, req.url));
+    return NextResponse.redirect(new URL(`/auth/status?status=success&referer=${state ? state : ""}`, req.url));
 }

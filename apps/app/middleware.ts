@@ -9,7 +9,7 @@ export function middleware(req: NextRequest) {
     const accessTokenCookie = cookie.get(ACCESS_TOKEN_COOKIE);
 
     const accessToken = accessTokenCookie?.value;
-    if (!accessToken) return NextResponse.redirect(new URL(`/api/auth/refresh?referrer=${encodeURIComponent(req.url)}`, req.url));
+    if (!accessToken) return NextResponse.redirect(new URL(`/api/auth/refresh?referer=${encodeURIComponent(req.url)}`, req.url));
 
     const res = NextResponse.next();
 
