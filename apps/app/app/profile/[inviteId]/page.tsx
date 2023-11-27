@@ -36,7 +36,7 @@ interface Data {
 export default async function Page(req: Request): Promise<JSX.Element> {
     const inviteId = req.params.inviteId;
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const apiUrl = process.env.API_URL;
     if (!apiUrl) throw Error("missing API url");
 
     const client = await getClient(apiUrl);

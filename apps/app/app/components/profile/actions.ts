@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 import { getClient } from "@glimpzio/hooks/graphql";
 
 export async function submitEmail(fieldNameEmail: string, fieldNameSubscribe: string, formData: FormData, inviteId: string) {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const apiUrl = process.env.API_URL;
     if (!apiUrl) throw Error("missing API url");
 
     const client = await getClient(apiUrl);
