@@ -1,9 +1,8 @@
 "use client";
 
-import { Container, Copy, Text } from "@glimpzio/ui";
+import { Container, Copy, QRCode, Text } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
-import { useEffect, useRef, useState } from "react";
-import { QRCodeCanvas, QRCodeSVG } from "qrcode.react";
+import { useEffect, useState } from "react";
 
 interface InviteProps {
     id: string;
@@ -42,7 +41,7 @@ export function Index(props: InviteProps): JSX.Element {
             <Text alignment="centre" type="title">
                 {props.publicProfile.firstName} <Text type="highlight">{props.publicProfile.lastName}</Text>
             </Text>
-            <QRCodeSVG className="p-3 rounded-md bg-zinc-50" bgColor="#fafafa" value={url} size={378} />
+            <QRCode size={378} value={url} />
             <Text alignment="centre" type="small">
                 You can also share your profile digitally using the following link (click to copy).
             </Text>

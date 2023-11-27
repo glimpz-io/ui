@@ -10,12 +10,13 @@
         "typescript": "^4.5.3"
     },
     "dependencies": {
+        "@glimpzio/config": "*",
         "eslint-custom-config": "*",
-        "tsconfig": "*",
-        "tabler-icons-react": "^1.56.0",
         "next": "^13.4.19",
+        "qrcode.react": "^3.1.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "@glimpzio/config": "*"
+        "tabler-icons-react": "^1.56.0",
+        "tsconfig": "*"
     }
 }
