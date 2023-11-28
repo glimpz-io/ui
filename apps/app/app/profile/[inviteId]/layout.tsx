@@ -1,4 +1,4 @@
-import { META_COLOR, META_IMAGE, META_URL } from "@glimpzio/config";
+import { META_COLOR_APP, META_IMAGE_APP, META_URL_APP } from "@glimpzio/config";
 import "@glimpzio/ui/styles.css";
 import type { Metadata } from "next";
 
@@ -43,17 +43,17 @@ export async function generateMetadata(req: Request): Promise<Metadata> {
 
     const title = `${userName} - Glimpz Profile`;
     const description = `${userBio}`;
-    const url = `${META_URL}/profile/${inviteId}`;
+    const url = `${META_URL_APP}/profile/${inviteId}`;
 
     return {
-        metadataBase: new URL(META_URL),
+        metadataBase: new URL(META_URL_APP),
         title: title,
         description: description,
-        themeColor: META_COLOR,
+        themeColor: META_COLOR_APP,
         openGraph: {
             title: title,
             description: description,
-            images: META_IMAGE,
+            images: META_IMAGE_APP,
             url: url,
         },
     };

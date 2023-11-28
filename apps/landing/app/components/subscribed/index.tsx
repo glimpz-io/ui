@@ -1,7 +1,6 @@
 "use client";
 
-import { BASE_URL } from "@glimpzio/config";
-import { useAnalytics, useReferral } from "@glimpzio/hooks";
+import { useAnalytics, useOrigin, useReferral } from "@glimpzio/hooks";
 import { Copy, Link } from "@glimpzio/ui";
 import { BrandFacebook, BrandLinkedin, BrandTwitter, Link as LinkIcon } from "tabler-icons-react";
 
@@ -12,6 +11,7 @@ interface ReferralProps {
 export function Index({ referral }: ReferralProps): JSX.Element {
     useReferral(referral);
     const analytics = useAnalytics();
+    const origin = useOrigin();
 
     if (referral) analytics.identify(referral);
 
@@ -20,7 +20,7 @@ export function Index({ referral }: ReferralProps): JSX.Element {
     const facebookIcon = () => <BrandFacebook />;
     const linkedInIcon = () => <BrandLinkedin />;
 
-    const signupUrl = referral ? `${BASE_URL}?referral=${referral}` : null;
+    const signupUrl = referral && origin ? `${origin}?referral=${referral}` : null;
     const signupUrlEncoded = signupUrl ? encodeURIComponent(signupUrl) : null;
     const socialText = signupUrl
         ? encodeURIComponent(

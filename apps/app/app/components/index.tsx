@@ -1,8 +1,7 @@
 "use client";
 
 import { Container, Copy, QRCode, Text } from "@glimpzio/ui";
-import { useAnalytics } from "@glimpzio/hooks";
-import { useEffect, useState } from "react";
+import { useAnalytics, useOrigin } from "@glimpzio/hooks";
 
 interface InviteProps {
     id: string;
@@ -15,11 +14,7 @@ interface InviteProps {
 
 export function Index(props: InviteProps): JSX.Element {
     const analytics = useAnalytics();
-    const [origin, setOrigin] = useState<string | null>(null);
-
-    useEffect(() => {
-        setOrigin(window.location.origin);
-    }, [setOrigin]);
+    const origin = useOrigin();
 
     if (!origin)
         return (

@@ -1,4 +1,4 @@
-import { META_COLOR, META_DESCRIPTION, META_IMAGE, META_TITLE, META_URL, MODAL_PORTAL_ID } from "@glimpzio/config";
+import { META_COLOR_APP, META_DESCRIPTION_APP, META_IMAGE_APP, META_TITLE_APP, META_URL_APP, MODAL_PORTAL_ID } from "@glimpzio/config";
 import { AnalyticsProvider } from "@glimpzio/hooks";
 import "@glimpzio/ui/styles.css";
 import { GeistSans } from "geist/font/sans";
@@ -6,15 +6,15 @@ import type { Metadata } from "next";
 import { Nav } from "./components/nav";
 
 export const metadata: Metadata = {
-    metadataBase: new URL(META_URL),
-    title: META_TITLE,
-    description: META_DESCRIPTION,
-    themeColor: META_COLOR,
+    metadataBase: new URL(META_URL_APP),
+    title: META_TITLE_APP,
+    description: META_DESCRIPTION_APP,
+    themeColor: META_COLOR_APP,
     openGraph: {
-        title: META_TITLE,
-        description: META_DESCRIPTION,
-        images: META_IMAGE,
-        url: META_URL,
+        title: META_TITLE_APP,
+        description: META_DESCRIPTION_APP,
+        images: META_IMAGE_APP,
+        url: META_URL_APP,
     },
 };
 

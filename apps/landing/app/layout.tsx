@@ -1,19 +1,19 @@
-import { META_COLOR, META_DESCRIPTION, META_IMAGE, META_TITLE, META_URL, MODAL_PORTAL_ID } from "@glimpzio/config";
+import { META_COLOR_LANDING, META_DESCRIPTION_LANDING, META_IMAGE_LANDING, META_TITLE_LANDING, META_URL_LANDING, MODAL_PORTAL_ID } from "@glimpzio/config";
 import { AnalyticsProvider } from "@glimpzio/hooks";
 import "@glimpzio/ui/styles.css";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    metadataBase: new URL(META_URL),
-    title: META_TITLE,
-    description: META_DESCRIPTION,
-    themeColor: META_COLOR,
+    metadataBase: new URL(META_URL_LANDING),
+    title: META_TITLE_LANDING,
+    description: META_DESCRIPTION_LANDING,
+    themeColor: META_COLOR_LANDING,
     openGraph: {
-        title: META_TITLE,
-        description: META_DESCRIPTION,
-        images: META_IMAGE,
-        url: META_URL,
+        title: META_TITLE_LANDING,
+        description: META_DESCRIPTION_LANDING,
+        images: META_IMAGE_LANDING,
+        url: META_URL_LANDING,
     },
 };
 
