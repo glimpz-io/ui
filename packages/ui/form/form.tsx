@@ -8,17 +8,22 @@ interface Props {
     direction: "horizontal" | "vertical";
     size: "full" | "half" | "third";
     action?: (formData: FormData) => void;
+    pad?: boolean;
+    grow?: boolean;
 }
 
 export const contextLoading = createContext<boolean>(false);
 
-export function Form({ children, className = "", direction, size, action }: Props): JSX.Element {
+export function Form({ children, className = "", direction, size, action, pad = true, grow = true }: Props): JSX.Element {
     const [isPending, startTransition] = useTransition();
 
-    let alignment = direction === "horizontal" ? "flex-row space-x-4 lg:space-x-0 lg:flow-col lg:space-y-4" : "flex-col space-y-4";
-    let length = size === "full" ? "w-full" : size === "half" ? "w-full lg:w-1/2" : "w-full lg:w-1/3";
+    let alignment = direction === "horizontal" ? "flex-row space-x-4" : "flex-col space-y-4";
+    let length = size === "full" ? "" : size === "half" ? "lg:w-1/2" : "lg:w-1/3";
 
-    const global = `${alignment} ${length} ${className}`;
+    const padding = pad ? "p-6" : "";
+    const full = grow ? "w-full" : "";
+
+    const global = `${padding} ${full} ${alignment} ${length} ${className}`;
 
     return (
         <form className={"flex mx-auto justify-between items-center " + global} action={(formData) => action && startTransition(() => action(formData))}>

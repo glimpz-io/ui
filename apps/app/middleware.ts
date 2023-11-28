@@ -19,5 +19,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/", "/connections"],
+    matcher: ["/", "/connections", "/connections/custom/:connectionId*"],
 };

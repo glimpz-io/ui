@@ -80,7 +80,7 @@ export default async function Page(): Promise<JSX.Element> {
                             Connected on <Text type="bold">{new Date(connection.connectedAt * 1000).toDateString()}</Text>
                         </Text>
                     </Container>
-                    <Link color="lightblue" size="large" href={`/connections/${connection.id}`}>
+                    <Link color="lightblue" size="large" href={`/connections/custom/${connection.id}`}>
                         View More
                     </Link>
                 </Container>

@@ -4,7 +4,7 @@ import { Button, Container, Copy, Form, Input, Modal, QRCode, Text } from "@glim
 import { useAnalytics } from "@glimpzio/hooks";
 import { useState } from "react";
 import { Plus } from "tabler-icons-react";
-import { createConnection } from "./actions";
+import { upsertConnection } from "./actions";
 
 export function Create(): JSX.Element {
     const analytics = useAnalytics();
@@ -40,7 +40,7 @@ export function Create(): JSX.Element {
                     size="full"
                     // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
                     action={async (formData) => {
-                        await createConnection(fieldFirstName, fieldLastName, fieldEmail, fieldPhone, fieldWebsite, fieldLinkedIn, fieldNotes, formData);
+                        await upsertConnection(null, fieldFirstName, fieldLastName, fieldEmail, fieldPhone, fieldWebsite, fieldLinkedIn, fieldNotes, formData);
                         setShowModal(false);
                     }}
                 >

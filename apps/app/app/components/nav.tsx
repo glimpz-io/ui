@@ -1,10 +1,10 @@
 "use client";
 
-import { Container, Text } from "@glimpzio/ui";
+import { Container } from "@glimpzio/ui";
 import Link from "next/link";
-import { AddressBook, Logout, Plug, Settings } from "tabler-icons-react";
+import { AddressBook, Logout, Plug, User } from "tabler-icons-react";
 
-const links: { [key: string]: () => JSX.Element } = { "/": () => <Plug />, "/connections": () => <AddressBook />, "/settings": () => <Settings />, "/api/auth/signout": () => <Logout /> };
+const links: { [key: string]: () => JSX.Element } = { "/": () => <Plug />, "/connections": () => <AddressBook />, "/profile": () => <User />, "/api/auth/signout": () => <Logout /> };
 
 export function Nav(): JSX.Element {
     return (

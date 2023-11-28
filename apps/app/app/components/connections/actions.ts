@@ -6,7 +6,8 @@ import { getClient } from "@glimpzio/hooks/graphql";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
-export async function createConnection(
+export async function upsertConnection(
+    id: string | null,
     fieldFirstName: string,
     fieldLastName: string,
     fieldEmail: string,
@@ -25,8 +26,8 @@ export async function createConnection(
     const client = await getClient(apiUrl, authToken);
 
     const query = gql`
-        mutation UpsertConnection($firstName: String, $lastName: String, $email: String, $phone: String, $website: String, $linkedin: String, $notes: String) {
-            upsertCustomConnection(customConnection: { firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, website: $website, linkedin: $linkedin, notes: $notes }) {
+        mutation UpsertConnection($id: ID!, $firstName: String, $lastName: String, $email: String, $phone: String, $website: String, $linkedin: String, $notes: String) {
+            upsertCustomConnection(id: $id, customConnection: { firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, website: $website, linkedin: $linkedin, notes: $notes }) {
                 id
                 email
                 firstName
@@ -50,6 +51,7 @@ export async function createConnection(
     await client().mutate({
         mutation: query,
         variables: {
+            id,
             firstName,
             lastName,
             email,
