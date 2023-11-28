@@ -24,7 +24,7 @@ export function Modal({ children, className = "", title, showModal, setShowModal
     }, []);
 
     const frag = showModal ? (
-        <div className="fixed inset-0 flex items-center justify-center p-6 bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-start justify-center p-6 bg-black bg-opacity-50 overflow-y-auto">
             <div className={`rounded-md w-full lg:w-1/2 p-6 space-y-8 bg-zinc-900 flex flex-col items-center justify-between ${global}`}>
                 <h3 className="text-xl text-white font-semibold flex items-center justify-between space-x-8 w-full">
                     <span>{title}</span>
