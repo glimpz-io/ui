@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { AUTH_HEADER } from "@glimpzio/config";
 import { gql } from "@apollo/client";
 import { Link } from "@glimpzio/ui/link";
+import { Create } from "../components/connections/create";
 
 interface Data {
     customConnections: {
@@ -63,17 +64,20 @@ export default async function Page(): Promise<JSX.Element> {
             <Text alignment="centre" type="title">
                 Your <Text type="highlight">Contacts</Text>
             </Text>
+            <Create />
             {data.customConnections.map((connection) => (
                 <Container direction="vertical" className="bg-zinc-900 rounded-md">
                     <Container pad={false}>
                         <Text type="small">{connection.email}</Text>
                     </Container>
                     <Container direction="horizontal" pad={false}>
-                        <Text type="p">
-                            <Text type="bold">
-                                {connection.firstName} {connection.lastName}
+                        <Container pad={false} grow={false}>
+                            <Text type="p">
+                                <Text type="bold">
+                                    {connection.firstName} {connection.lastName}
+                                </Text>
                             </Text>
-                        </Text>
+                        </Container>
                         <Text type="small" alignment="right">
                             Connected on <Text type="bold">{new Date(connection.connectedAt * 1000).toDateString()}</Text>
                         </Text>

@@ -10,17 +10,17 @@ interface Props {
     onClick?: (e: any) => void;
     type: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
     icon?: (props: IconProps) => JSX.Element;
-    size: "large";
+    size: "large" | "small";
     disabled?: boolean;
     color: "blue" | "indigo";
 }
 
-export function Button({ children, className = "", icon, onClick, type, disabled = false, color }: Props): JSX.Element {
+export function Button({ children, className = "", icon, onClick, type, disabled = false, color, size }: Props): JSX.Element {
     const isLoading = useContext(contextLoading);
 
     const IconComponent = icon;
 
-    let length = "px-6 py-6 text-xl font-semibold space-x-8";
+    let length = size === "large" ? "p-6 text-xl font-semibold space-x-8" : "p-4 text-lg font-medium space-x-4";
 
     let outColor: string;
     let loadingColor: string;
