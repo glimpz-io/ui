@@ -40,20 +40,20 @@ export function Edit(props: CustomConnectionProps): JSX.Element {
             }}
         >
             <Container pad={false} direction="horizontal">
-                <Input label="First name" name={fieldFirstName} type="text" placeholder="John" required={false} value={props.firstName ? props.firstName : undefined} />
-                <Input label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={false} value={props.lastName ? props.lastName : undefined} />
+                <Input label="First name" name={fieldFirstName} type="text" placeholder="John" required={false} defaultValue={props.firstName ? props.firstName : undefined} />
+                <Input label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={false} defaultValue={props.lastName ? props.lastName : undefined} />
             </Container>
-            <Input label="Email" name={fieldEmail} type="email" placeholder="johndoe@xyz.com" required={false} value={props.email ? props.email : undefined} />
-            <Input label="Phone" name={fieldPhone} type="tel" placeholder="+01 2345 6789" required={false} value={props.phone ? props.phone : undefined} />
-            <Input label="Website" name={fieldWebsite} type="url" placeholder="https://website.com" required={false} value={props.website ? props.website : undefined} />
-            <Input label="LinkedIn" name={fieldLinkedIn} type="url" placeholder="https://www.linkedin.com/in/johndoe" required={false} value={props.linkedin ? props.linkedin : undefined} />
+            <Input label="Email" name={fieldEmail} type="email" placeholder="johndoe@xyz.com" required={false} defaultValue={props.email ? props.email : undefined} />
+            <Input label="Phone" name={fieldPhone} type="tel" placeholder="+01 2345 6789" required={false} defaultValue={props.phone ? props.phone : undefined} />
+            <Input label="Website" name={fieldWebsite} type="url" placeholder="https://website.com" required={false} defaultValue={props.website ? props.website : undefined} />
+            <Input label="LinkedIn" name={fieldLinkedIn} type="url" placeholder="https://www.linkedin.com/in/johndoe" required={false} defaultValue={props.linkedin ? props.linkedin : undefined} />
             <Input
                 label="Notes"
                 name={fieldNotes}
                 type="textarea"
                 placeholder="Put any other relevant information here i.e. employer, job title, if they asked you to follow up..."
                 required={false}
-                value={props.notes ? props.notes : undefined}
+                defaultValue={props.notes ? props.notes : undefined}
             />
             <Button type="submit" color="blue" size="large" icon={() => <DeviceFloppy />}>
                 Save

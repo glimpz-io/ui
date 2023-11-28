@@ -12,17 +12,17 @@ interface Props {
     disabled?: boolean;
     required?: boolean;
     label?: string;
-    value?: string;
+    defaultValue?: string;
 }
 
-export function Input({ className = "", type, onChange, placeholder, name, disabled = false, required, label, value }: Props): JSX.Element {
+export function Input({ className = "", type, onChange, placeholder, name, disabled = false, required, label, defaultValue }: Props): JSX.Element {
     const isLoading = useContext(contextLoading);
 
     const global = `${className}`;
 
     const checkboxId = `${name}-checkbox`;
 
-    const style = `${!isLoading && !disabled ? "text-neutral-100" : "text-neutral-400"} bg-neutral-800 w-full px-6 py-4 outline-none font-normal ${global}`;
+    const style = `${!isLoading && !disabled ? "text-neutral-100" : "text-neutral-400"} bg-neutral-800 w-full px-6 py-4 outline-none font-normal rounded-md ${global}`;
 
     return (
         <div className="flex flex-col items-start justify-between w-full space-y-2">
@@ -39,7 +39,7 @@ export function Input({ className = "", type, onChange, placeholder, name, disab
                     name={name}
                     required={required}
                     className={style}
-                    value={value}
+                    defaultValue={defaultValue}
                     rows={4}
                 />
             ) : (
@@ -51,7 +51,7 @@ export function Input({ className = "", type, onChange, placeholder, name, disab
                     name={name}
                     required={required}
                     className={style}
-                    value={value}
+                    defaultValue={defaultValue}
                 />
             )}
         </div>
