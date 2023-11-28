@@ -26,7 +26,7 @@ export async function upsertConnection(
     const client = await getClient(apiUrl, authToken);
 
     const query = gql`
-        mutation UpsertConnection($id: ID!, $firstName: String, $lastName: String, $email: String, $phone: String, $website: String, $linkedin: String, $notes: String) {
+        mutation UpsertConnection($id: ID, $firstName: String, $lastName: String, $email: String, $phone: String, $website: String, $linkedin: String, $notes: String) {
             upsertCustomConnection(id: $id, customConnection: { firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, website: $website, linkedin: $linkedin, notes: $notes }) {
                 id
                 email

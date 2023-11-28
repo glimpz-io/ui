@@ -65,26 +65,34 @@ export default async function Page(): Promise<JSX.Element> {
                 Your <Text type="highlight">Contacts</Text>
             </Text>
             <Create />
-            {data.customConnections.map((connection) => (
-                <Container key={connection.id} direction="vertical" className="bg-zinc-900 rounded-md">
-                    <Container pad={false}>
-                        <Text type="small">{connection.email}</Text>
-                    </Container>
-                    <Container direction="horizontal" pad={false}>
-                        <Text type="p">
-                            <Text type="bold">
-                                {connection.firstName} {connection.lastName}
-                            </Text>
-                        </Text>
-                        <Text type="small" alignment="right">
-                            Connected on <Text type="bold">{new Date(connection.connectedAt * 1000).toDateString()}</Text>
-                        </Text>
-                    </Container>
-                    <Link color="lightblue" size="large" href={`/connections/custom/${connection.id}`}>
-                        View More
-                    </Link>
-                </Container>
-            ))}
+            {data.customConnections.length > 0 ? (
+                <>
+                    {data.customConnections.map((connection) => (
+                        <Container key={connection.id} direction="vertical" className="bg-zinc-900 rounded-md">
+                            <Container pad={false}>
+                                <Text type="small">{connection.email}</Text>
+                            </Container>
+                            <Container direction="horizontal" pad={false}>
+                                <Text type="p">
+                                    <Text type="bold">
+                                        {connection.firstName} {connection.lastName}
+                                    </Text>
+                                </Text>
+                                <Text type="small" alignment="right">
+                                    Connected on <Text type="bold">{new Date(connection.connectedAt * 1000).toDateString()}</Text>
+                                </Text>
+                            </Container>
+                            <Link color="lightblue" size="large" href={`/connections/custom/${connection.id}`}>
+                                View More
+                            </Link>
+                        </Container>
+                    ))}
+                </>
+            ) : (
+                <Text alignment="centre" type="small">
+                    No connections.
+                </Text>
+            )}
         </Container>
     );
 }
