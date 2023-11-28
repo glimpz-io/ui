@@ -4,10 +4,9 @@ import { Button, Container, Copy, Form, Input, Modal, QRCode, Text } from "@glim
 import { useAnalytics } from "@glimpzio/hooks";
 import { useState } from "react";
 import { Plus } from "tabler-icons-react";
+import { createConnection } from "./actions";
 
-interface InviteProps {}
-
-export function Create(props: InviteProps): JSX.Element {
+export function Create(): JSX.Element {
     const analytics = useAnalytics();
     const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -17,7 +16,7 @@ export function Create(props: InviteProps): JSX.Element {
     const fieldEmail = "email";
     const fieldPhone = "phone";
     const fieldWebsite = "website";
-    const fieldLinkedIn = "linkedIn";
+    const fieldLinkedIn = "linkedin";
 
     return (
         <>
@@ -36,7 +35,15 @@ export function Create(props: InviteProps): JSX.Element {
                     setShowModal(show);
                 }}
             >
-                <Form direction="vertical" size="full">
+                <Form
+                    direction="vertical"
+                    size="full"
+                    // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
+                    action={async (formData) => {
+                        await createConnection(fieldFirstName, fieldLastName, fieldEmail, fieldPhone, fieldWebsite, fieldLinkedIn, fieldNotes, formData);
+                        setShowModal(false);
+                    }}
+                >
                     <Container pad={false} direction="horizontal">
                         <Input label="First name" name={fieldFirstName} type="text" placeholder="John" required={false} />
                         <Input label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={false} />
@@ -49,7 +56,7 @@ export function Create(props: InviteProps): JSX.Element {
                         label="Notes"
                         name={fieldNotes}
                         type="textarea"
-                        placeholder="Put any relevant information here i.e. employer, job title, if they asked you to follow up..."
+                        placeholder="Put any other relevant information here i.e. employer, job title, if they asked you to follow up..."
                         required={false}
                     />
                     <Button type="submit" color="indigo" size="large">

@@ -31,7 +31,15 @@ export function Input({ className = "", type, onChange, placeholder, name, disab
                 </label>
             )}
             {type === "textarea" ? (
-                <textarea disabled={isLoading || disabled} onChange={(e) => onChange && onChange(e.target.value)} placeholder={placeholder} name={name} required={required} className={style} />
+                <textarea
+                    disabled={isLoading || disabled}
+                    onChange={(e) => onChange && onChange(e.target.value)}
+                    placeholder={placeholder}
+                    name={name}
+                    required={required}
+                    className={style}
+                    rows={4}
+                />
             ) : (
                 <input
                     disabled={isLoading || disabled}

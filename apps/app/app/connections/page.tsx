@@ -71,13 +71,11 @@ export default async function Page(): Promise<JSX.Element> {
                         <Text type="small">{connection.email}</Text>
                     </Container>
                     <Container direction="horizontal" pad={false}>
-                        <Container pad={false} grow={false}>
-                            <Text type="p">
-                                <Text type="bold">
-                                    {connection.firstName} {connection.lastName}
-                                </Text>
+                        <Text type="p">
+                            <Text type="bold">
+                                {connection.firstName} {connection.lastName}
                             </Text>
-                        </Container>
+                        </Text>
                         <Text type="small" alignment="right">
                             Connected on <Text type="bold">{new Date(connection.connectedAt * 1000).toDateString()}</Text>
                         </Text>
