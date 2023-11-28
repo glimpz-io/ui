@@ -25,7 +25,7 @@ export function Index(props: InviteProps): JSX.Element {
             </Container>
         );
 
-    const url = `${origin}/profile/${props.id}`;
+    const url = `${origin}/invite/${props.id}`;
     const expiry = Math.floor((props.expiresAt - Date.now() / 1000) / (60 * 60));
 
     return (
