@@ -28,7 +28,7 @@ export function Input({ className = "", type, onChange, placeholder, name, disab
         <div className="flex flex-col items-start justify-between w-full space-y-2">
             {label && (
                 <label className="text-neutral-400 text-sm w-full" htmlFor={checkboxId}>
-                    {label}
+                    {label} {required && <span className="text-red-500">*</span>}
                 </label>
             )}
             {type === "textarea" ? (
