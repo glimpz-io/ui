@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
     const refreshTokenCookie = cookie.get(REFRESH_TOKEN_COOKIE);
 
     const refreshToken = refreshTokenCookie?.value;
-    if (!refreshToken) return NextResponse.redirect(new URL("/api/auth/signin", req.url));
+    if (!refreshToken) return NextResponse.redirect(new URL(`/api/auth/signin?referer=${referer ? referer : ""}`, req.url));
 
     const auth0Domain = process.env.AUTH0_DOMAIN;
     const auth0ClientId = process.env.AUTH0_CLIENT_ID;
@@ -45,8 +45,6 @@ export async function GET(req: NextRequest) {
     if (!response.ok) throw new Error("failed to refresh");
 
     const token: Data = await response.json();
-
-    console.log(token);
 
     cookie.set(ACCESS_TOKEN_COOKIE, token.access_token, { maxAge: token.expires_in, secure: true, sameSite: "strict", httpOnly: true, path: "/" });
 
