@@ -66,7 +66,7 @@ export default async function Page(): Promise<JSX.Element> {
             </Text>
             <Create />
             {data.customConnections.map((connection) => (
-                <Container direction="vertical" className="bg-zinc-900 rounded-md">
+                <Container key={connection.id} direction="vertical" className="bg-zinc-900 rounded-md">
                     <Container pad={false}>
                         <Text type="small">{connection.email}</Text>
                     </Container>

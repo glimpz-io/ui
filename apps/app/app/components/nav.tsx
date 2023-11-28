@@ -9,11 +9,11 @@ const links: { [key: string]: () => JSX.Element } = { "/": () => <Plug />, "/con
 export function Nav(): JSX.Element {
     return (
         <Container direction="horizontal" size="half">
-            {Object.entries(links).map((x) => {
+            {Object.entries(links).map((x, i) => {
                 const icon = x[1];
 
                 return (
-                    <Link className="text-neutral-500 hover:text-sky-500 transition-colors duration-200" href={x[0]}>
+                    <Link key={i} className="text-neutral-500 hover:text-sky-500 transition-colors duration-200" href={x[0]}>
                         {icon()}
                     </Link>
                 );
