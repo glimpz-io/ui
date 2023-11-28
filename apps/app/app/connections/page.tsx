@@ -74,7 +74,7 @@ export default async function Page(): Promise<JSX.Element> {
                                 {connection.firstName} {connection.lastName}
                             </Text>
                         </Text>
-                        <Text type="small">
+                        <Text type="small" alignment="right">
                             Connected on <Text type="bold">{new Date(connection.connectedAt * 1000).toDateString()}</Text>
                         </Text>
                     </Container>
