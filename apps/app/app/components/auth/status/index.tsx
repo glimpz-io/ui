@@ -11,8 +11,10 @@ export function Index({ referer }: ReferralProps): null {
     const router = useRouter();
 
     useEffect(() => {
-        if (referer) router.push(decodeURIComponent(referer));
-        else router.push("/");
+        setTimeout(() => {
+            if (referer) router.push(decodeURIComponent(referer));
+            else router.push("/");
+        }, 500);
     }, [router]);
 
     return null;

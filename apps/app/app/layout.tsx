@@ -3,6 +3,7 @@ import { AnalyticsProvider } from "@glimpzio/hooks";
 import "@glimpzio/ui/styles.css";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
+import { Nav } from "./components/nav";
 
 export const metadata: Metadata = {
     metadataBase: new URL(META_URL),
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <AnalyticsProvider mixpanelToken={MIXPANEL_TOKEN} facebookId={FACEBOOK_ID}>
                 <body className={GeistSans.className}>
                     <div id={MODAL_PORTAL_ID} />
+                    <Nav />
                     {children}
                 </body>
             </AnalyticsProvider>

@@ -15,7 +15,7 @@ export default async function Page(req: Request): Promise<JSX.Element> {
     return (
         <Container direction="vertical" size="half">
             <Text type="small" alignment="centre">
-                {status === "success" ? "Authentication Successful" : status === "error" ? "Authentication Failed" : status === "logout" ? "Logout Successful" : "Unknown Status"}
+                {status === "success" ? "Authentication successful." : status === "error" ? "Authentication failed." : status === "logout" ? "Logout successful." : "Unknown status."}
             </Text>
             <Index referer={referer} />
         </Container>
