@@ -22,7 +22,7 @@ export default function Page(req: Request): JSX.Element {
             <Text type="small" alignment="centre">
                 {message}
             </Text>
-            <Index status={status} referer={referer} />
+            <Index referer={referer} />
         </Container>
     );
 }
