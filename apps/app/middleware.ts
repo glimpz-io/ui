@@ -28,16 +28,18 @@ export async function middleware(req: NextRequest) {
     let res: NextResponse;
     try {
         await client.query({ query });
-        res = NextResponse.next();
 
-        res.headers.set(AUTH_HEADER, accessToken);
+        if (req.nextUrl.pathname.startsWith("/profile/create")) res = NextResponse.redirect(new URL("/profile", req.url));
+        else res = NextResponse.next();
     } catch {
         res = NextResponse.redirect(new URL(`/profile/create`, req.url));
     }
+
+    res.headers.set(AUTH_HEADER, accessToken);
 
     return res;
 }
 
 export const config = {
-    matcher: ["/", "/connections", "/connections/custom/:connectionId*", "/profile"],
+    matcher: ["/", "/connections", "/connections/custom/:connectionId*", "/profile", "/profile/create"],
 };
