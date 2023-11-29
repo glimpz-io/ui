@@ -18,6 +18,8 @@ export function Delete(props: CustomConnectionProps): JSX.Element {
 
     analytics.identify(props.userId);
 
+    const trashIcon = () => <Trash />;
+
     return (
         <>
             <Modal
@@ -33,7 +35,7 @@ export function Delete(props: CustomConnectionProps): JSX.Element {
                     type="submit"
                     color="red"
                     size="small"
-                    icon={() => <Trash />}
+                    icon={trashIcon}
                     onClick={() => {
                         analytics.track("Delete Custom Connection", { "Connection Id": props.id });
                         startTransition(() => deleteConnection(props.id));
@@ -46,7 +48,7 @@ export function Delete(props: CustomConnectionProps): JSX.Element {
                 type="submit"
                 color="red"
                 size="small"
-                icon={() => <Trash />}
+                icon={trashIcon}
                 onClick={() => {
                     setShowModal(true);
                     analytics.track("Request Delete Custom Connection", { "Connection Id": props.id });

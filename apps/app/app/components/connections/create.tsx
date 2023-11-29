@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Container, Copy, Form, Input, Modal, QRCode, Text } from "@glimpzio/ui";
+import { Button, Container, Form, Input, Modal, Text } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
 import { useState } from "react";
 import { Plus } from "tabler-icons-react";
@@ -15,6 +15,8 @@ export function Create(props: CreateProps): JSX.Element {
     const [showModal, setShowModal] = useState<boolean>(false);
 
     analytics.identify(props.userId);
+
+    const plusIcon = () => <Plus />;
 
     const fieldFirstName = "firstName";
     const fieldLastName = "lastName";
@@ -35,7 +37,7 @@ export function Create(props: CreateProps): JSX.Element {
                             analytics.track("New Custom Connection Modal");
                         }}
                         color="blue"
-                        icon={() => <Plus />}
+                        icon={plusIcon}
                         size="small"
                         type="button"
                     >

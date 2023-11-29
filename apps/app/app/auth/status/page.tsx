@@ -9,13 +9,19 @@ interface Request {
     };
 }
 
-export default async function Page(req: Request): Promise<JSX.Element> {
+export default function Page(req: Request): JSX.Element {
     const { status, referer } = req.searchParams;
+
+    let message: string;
+    if (status === "success") message = "Authentication successful.";
+    else if (status === "error") message = "Authentication failed.";
+    else if (status === "logout") message = "Logout successful.";
+    else throw Error("invalid status");
 
     return (
         <Container direction="vertical" size="half">
             <Text type="small" alignment="centre">
-                {status === "success" ? "Authentication successful." : status === "error" ? "Authentication failed." : status === "logout" ? "Logout successful." : "Unknown status."}
+                {message}
             </Text>
             <Index referer={referer} />
         </Container>

@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(req: NextRequest) {
+export function GET(req: NextRequest) {
     const cookie = cookies();
 
     cookie.set(ACCESS_TOKEN_COOKIE, "", { maxAge: 0 });

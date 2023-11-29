@@ -8,6 +8,8 @@ import { upsertUser } from "./actions";
 export function Create(): JSX.Element {
     const analytics = useAnalytics();
 
+    const plusIcon = () => <Plus />;
+
     const fieldFirstName = "firstName";
     const fieldLastName = "lastName";
     const fieldPersonalEmail = "personalEmail";
@@ -52,8 +54,9 @@ export function Create(): JSX.Element {
                 onUpload={async (file) => {
                     // **** Add AWS upload here
 
-                    console.log(file);
-                    return "helloworld";
+                    return new Promise((res) => {
+                        res(file.name);
+                    });
                 }}
                 name={fieldProfilePicture}
                 size={250}
@@ -68,7 +71,7 @@ export function Create(): JSX.Element {
                 type="submit"
                 color="blue"
                 size="large"
-                icon={() => <Plus />}
+                icon={plusIcon}
                 onClick={() => {
                     analytics.track("Create Profile");
                 }}

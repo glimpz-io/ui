@@ -25,6 +25,8 @@ export function Edit(props: ProfileProps): JSX.Element {
 
     analytics.identify(props.id);
 
+    const iconFloppy = () => <DeviceFloppy />;
+
     const fieldFirstName = "firstName";
     const fieldLastName = "lastName";
     const fieldPersonalEmail = "personalEmail";
@@ -69,8 +71,9 @@ export function Edit(props: ProfileProps): JSX.Element {
                 onUpload={async (file) => {
                     // **** Add AWS upload here
 
-                    console.log(file);
-                    return "helloworld";
+                    return new Promise((res) => {
+                        res(file.name);
+                    });
                 }}
                 name={fieldProfilePicture}
                 size={250}
@@ -100,7 +103,7 @@ export function Edit(props: ProfileProps): JSX.Element {
                 type="submit"
                 color="blue"
                 size="large"
-                icon={() => <DeviceFloppy />}
+                icon={iconFloppy}
                 onClick={() => {
                     analytics.track("Save Profile");
                 }}

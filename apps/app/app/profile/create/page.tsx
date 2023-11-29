@@ -2,7 +2,7 @@ import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import { Create } from "../../components/profile/create/create";
 
-export default async function Page(): Promise<JSX.Element> {
+export default function Page(): JSX.Element {
     return (
         <Container direction="vertical" size="half">
             <Text alignment="centre" type="title">

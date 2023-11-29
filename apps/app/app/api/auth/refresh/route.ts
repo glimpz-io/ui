@@ -44,6 +44,7 @@ export async function GET(req: NextRequest) {
 
     if (!response.ok) throw new Error("failed to refresh");
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- fetch
     const token: Data = await response.json();
 
     cookie.set(ACCESS_TOKEN_COOKIE, token.access_token, { maxAge: token.expires_in, secure: true, sameSite: "strict", httpOnly: true, path: "/" });

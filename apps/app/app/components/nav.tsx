@@ -4,7 +4,7 @@ import { Container } from "@glimpzio/ui";
 import Link from "next/link";
 import { AddressBook, Logout, Plug, User } from "tabler-icons-react";
 
-const links: { [key: string]: () => JSX.Element } = { "/": () => <Plug />, "/connections": () => <AddressBook />, "/profile": () => <User />, "/api/auth/signout": () => <Logout /> };
+const links: Record<string, () => JSX.Element> = { "/": () => <Plug />, "/connections": () => <AddressBook />, "/profile": () => <User />, "/api/auth/signout": () => <Logout /> };
 
 export function Nav(): JSX.Element {
     return (

@@ -5,7 +5,18 @@
         "build": {
             "dependsOn": ["^build"],
             "outputs": [".next/**", "!.next/cache/**"],
-            "env": ["SENDGRID_API_KEY", "SENDGRID_LIST_ID", "NEXT_PUBLIC_MIXPANEL_TOKEN", "NEXT_PUBLIC_FACEBOOK_ID", "API_URL"]
+            "env": [
+                "SENDGRID_API_KEY",
+                "SENDGRID_LIST_ID",
+                "NEXT_PUBLIC_MIXPANEL_TOKEN",
+                "NEXT_PUBLIC_FACEBOOK_ID",
+                "API_URL",
+                "AUTH0_DOMAIN",
+                "AUTH0_CLIENT_ID",
+                "AUTH0_CLIENT_SECRET",
+                "AUTH0_REDIRECT",
+                "AUTH0_AUDIENCE"
+            ]
         },
         "lint": {},
         "dev": {

@@ -55,15 +55,6 @@ export default async function Page(): Promise<JSX.Element> {
 
     const { data } = await client().query<Data>({ query });
 
-    if (!data)
-        return (
-            <Container direction="vertical" size="half">
-                <Text type="small" alignment="centre">
-                    Failed to retrieve data.
-                </Text>
-            </Container>
-        );
-
     return (
         <Container direction="vertical" size="half">
             <Text alignment="centre" type="title">

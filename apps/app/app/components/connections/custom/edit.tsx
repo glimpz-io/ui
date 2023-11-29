@@ -23,6 +23,8 @@ export function Edit(props: CustomConnectionProps): JSX.Element {
 
     analytics.identify(props.userId);
 
+    const floppyIcon = () => <DeviceFloppy />;
+
     const fieldFirstName = "firstName";
     const fieldLastName = "lastName";
     const fieldNotes = "notes";
@@ -61,7 +63,7 @@ export function Edit(props: CustomConnectionProps): JSX.Element {
                 type="submit"
                 color="blue"
                 size="large"
-                icon={() => <DeviceFloppy />}
+                icon={floppyIcon}
                 onClick={() => {
                     analytics.track("Save Custom Connection", { "Connection Id": props.id });
                 }}
