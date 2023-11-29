@@ -43,13 +43,13 @@ export function Create(): JSX.Element {
         >
             <FormHeading>Private Profile</FormHeading>
             <FormDescription>These details will not be displayed publicly on your profile.</FormDescription>
+            <Input label="Personal email" name={fieldPersonalEmail} type="email" placeholder="johndoe@xyz.com" required={true} />
+            <FormHeading>Public Profile</FormHeading>
+            <FormDescription>These details will be displayed publicly on your profile.</FormDescription>
             <Container pad={false} direction="horizontal">
                 <Input label="First name" name={fieldFirstName} type="text" placeholder="John" required={true} />
                 <Input label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={true} />
             </Container>
-            <Input label="Personal email" name={fieldPersonalEmail} type="email" placeholder="johndoe@xyz.com" required={true} />
-            <FormHeading>Public Profile</FormHeading>
-            <FormDescription>These details will be displayed publicly on your profile.</FormDescription>
             <ProfileUpload
                 onUpload={async (file) => {
                     // **** Add AWS upload here

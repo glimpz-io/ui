@@ -16,8 +16,8 @@ interface Props {
 
 export function ProfileUpload({ className = "", onUpload, name, disabled = false, defaultValue, size, label }: Props): JSX.Element | null {
     const isLoading = useContext(contextLoading);
-    const [mounted, setMounted] = useState<boolean>(false);
     const [value, setValue] = useState<string | null>(defaultValue ? defaultValue : null);
+    const [mounted, setMounted] = useState<boolean>();
 
     useEffect(() => {
         setMounted(true);

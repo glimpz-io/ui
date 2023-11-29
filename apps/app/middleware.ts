@@ -40,7 +40,8 @@ export async function middleware(req: NextRequest) {
 
         res.headers.set(ID_HEADER, data.user.id);
     } catch {
-        res = NextResponse.redirect(new URL(`/profile/create`, req.url));
+        if (req.nextUrl.pathname.startsWith("/profile/create")) res = NextResponse.next();
+        else res = NextResponse.redirect(new URL(`/profile/create`, req.url));
     }
 
     res.headers.set(AUTH_HEADER, accessToken);
