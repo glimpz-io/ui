@@ -4,7 +4,7 @@ import { Index } from "../../components/auth/status";
 
 interface Request {
     searchParams: {
-        status?: "success" | "error" | "logout";
+        status?: "success" | "logout";
         referer?: string;
     };
 }
@@ -14,7 +14,6 @@ export default function Page(req: Request): JSX.Element {
 
     let message: string;
     if (status === "success") message = "Authentication successful.";
-    else if (status === "error") message = "Authentication failed.";
     else if (status === "logout") message = "Logout successful.";
     else throw Error("invalid status");
 
@@ -23,7 +22,7 @@ export default function Page(req: Request): JSX.Element {
             <Text type="small" alignment="centre">
                 {message}
             </Text>
-            <Index referer={referer} />
+            <Index status={status} referer={referer} />
         </Container>
     );
 }
