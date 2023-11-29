@@ -37,7 +37,7 @@ export function Index(props: InviteProps): JSX.Element {
     }, [props.expiresAt]);
 
     useEffect(() => {
-        document.cookie = `${INVITE_ID_COOKIE}=${props.id};max-age=${(props.expiresAt - Math.floor(Date.now() / 1000)) / 2};`;
+        document.cookie = `${INVITE_ID_COOKIE}=${props.id};max-age=${(props.expiresAt - Math.floor(Date.now() / 1000)) / 4};`;
     }, [props.id, props.expiresAt]);
 
     if (!origin)
