@@ -2,19 +2,22 @@ import { META_COLOR_LANDING, META_DESCRIPTION_LANDING, META_IMAGE_LANDING, META_
 import { AnalyticsProvider } from "@glimpzio/hooks";
 import "@glimpzio/ui/styles.css";
 import { GeistSans } from "geist/font/sans";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
     metadataBase: new URL(META_URL_LANDING),
     title: META_TITLE_LANDING,
     description: META_DESCRIPTION_LANDING,
-    themeColor: META_COLOR_LANDING,
     openGraph: {
         title: META_TITLE_LANDING,
         description: META_DESCRIPTION_LANDING,
         images: META_IMAGE_LANDING,
         url: META_URL_LANDING,
     },
+};
+
+export const viewport: Viewport = {
+    themeColor: META_COLOR_LANDING,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -20,19 +20,21 @@ export function Input({ className = "", type, onChange, placeholder, name, disab
 
     const global = `${className}`;
 
-    const checkboxId = `${name}-checkbox`;
+    const inputId = `${name}-input`;
 
     const style = `${!isLoading && !disabled ? "text-neutral-100" : "text-neutral-400"} bg-neutral-800 w-full px-6 py-4 outline-none font-normal rounded-md ${global}`;
 
     return (
         <div className="flex flex-col items-start justify-between w-full space-y-2">
             {label && (
-                <label className="text-neutral-400 text-sm w-full" htmlFor={checkboxId}>
-                    {label} {required && <span className="text-red-500">*</span>}
+                <label className="text-neutral-400 text-sm w-full" htmlFor={inputId}>
+                    {label}
+                    {required && <span className="text-red-500"> *</span>}
                 </label>
             )}
             {type === "textarea" ? (
                 <textarea
+                    id={inputId}
                     disabled={isLoading || disabled}
                     onChange={(e) => onChange && onChange(e.target.value)}
                     placeholder={placeholder}
@@ -44,6 +46,7 @@ export function Input({ className = "", type, onChange, placeholder, name, disab
                 />
             ) : (
                 <input
+                    id={inputId}
                     disabled={isLoading || disabled}
                     type={type}
                     onChange={(e) => onChange && onChange(e.target.value)}

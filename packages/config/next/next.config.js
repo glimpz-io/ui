@@ -1,9 +1,6 @@
 module.exports = {
     reactStrictMode: true,
-    transpilePackages: ["@glimpzio/ui"],
-    experimental: {
-        serverActions: true,
-    },
+    transpilePackages: ["@glimpzio/ui", "@glimpzio/hooks", "@glimpzio/config"],
     images: {
         remotePatterns: [
             {

@@ -1,10 +1,9 @@
 "use client";
 
-import { Button, Container, Form, Input, Text } from "@glimpzio/ui";
-import { useAnalytics, useMounted } from "@glimpzio/hooks";
+import { Button, Container, FormDescription, Form, FormHeading, Input, ProfileUpload } from "@glimpzio/ui";
+import { useAnalytics } from "@glimpzio/hooks";
 import { DeviceFloppy } from "tabler-icons-react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { upsertUser } from "./actions";
 
 interface ProfileProps {
     id: string;
@@ -23,7 +22,6 @@ interface ProfileProps {
 
 export function Edit(props: ProfileProps): JSX.Element {
     const analytics = useAnalytics();
-    const mounted = useMounted();
 
     const fieldFirstName = "firstName";
     const fieldLastName = "lastName";
@@ -42,24 +40,41 @@ export function Edit(props: ProfileProps): JSX.Element {
             pad={false}
             // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
             action={async (formData) => {
-                // await upsertConnection(props.id, fieldFirstName, fieldLastName, fieldEmail, fieldPhone, fieldWebsite, fieldLinkedIn, fieldNotes, formData);
+                await upsertUser(
+                    fieldFirstName,
+                    fieldLastName,
+                    fieldPersonalEmail,
+                    fieldBio,
+                    fieldProfilePicture,
+                    fieldProfileEmail,
+                    fieldProfilePhone,
+                    fieldProfileWebsite,
+                    fieldProfileLinkedIn,
+                    formData
+                );
             }}
         >
-            <Text type="h3">
-                <Text type="bold">Private Profile</Text>
-            </Text>
-            <Text type="p">These details will not be displayed publicly on your profile.</Text>
+            <FormHeading>Private Profile</FormHeading>
+            <FormDescription>These details will not be displayed publicly on your profile.</FormDescription>
             <Container pad={false} direction="horizontal">
                 <Input label="First name" name={fieldFirstName} type="text" placeholder="John" required={true} defaultValue={props.firstName} />
                 <Input label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={true} defaultValue={props.lastName} />
             </Container>
             <Input label="Personal email" name={fieldPersonalEmail} type="email" placeholder="johndoe@xyz.com" required={true} defaultValue={props.email} />
-            <Text type="h3">
-                <Text type="bold">Public Profile</Text>
-            </Text>
-            <Text type="p">These details will be displayed publicly on your profile.</Text>
-            {mounted && <Image src={props.profilePicture || "https://i.imgur.com/H1eyXTn.png"} alt="Profile picture." width={200} height={200} className="rounded-full" />}
-            <Input name={fieldProfilePicture} type="hidden" defaultValue={props.profilePicture ? props.profilePicture : undefined} />
+            <FormHeading>Public Profile</FormHeading>
+            <FormDescription>These details will be displayed publicly on your profile.</FormDescription>
+            <ProfileUpload
+                onUpload={async (file) => {
+                    // **** Add AWS upload here
+
+                    console.log(file);
+                    return "helloworld";
+                }}
+                name={fieldProfilePicture}
+                size={250}
+                defaultValue={props.profilePicture ? props.profilePicture : undefined}
+                label="Profile picture"
+            />
             <Input
                 label="Bio"
                 name={fieldBio}

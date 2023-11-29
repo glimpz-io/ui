@@ -1,6 +1,6 @@
 import { META_COLOR_APP, META_IMAGE_APP, META_URL_APP } from "@glimpzio/config";
 import "@glimpzio/ui/styles.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import { gql } from "@apollo/client";
 import { getClient } from "@glimpzio/hooks/graphql";
@@ -49,7 +49,6 @@ export async function generateMetadata(req: Request): Promise<Metadata> {
         metadataBase: new URL(META_URL_APP),
         title: title,
         description: description,
-        themeColor: META_COLOR_APP,
         openGraph: {
             title: title,
             description: description,
@@ -58,6 +57,10 @@ export async function generateMetadata(req: Request): Promise<Metadata> {
         },
     };
 }
+
+export const viewport: Viewport = {
+    themeColor: META_COLOR_APP,
+};
 
 export default function ProfileLayout({ children }: { children: React.ReactNode }) {
     return <div style={{ minWidth: 480 }}>{children}</div>;
