@@ -21,6 +21,8 @@ interface CustomConnectionProps {
 export function Edit(props: CustomConnectionProps): JSX.Element {
     const analytics = useAnalytics();
 
+    analytics.identify(props.userId);
+
     const fieldFirstName = "firstName";
     const fieldLastName = "lastName";
     const fieldNotes = "notes";
@@ -55,7 +57,15 @@ export function Edit(props: CustomConnectionProps): JSX.Element {
                 required={false}
                 defaultValue={props.notes ? props.notes : undefined}
             />
-            <Button type="submit" color="blue" size="large" icon={() => <DeviceFloppy />}>
+            <Button
+                type="submit"
+                color="blue"
+                size="large"
+                icon={() => <DeviceFloppy />}
+                onClick={() => {
+                    analytics.track("Save Custom Connection", { "Connection Id": props.id });
+                }}
+            >
                 Save
             </Button>
         </Form>

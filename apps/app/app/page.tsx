@@ -9,6 +9,7 @@ import { Index } from "./components";
 interface Data {
     createInvite: {
         id: string;
+        userId: string;
         expiresAt: number;
         publicProfile: {
             firstName: string;
@@ -30,6 +31,7 @@ export default async function Page(): Promise<JSX.Element> {
         mutation CreateInvite {
             createInvite {
                 id
+                userId
                 expiresAt
                 publicProfile {
                     firstName

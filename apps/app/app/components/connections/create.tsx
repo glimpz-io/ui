@@ -6,9 +6,15 @@ import { useState } from "react";
 import { Plus } from "tabler-icons-react";
 import { upsertConnection } from "./actions";
 
-export function Create(): JSX.Element {
+interface CreateProps {
+    userId: string;
+}
+
+export function Create(props: CreateProps): JSX.Element {
     const analytics = useAnalytics();
     const [showModal, setShowModal] = useState<boolean>(false);
+
+    analytics.identify(props.userId);
 
     const fieldFirstName = "firstName";
     const fieldLastName = "lastName";
@@ -23,7 +29,16 @@ export function Create(): JSX.Element {
             <Container direction="horizontal" pad={false}>
                 <Text type="h3">New Connection</Text>
                 <Container grow={false} pad={false}>
-                    <Button onClick={() => setShowModal(true)} color="blue" icon={() => <Plus />} size="small" type="button">
+                    <Button
+                        onClick={() => {
+                            setShowModal(true);
+                            analytics.track("New Custom Connection Modal");
+                        }}
+                        color="blue"
+                        icon={() => <Plus />}
+                        size="small"
+                        type="button"
+                    >
                         New
                     </Button>
                 </Container>
@@ -59,7 +74,14 @@ export function Create(): JSX.Element {
                         placeholder="Put any other relevant information here i.e. employer, job title, if they asked you to follow up..."
                         required={false}
                     />
-                    <Button type="submit" color="indigo" size="large">
+                    <Button
+                        type="submit"
+                        color="indigo"
+                        size="large"
+                        onClick={() => {
+                            analytics.track("Create Custom Connection");
+                        }}
+                    >
                         Submit
                     </Button>
                 </Form>

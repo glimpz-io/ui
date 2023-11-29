@@ -50,7 +50,7 @@ export function useAnalytics() {
     }
 
     function identify(userId: string) {
-        analytics?.identify(userId);
+        analytics!.identify(userId);
     }
 
     return { track, identify };

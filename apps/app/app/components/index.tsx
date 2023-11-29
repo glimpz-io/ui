@@ -5,6 +5,7 @@ import { useAnalytics, useOrigin } from "@glimpzio/hooks";
 
 interface InviteProps {
     id: string;
+    userId: string;
     expiresAt: number;
     publicProfile: {
         firstName: string;
@@ -15,6 +16,8 @@ interface InviteProps {
 export function Index(props: InviteProps): JSX.Element {
     const analytics = useAnalytics();
     const origin = useOrigin();
+
+    analytics.identify(props.userId);
 
     if (!origin)
         return (
@@ -40,7 +43,12 @@ export function Index(props: InviteProps): JSX.Element {
             <Text alignment="centre" type="small">
                 You can also share your profile digitally using the following link (click to copy).
             </Text>
-            <Copy value={url} />
+            <Copy
+                value={url}
+                onClick={() => {
+                    analytics.track("Copy Profile Code");
+                }}
+            />
         </Container>
     );
 }

@@ -23,6 +23,8 @@ interface ProfileProps {
 export function Edit(props: ProfileProps): JSX.Element {
     const analytics = useAnalytics();
 
+    analytics.identify(props.id);
+
     const fieldFirstName = "firstName";
     const fieldLastName = "lastName";
     const fieldPersonalEmail = "personalEmail";
@@ -94,7 +96,15 @@ export function Edit(props: ProfileProps): JSX.Element {
                 required={false}
                 defaultValue={props.profile.linkedin ? props.profile.linkedin : undefined}
             />
-            <Button type="submit" color="blue" size="large" icon={() => <DeviceFloppy />}>
+            <Button
+                type="submit"
+                color="blue"
+                size="large"
+                icon={() => <DeviceFloppy />}
+                onClick={() => {
+                    analytics.track("Save Profile");
+                }}
+            >
                 Save
             </Button>
         </Form>

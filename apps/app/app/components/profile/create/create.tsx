@@ -64,7 +64,15 @@ export function Create(): JSX.Element {
             <Input label="Work phone" name={fieldProfilePhone} type="tel" placeholder="+01 2345 6789" required={false} />
             <Input label="Website" name={fieldProfileWebsite} type="url" placeholder="https://website.com" required={false} />
             <Input label="LinkedIn" name={fieldProfileLinkedIn} type="url" placeholder="https://www.linkedin.com/in/johndoe" required={false} />
-            <Button type="submit" color="blue" size="large" icon={() => <Plus />}>
+            <Button
+                type="submit"
+                color="blue"
+                size="large"
+                icon={() => <Plus />}
+                onClick={() => {
+                    analytics.track("Create Profile");
+                }}
+            >
                 Create Profile
             </Button>
         </Form>

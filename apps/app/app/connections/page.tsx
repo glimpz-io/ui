@@ -2,7 +2,7 @@ import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import { getClient } from "@glimpzio/hooks/graphql";
 import { headers } from "next/headers";
-import { AUTH_HEADER } from "@glimpzio/config";
+import { AUTH_HEADER, ID_HEADER } from "@glimpzio/config";
 import { gql } from "@apollo/client";
 import { Link } from "@glimpzio/ui/link";
 import { Create } from "../components/connections/create";
@@ -26,8 +26,13 @@ export default async function Page(): Promise<JSX.Element> {
     const apiUrl = process.env.API_URL;
     if (!apiUrl) throw Error("missing API url");
 
-    const authToken = headers().get(AUTH_HEADER);
+    const header = headers();
+
+    const authToken = header.get(AUTH_HEADER);
     if (!authToken) throw Error("auth token missing");
+
+    const userId = header.get(ID_HEADER);
+    if (!userId) throw Error("user id missing");
 
     const client = await getClient(apiUrl, authToken);
 
@@ -64,7 +69,7 @@ export default async function Page(): Promise<JSX.Element> {
             <Text alignment="centre" type="title">
                 Your <Text type="highlight">Contacts</Text>
             </Text>
-            <Create />
+            <Create userId={userId} />
             {data.customConnections.length > 0 ? (
                 <>
                     {data.customConnections.map((connection) => (

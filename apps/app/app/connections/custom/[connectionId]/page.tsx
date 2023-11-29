@@ -65,7 +65,7 @@ export default async function Page(req: Request): Promise<JSX.Element> {
                 Contact <Text type="highlight">Details</Text>
             </Text>
             <Edit {...data} />
-            <Delete id={data.id} />
+            <Delete userId={data.userId} id={data.id} />
         </Container>
     );
 }
