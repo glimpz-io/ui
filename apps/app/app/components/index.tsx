@@ -2,6 +2,8 @@
 
 import { Container, Copy, QRCode, Text } from "@glimpzio/ui";
 import { useAnalytics, useOrigin } from "@glimpzio/hooks";
+import { useEffect, useState } from "react";
+import { INVITE_ID_COOKIE } from "@glimpzio/config";
 
 interface InviteProps {
     id: string;
@@ -13,11 +15,30 @@ interface InviteProps {
     };
 }
 
+function getExpiry(expiresAt: number) {
+    return Math.floor((expiresAt - Date.now() / 1000) / (60 * 60));
+}
+
 export function Index(props: InviteProps): JSX.Element {
     const analytics = useAnalytics();
     const origin = useOrigin();
+    const [expiry, setExpiry] = useState<number>(getExpiry(props.expiresAt));
 
     analytics.identify(props.userId);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setExpiry(getExpiry(props.expiresAt));
+        }, 30 * 1000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [props.expiresAt]);
+
+    useEffect(() => {
+        document.cookie = `${INVITE_ID_COOKIE}=${props.id};max-age=${(props.expiresAt - Math.floor(Date.now() / 1000)) / 2};`;
+    }, [props.id, props.expiresAt]);
 
     if (!origin)
         return (
@@ -29,7 +50,6 @@ export function Index(props: InviteProps): JSX.Element {
         );
 
     const url = `${origin}/invite/${props.id}`;
-    const expiry = Math.floor((props.expiresAt - Date.now() / 1000) / (60 * 60));
 
     return (
         <Container direction="vertical" size="half">
