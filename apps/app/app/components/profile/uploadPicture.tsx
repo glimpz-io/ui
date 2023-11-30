@@ -26,6 +26,7 @@ export function UploadPicture({ className = "", defaultValue, size, onChange }: 
     // TODO
     // - Fix the create component like this one, add the form upload to the main action and have it be its own FormComponent (and just use the action and parse it at runtime for the upload),
     // move the image to the server side, deploy
+    // ALSO FIX THE PICTURE BEING OVERLAYED OVER THE MODAL ????
 
     return (
         <Container direction="vertical" pad={false}>
