@@ -5,8 +5,8 @@ import { createContext, useTransition } from "react";
 interface Props {
     children: any;
     className?: string;
-    direction: "horizontal" | "vertical";
-    size: "full" | "half" | "third";
+    direction?: "horizontal" | "vertical";
+    size?: "full" | "half" | "third";
     action?: (formData: FormData) => void;
     pad?: boolean;
     grow?: boolean;
@@ -14,7 +14,7 @@ interface Props {
 
 export const contextLoading = createContext<boolean>(false);
 
-export function Form({ children, className = "", direction, size, action, pad = true, grow = true }: Props): JSX.Element {
+export function Form({ children, className = "", direction = "vertical", size = "full", action, pad = true, grow = true }: Props): JSX.Element {
     const [isPending, startTransition] = useTransition();
 
     let alignment = direction === "horizontal" ? "flex-row space-x-4" : "flex-col space-y-4";

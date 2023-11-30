@@ -15,20 +15,22 @@ interface InviteProps {
     };
 }
 
-function getExpiry(expiresAt: number) {
-    return Math.floor((expiresAt - Date.now() / 1000) / (60 * 60));
-}
-
 export function Index(props: InviteProps): JSX.Element {
     const analytics = useAnalytics();
     const origin = useOrigin();
-    const [expiry, setExpiry] = useState<number>(getExpiry(props.expiresAt));
+    const [expiry, setExpiry] = useState<number | null>(null);
 
     analytics.identify(props.userId);
 
+    function getExpiry() {
+        return Math.floor((props.expiresAt - Date.now() / 1000) / (60 * 60));
+    }
+
     useEffect(() => {
+        setExpiry(getExpiry());
+
         const interval = setInterval(() => {
-            setExpiry(getExpiry(props.expiresAt));
+            setExpiry(getExpiry());
         }, 30 * 1000);
 
         return () => {
@@ -54,7 +56,7 @@ export function Index(props: InviteProps): JSX.Element {
     return (
         <Container direction="vertical" size="half">
             <Text alignment="centre" type="p">
-                By sharing this QR code, those who scan it will have access to your Glimpz profile for the next <Text type="bold">{expiry}</Text> hours.
+                By sharing this QR code, those who scan it will have access to your Glimpz profile for the next <Text type="bold">{expiry ? expiry : "N/A"}</Text> hours.
             </Text>
             <Text alignment="centre" type="title">
                 {props.publicProfile.firstName} <Text type="highlight">{props.publicProfile.lastName}</Text>

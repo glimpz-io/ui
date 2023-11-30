@@ -5,7 +5,7 @@ module.exports = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "i.imgur.com",
+                hostname: "d2p7w26hblzvud.cloudfront.net",
                 port: "",
                 pathname: "/*",
             },

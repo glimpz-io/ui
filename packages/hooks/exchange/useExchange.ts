@@ -12,7 +12,7 @@ export function useExchange(userId: string) {
         if (localStorage.getItem(LOCAL_STORAGE_EXCHANGE)) {
             setSuccess(true);
         } else setTimeout(() => setShowModal(true), 1000);
-    }, [setShowModal, setSuccess]);
+    }, [setSuccess]);
 
     return {
         setShowModal,

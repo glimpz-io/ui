@@ -20,7 +20,7 @@ export function Button({ children, className = "", icon, onClick, type, disabled
 
     const IconComponent = icon;
 
-    let length = size === "large" ? "p-6 text-xl font-semibold space-x-8" : "p-4 text-lg font-medium space-x-4";
+    let length = size === "large" ? "p-6 text-xl font-semibold space-x-8" : "px-4 py-3 text-lg font-medium space-x-4";
 
     let outColor: string;
     let loadingColor: string;

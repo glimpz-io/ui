@@ -71,13 +71,15 @@ export default async function Page(req: Request): Promise<JSX.Element> {
             <Banner userId={data.userId} />
             <Save inviteId={data.id} userId={data.userId} expiresAt={data.expiresAt} publicProfile={data.publicProfile} />
             <Container direction="vertical" size="full" className="bg-sky-500 rounded-md">
-                <Image
-                    src={data.publicProfile.profilePicture || "https://i.imgur.com/H1eyXTn.png"}
-                    alt="Profile picture."
-                    width={150}
-                    height={150}
-                    className={`rounded-full drop-shadow-md ${data.publicProfile.profilePicture ? "" : "invisible"}`}
-                />
+                {data.publicProfile.profilePicture && (
+                    <Image
+                        src={data.publicProfile.profilePicture}
+                        alt="Profile picture."
+                        width={150}
+                        height={150}
+                        className={`rounded-full drop-shadow-md ${data.publicProfile.profilePicture ? "" : "invisible"}`}
+                    />
+                )}
             </Container>
             <Text type="title" alignment="centre">
                 {data.publicProfile.firstName} {data.publicProfile.lastName}
