@@ -1,26 +1,27 @@
 "use server";
 
 import { gql } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
-import { NextSSRApolloClient, NextSSRInMemoryCache } from "@apollo/experimental-nextjs-app-support/ssr";
 import { AUTH_HEADER } from "@glimpzio/config";
 import { getClient, getClientFile } from "@glimpzio/hooks/graphql";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
+
+interface Data {
+    uploadProfilePicture: string;
+}
 
 export async function upsertUser(
     fieldFirstName: string,
     fieldLastName: string,
     fieldPersonalEmail: string,
     fieldBio: string,
-    // fieldProfilePicture: string,
+    fieldProfilePicture: string,
+    fieldProfilePictureUrl: string,
     fieldProfileEmail: string,
     fieldProfilePhone: string,
     fieldProfileWebsite: string,
     fieldProfileLinkedIn: string,
-    formData: FormData,
-    profilePictureUrl: string | null
+    formData: FormData
 ) {
     const apiUrl = process.env.API_URL;
     if (!apiUrl) throw Error("missing API url");
@@ -61,11 +62,27 @@ export async function upsertUser(
     const lastName = formData.get(fieldLastName);
     const personalEmail = formData.get(fieldPersonalEmail);
     const bio = formData.get(fieldBio);
-    const profilePicture = profilePictureUrl;
+    const profilePicture = formData.get(fieldProfilePicture) as File | null;
+    let profilePictureUrl = formData.get(fieldProfilePictureUrl);
     const email = formData.get(fieldProfileEmail);
     const phone = formData.get(fieldProfilePhone);
     const website = formData.get(fieldProfileWebsite);
     const linkedin = formData.get(fieldProfileLinkedIn);
+
+    if (profilePicture) {
+        const client = await getClientFile(apiUrl, authToken);
+
+        const query = gql`
+            mutation UploadProfilePicture($file: Upload!) {
+                uploadProfilePicture(file: $file)
+            }
+        `;
+
+        const { data } = await client().mutate<Data>({ mutation: query, variables: { file: profilePicture } });
+        if (!data) throw Error("missing data");
+
+        profilePictureUrl = data.uploadProfilePicture;
+    }
 
     await client().mutate({
         mutation: query,
@@ -74,7 +91,7 @@ export async function upsertUser(
             lastName,
             personalEmail,
             bio,
-            profilePicture,
+            profilePicture: profilePictureUrl,
             email,
             phone,
             website,
@@ -83,31 +100,4 @@ export async function upsertUser(
     });
 
     revalidatePath("/profile");
-}
-
-interface ProfilePictureData {
-    uploadProfilePicture: string;
-}
-
-export async function uploadProfilePicture(fieldFile: string, formData: FormData) {
-    const apiUrl = process.env.API_URL;
-    if (!apiUrl) throw Error("missing API url");
-
-    const authToken = headers().get(AUTH_HEADER);
-    if (!authToken) throw Error("auth token missing");
-
-    const client = await getClientFile(apiUrl, authToken);
-
-    const query = gql`
-        mutation UploadProfilePicture($file: Upload!) {
-            uploadProfilePicture(file: $file)
-        }
-    `;
-
-    const file = formData.get(fieldFile) as File;
-    const { data } = await client().mutate<ProfilePictureData>({ mutation: query, variables: { file } });
-
-    if (!data) throw Error("missing data");
-
-    return data.uploadProfilePicture;
 }

@@ -5,6 +5,7 @@ import { gql } from "@apollo/client";
 import { headers } from "next/headers";
 import { AUTH_HEADER } from "@glimpzio/config";
 import { Edit } from "../components/profile/edit";
+import Image from "next/image";
 
 interface Data {
     user: {
@@ -59,6 +60,7 @@ export default async function Page(): Promise<JSX.Element> {
             <Text alignment="centre" type="title">
                 Profile <Text type="highlight">Details</Text>
             </Text>
+            {data.profilePicture && <Image priority={true} src={data.profilePicture} alt="Profile picture" width={250} height={250} className="rounded-full drop-shadow-md" />}
             <Edit {...data} />
         </Container>
     );

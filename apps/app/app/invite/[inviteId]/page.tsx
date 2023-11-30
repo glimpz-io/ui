@@ -73,6 +73,7 @@ export default async function Page(req: Request): Promise<JSX.Element> {
             <Container direction="vertical" size="full" className="bg-sky-500 rounded-md">
                 {data.publicProfile.profilePicture && (
                     <Image
+                        priority={true}
                         src={data.publicProfile.profilePicture}
                         alt="Profile picture."
                         width={150}

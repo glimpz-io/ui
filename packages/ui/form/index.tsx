@@ -4,3 +4,4 @@ export * from "./input";
 export * from "./checkbox";
 export * from "./formHeading";
 export * from "./formDescription";
+export * from "./formUpload";

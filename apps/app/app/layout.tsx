@@ -32,9 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en" className="bg-gradient-to-r from-neutral-950 to-zinc-950 min-w-fit">
             <AnalyticsProvider mixpanelToken={MIXPANEL_TOKEN} facebookId={FACEBOOK_ID}>
                 <body className={GeistSans.className}>
-                    <div id={MODAL_PORTAL_ID} />
                     <Nav />
                     {children}
+                    <div id={MODAL_PORTAL_ID} />
                 </body>
             </AnalyticsProvider>
         </html>
