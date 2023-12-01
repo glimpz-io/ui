@@ -37,6 +37,8 @@ export async function upsertUser(
     const website = formData.get(fieldProfileWebsite);
     const linkedin = formData.get(fieldProfileLinkedIn);
 
+    // **** UPLOAD THE FILE HERE
+
     await upsertClient().mutate({
         mutation: UpsertUserQuery,
         variables: {

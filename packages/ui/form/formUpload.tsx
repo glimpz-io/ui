@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { contextLoading } from "./form";
 
 interface Props {
-    className?: string;
     name: string;
     urlName: string;
     label?: string;
@@ -14,10 +13,8 @@ interface Props {
     defaultUrl?: string;
 }
 
-export function FormUpload({ className = "", name, label, required = false, disabled = false, accept, urlName, defaultUrl }: Props): JSX.Element {
+export function FormUpload({ name, label, required = false, disabled = false, accept, urlName, defaultUrl }: Props): JSX.Element {
     const isLoading = useContext(contextLoading);
-
-    const global = ` ${className}`;
 
     const uploadId = `${name}-upload`;
 
@@ -36,7 +33,7 @@ export function FormUpload({ className = "", name, label, required = false, disa
                 disabled={isLoading || disabled}
                 id={uploadId}
                 type="file"
-                className={`${!isLoading && !disabled ? outColor : loadingColor} file:border-0 file:px-4 file:py-3 file:mr-4 cursor-pointer file:cursor-pointer file:font-normal w-full ${global}`}
+                className={`${!isLoading && !disabled ? outColor : loadingColor} file:border-0 file:px-4 file:py-3 file:mr-4 cursor-pointer file:cursor-pointer file:font-normal w-full`}
                 name={name}
                 accept={accept}
                 required={required}

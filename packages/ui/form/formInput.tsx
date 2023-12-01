@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { contextLoading } from "./form";
 
 interface Props {
-    className?: string;
     type: React.InputHTMLAttributes<HTMLInputElement>["type"] | "textarea";
     onChange?: (value: string) => void;
     placeholder?: string;
@@ -15,14 +14,12 @@ interface Props {
     defaultValue?: string;
 }
 
-export function FormInput({ className = "", type, onChange, placeholder, name, disabled = false, required, label, defaultValue }: Props): JSX.Element {
+export function FormInput({ type, onChange, placeholder, name, disabled = false, required, label, defaultValue }: Props): JSX.Element {
     const isLoading = useContext(contextLoading);
-
-    const global = `${className}`;
 
     const inputId = `${name}-input`;
 
-    const style = `${!isLoading && !disabled ? "text-neutral-100" : "text-neutral-400"} bg-neutral-800 w-full px-6 py-4 outline-none font-normal rounded-md ${global}`;
+    const style = `${!isLoading && !disabled ? "text-neutral-100" : "text-neutral-400"} bg-neutral-800 w-full px-6 py-4 outline-none font-normal rounded-md`;
 
     return (
         <div className="flex flex-col items-start justify-between w-full space-y-2">

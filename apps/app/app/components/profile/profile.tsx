@@ -1,18 +1,18 @@
 "use client";
 
-import { Button, Form, FormHeading, FormInput, FormUpload } from "@glimpzio/ui";
+import { Form, FormButton, FormHeading, FormInput, FormUpload } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
-import { DeviceFloppy } from "tabler-icons-react";
+import { DeviceFloppy, Plus } from "tabler-icons-react";
 import { upsertUser } from "./actions";
 
 interface ProfileProps {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    bio: string;
-    profilePicture: string | null;
-    profile: {
+    id?: string;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    bio?: string;
+    profilePicture?: string | null;
+    profile?: {
         email: string | null;
         phone: string | null;
         website: string | null;
@@ -20,12 +20,13 @@ interface ProfileProps {
     };
 }
 
-export function Edit(props: ProfileProps): JSX.Element | null {
+export function Profile(props: ProfileProps): JSX.Element | null {
     const analytics = useAnalytics();
 
-    analytics.identify(props.id);
+    if (props.id) analytics.identify(props.id);
 
     const iconFloppy = () => <DeviceFloppy />;
+    const plusIcon = () => <Plus />;
 
     const fieldFirstName = "firstName";
     const fieldLastName = "lastName";
@@ -78,15 +79,15 @@ export function Edit(props: ProfileProps): JSX.Element | null {
                 required={true}
                 defaultValue={props.bio}
             />
-            <FormInput label="Work email" name={fieldProfileEmail} type="email" placeholder="johndoe@xyz.com" required={false} defaultValue={props.profile.email ? props.profile.email : undefined} />
-            <FormInput label="Work phone" name={fieldProfilePhone} type="tel" placeholder="+01 2345 6789" required={false} defaultValue={props.profile.phone ? props.profile.phone : undefined} />
+            <FormInput label="Work email" name={fieldProfileEmail} type="email" placeholder="johndoe@xyz.com" required={false} defaultValue={props.profile?.email ? props.profile.email : undefined} />
+            <FormInput label="Work phone" name={fieldProfilePhone} type="tel" placeholder="+01 2345 6789" required={false} defaultValue={props.profile?.phone ? props.profile.phone : undefined} />
             <FormInput
                 label="Website"
                 name={fieldProfileWebsite}
                 type="url"
                 placeholder="https://website.com"
                 required={false}
-                defaultValue={props.profile.website ? props.profile.website : undefined}
+                defaultValue={props.profile?.website ? props.profile.website : undefined}
             />
             <FormInput
                 label="LinkedIn"
@@ -94,19 +95,29 @@ export function Edit(props: ProfileProps): JSX.Element | null {
                 type="url"
                 placeholder="https://www.linkedin.com/in/johndoe"
                 required={false}
-                defaultValue={props.profile.linkedin ? props.profile.linkedin : undefined}
+                defaultValue={props.profile?.linkedin ? props.profile.linkedin : undefined}
             />
-            <Button
-                type="submit"
-                color="blue"
-                size="large"
-                icon={iconFloppy}
-                onClick={() => {
-                    analytics.track("Save Profile");
-                }}
-            >
-                Save
-            </Button>
+            {props.id ? (
+                <FormButton
+                    size="large"
+                    icon={iconFloppy}
+                    onClick={() => {
+                        analytics.track("Save Profile");
+                    }}
+                >
+                    Save
+                </FormButton>
+            ) : (
+                <FormButton
+                    size="large"
+                    icon={plusIcon}
+                    onClick={() => {
+                        analytics.track("Create Profile");
+                    }}
+                >
+                    Create Profile
+                </FormButton>
+            )}
         </Form>
     );
 }

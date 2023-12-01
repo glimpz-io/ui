@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Container, Form, FormInput, Modal, Text } from "@glimpzio/ui";
+import { Button, Container, Form, FormButton, FormInput, Modal, Text } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
 import { useState } from "react";
 import { Plus } from "tabler-icons-react";
@@ -74,16 +74,14 @@ export function Create(props: CreateProps): JSX.Element {
                         placeholder="Put any other relevant information here i.e. employer, job title, if they asked you to follow up..."
                         required={false}
                     />
-                    <Button
-                        type="submit"
-                        color="indigo"
+                    <FormButton
                         size="large"
                         onClick={() => {
                             analytics.track("Create Custom Connection");
                         }}
                     >
                         Submit
-                    </Button>
+                    </FormButton>
                 </Form>
             </Modal>
         </>

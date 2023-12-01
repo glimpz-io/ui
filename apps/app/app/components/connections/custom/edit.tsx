@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Container, Form, FormInput } from "@glimpzio/ui";
+import { Container, Form, FormButton, FormInput } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
 import { upsertConnection } from "../actions";
 import { DeviceFloppy } from "tabler-icons-react";
@@ -57,9 +57,7 @@ export function Edit(props: CustomConnectionProps): JSX.Element {
                 required={false}
                 defaultValue={props.notes ? props.notes : undefined}
             />
-            <Button
-                type="submit"
-                color="blue"
+            <FormButton
                 size="large"
                 icon={floppyIcon}
                 onClick={() => {
@@ -67,7 +65,7 @@ export function Edit(props: CustomConnectionProps): JSX.Element {
                 }}
             >
                 Save
-            </Button>
+            </FormButton>
         </Form>
     );
 }

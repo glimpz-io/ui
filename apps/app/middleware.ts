@@ -20,13 +20,11 @@ export async function middleware(req: NextRequest) {
     try {
         const { data } = await client.query<GetUserType>({ query: GetUserQuery });
 
-        if (req.nextUrl.pathname.startsWith("/profile/create")) res = NextResponse.redirect(new URL("/profile", req.url));
-        else res = NextResponse.next();
-
+        res = NextResponse.next();
         res.headers.set(ID_HEADER, data.user.id);
     } catch {
-        if (req.nextUrl.pathname.startsWith("/profile/create")) res = NextResponse.next();
-        else res = NextResponse.redirect(new URL(`/profile/create`, req.url));
+        if (req.nextUrl.pathname.startsWith("/profile")) res = NextResponse.next();
+        else res = NextResponse.redirect(new URL(`/profile`, req.url));
     }
 
     res.headers.set(AUTH_HEADER, accessToken!);
@@ -35,5 +33,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/", "/connections", "/connections/custom/:connectionId*", "/profile", "/profile/create"],
+    matcher: ["/", "/connections", "/connections/custom/:connectionId*", "/profile"],
 };

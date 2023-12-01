@@ -4,7 +4,7 @@ import { Mail } from "tabler-icons-react";
 import { submitEmail } from "./actions";
 import { useRouter } from "next/navigation";
 import { useAnalytics, useIsReferred } from "@glimpzio/hooks";
-import { Button, Form, FormInput } from "@glimpzio/ui";
+import { Form, FormButton, FormInput } from "@glimpzio/ui";
 
 interface ReferralProps {
     referral?: string;
@@ -25,17 +25,15 @@ export function Index({ referral }: ReferralProps): JSX.Element {
             }}
         >
             <FormInput type="email" name={fieldName} placeholder="youremail@xyz.com" required={true} />
-            <Button
-                type="submit"
+            <FormButton
                 size="large"
                 icon={mailIcon}
-                color="blue"
                 onClick={() => {
                     analytics.track("Email Signup", { "Signup Type": referral ? "Referral" : "Direct", Referer: referral });
                 }}
             >
                 Join Waitlist
-            </Button>
+            </FormButton>
         </Form>
     );
 }

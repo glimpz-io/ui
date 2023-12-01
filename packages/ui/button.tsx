@@ -1,10 +1,4 @@
-"use client";
-
-import { useContext } from "react";
 import { IconProps } from "tabler-icons-react";
-import { contextLoading } from "./form";
-
-// **** THIS NEEDS FIXING
 
 interface Props {
     children: any;
@@ -18,8 +12,6 @@ interface Props {
 }
 
 export function Button({ children, className = "", icon, onClick, type, disabled = false, color, size }: Props): JSX.Element {
-    const isLoading = useContext(contextLoading);
-
     const IconComponent = icon;
 
     let length = size === "large" ? "p-6 text-xl font-semibold space-x-8" : "px-4 py-3 text-lg font-medium space-x-4";
@@ -40,12 +32,7 @@ export function Button({ children, className = "", icon, onClick, type, disabled
     const global = `${length} ${className}`;
 
     return (
-        <button
-            onClick={onClick}
-            type={type}
-            className={`${!isLoading && !disabled ? outColor : loadingColor} w-full text-center flex items-center justify-center ${global}`}
-            disabled={isLoading || disabled}
-        >
+        <button onClick={onClick} type={type} className={`${!disabled ? outColor : loadingColor} w-full text-center flex items-center justify-center ${global}`} disabled={disabled}>
             {IconComponent && (
                 <span>
                     <IconComponent />

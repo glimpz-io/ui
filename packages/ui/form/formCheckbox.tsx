@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { contextLoading } from "./form";
 
 interface Props {
-    className?: string;
     label: string;
     name: string;
     onChange?: (checked: boolean) => void;
@@ -12,10 +11,8 @@ interface Props {
     defaultChecked?: boolean;
 }
 
-export function FormCheckbox({ className = "", label, name, onChange, disabled, defaultChecked }: Props): JSX.Element {
+export function FormCheckbox({ label, name, onChange, disabled, defaultChecked }: Props): JSX.Element {
     const isLoading = useContext(contextLoading);
-
-    const global = ` ${className}`;
 
     const checkboxId = `${name}-checkbox`;
 
@@ -24,15 +21,7 @@ export function FormCheckbox({ className = "", label, name, onChange, disabled, 
             <label className="text-neutral-400 text-sm w-full" htmlFor={checkboxId}>
                 {label}
             </label>
-            <input
-                id={checkboxId}
-                className={" " + global}
-                type="checkbox"
-                name={name}
-                disabled={isLoading || disabled}
-                onChange={(e) => onChange && onChange(e.target.checked)}
-                defaultChecked={defaultChecked}
-            />
+            <input id={checkboxId} type="checkbox" name={name} disabled={isLoading || disabled} onChange={(e) => onChange && onChange(e.target.checked)} defaultChecked={defaultChecked} />
         </div>
     );
 }
