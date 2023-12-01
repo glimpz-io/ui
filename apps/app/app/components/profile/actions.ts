@@ -29,9 +29,9 @@ export async function upsertUser(
     const authToken = headers().get(AUTH_HEADER);
     if (!authToken) throw Error("auth token missing");
 
-    const client = await getClient(apiUrl, authToken);
+    const upsertClient = await getClient(apiUrl, authToken);
 
-    const query = gql`
+    const upsertQuery = gql`
         mutation UpsertUser(
             $firstName: String!
             $lastName: String!
@@ -62,30 +62,30 @@ export async function upsertUser(
     const lastName = formData.get(fieldLastName);
     const personalEmail = formData.get(fieldPersonalEmail);
     const bio = formData.get(fieldBio);
-    const profilePicture = formData.get(fieldProfilePicture) as File | null;
+    const profilePicture = formData.get(fieldProfilePicture) as File;
     let profilePictureUrl = formData.get(fieldProfilePictureUrl);
     const email = formData.get(fieldProfileEmail);
     const phone = formData.get(fieldProfilePhone);
     const website = formData.get(fieldProfileWebsite);
     const linkedin = formData.get(fieldProfileLinkedIn);
 
-    if (profilePicture) {
-        const client = await getClientFile(apiUrl, authToken);
+    if (profilePicture.size) {
+        const fileClient = await getClientFile(apiUrl, authToken);
 
-        const query = gql`
+        const fileQuery = gql`
             mutation UploadProfilePicture($file: Upload!) {
                 uploadProfilePicture(file: $file)
             }
         `;
 
-        const { data } = await client().mutate<Data>({ mutation: query, variables: { file: profilePicture } });
+        const { data } = await fileClient.mutate<Data>({ mutation: fileQuery, variables: { file: profilePicture } });
         if (!data) throw Error("missing data");
 
         profilePictureUrl = data.uploadProfilePicture;
     }
 
-    await client().mutate({
-        mutation: query,
+    await upsertClient().mutate({
+        mutation: upsertQuery,
         variables: {
             firstName,
             lastName,

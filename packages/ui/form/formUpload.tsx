@@ -39,8 +39,9 @@ export function FormUpload({ className = "", name, label, required = false, disa
                 className={`${!isLoading && !disabled ? outColor : loadingColor} file:border-0 file:px-4 file:py-3 file:mr-4 cursor-pointer file:cursor-pointer file:font-normal w-full ${global}`}
                 name={name}
                 accept={accept}
+                required={required}
             />
-            <input type="hidden" name={urlName} defaultValue={defaultUrl} />;
+            <input type="hidden" name={urlName} value={defaultUrl} />;
         </div>
     );
 }

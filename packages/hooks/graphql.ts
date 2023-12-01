@@ -44,12 +44,10 @@ export async function getClientNoCache(apiUrl: string, authToken?: string) {
         uri: apiUrl,
     });
 
-    const client = new ApolloClient({
+    return new ApolloClient({
         cache: new InMemoryCache(),
         link: authLink.concat(httpLink),
     });
-
-    return client;
 }
 
 export async function getClientFile(apiUrl: string, authToken?: string) {

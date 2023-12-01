@@ -60,7 +60,7 @@ export default async function Page(): Promise<JSX.Element> {
             <Text alignment="centre" type="title">
                 Profile <Text type="highlight">Details</Text>
             </Text>
-            {data.profilePicture && <Image priority={true} src={data.profilePicture} alt="Profile picture" width={250} height={250} className="rounded-full drop-shadow-md" />}
+            {data.profilePicture && <Image priority={true} src={data.profilePicture} alt="Profile picture" width={250} height={250} className="rounded-full ring-2 ring-zinc-900 drop-shadow-md" />}
             <Edit {...data} />
         </Container>
     );
