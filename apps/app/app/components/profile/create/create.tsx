@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, FormDescription, Form, FormHeading, Input, FormUpload } from "@glimpzio/ui";
+import { Button, Form, FormHeading, FormInput, FormUpload } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
 import { Plus } from "tabler-icons-react";
 // import { upsertUserCreate } from "./actions";
@@ -23,8 +23,6 @@ export function Create(): JSX.Element {
 
     return (
         <Form
-            direction="vertical"
-            size="full"
             pad={false}
             // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
             action={async (formData) => {

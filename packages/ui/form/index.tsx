@@ -1,7 +1,6 @@
 export { Form } from "./form";
 export * from "./button";
-export * from "./input";
-export * from "./checkbox";
+export * from "./formInput";
+export * from "./formCheckbox";
 export * from "./formHeading";
-export * from "./formDescription";
 export * from "./formUpload";

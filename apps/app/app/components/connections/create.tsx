@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Container, Form, Input, Modal, Text } from "@glimpzio/ui";
+import { Button, Container, Form, FormInput, Modal, Text } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
 import { useState } from "react";
 import { Plus } from "tabler-icons-react";
@@ -53,8 +53,6 @@ export function Create(props: CreateProps): JSX.Element {
                 }}
             >
                 <Form
-                    direction="vertical"
-                    size="full"
                     // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
                     action={async (formData) => {
                         await upsertConnection(null, fieldFirstName, fieldLastName, fieldEmail, fieldPhone, fieldWebsite, fieldLinkedIn, fieldNotes, formData);
@@ -62,14 +60,14 @@ export function Create(props: CreateProps): JSX.Element {
                     }}
                 >
                     <Container pad={false} direction="horizontal">
-                        <Input label="First name" name={fieldFirstName} type="text" placeholder="John" required={false} />
-                        <Input label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={false} />
+                        <FormInput label="First name" name={fieldFirstName} type="text" placeholder="John" required={false} />
+                        <FormInput label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={false} />
                     </Container>
-                    <Input label="Email" name={fieldEmail} type="email" placeholder="johndoe@xyz.com" required={false} />
-                    <Input label="Phone" name={fieldPhone} type="tel" placeholder="+01 2345 6789" required={false} />
-                    <Input label="Website" name={fieldWebsite} type="url" placeholder="https://website.com" required={false} />
-                    <Input label="LinkedIn" name={fieldLinkedIn} type="url" placeholder="https://www.linkedin.com/in/johndoe" required={false} />
-                    <Input
+                    <FormInput label="Email" name={fieldEmail} type="email" placeholder="johndoe@xyz.com" required={false} />
+                    <FormInput label="Phone" name={fieldPhone} type="tel" placeholder="+01 2345 6789" required={false} />
+                    <FormInput label="Website" name={fieldWebsite} type="url" placeholder="https://website.com" required={false} />
+                    <FormInput label="LinkedIn" name={fieldLinkedIn} type="url" placeholder="https://www.linkedin.com/in/johndoe" required={false} />
+                    <FormInput
                         label="Notes"
                         name={fieldNotes}
                         type="textarea"

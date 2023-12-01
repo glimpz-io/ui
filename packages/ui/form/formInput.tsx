@@ -15,7 +15,7 @@ interface Props {
     defaultValue?: string;
 }
 
-export function Input({ className = "", type, onChange, placeholder, name, disabled = false, required, label, defaultValue }: Props): JSX.Element {
+export function FormInput({ className = "", type, onChange, placeholder, name, disabled = false, required, label, defaultValue }: Props): JSX.Element {
     const isLoading = useContext(contextLoading);
 
     const global = `${className}`;

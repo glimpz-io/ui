@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Checkbox, Form, Input, Link, Modal, Text } from "@glimpzio/ui";
+import { Button, FormCheckbox, Form, FormInput, Link, Modal, Text } from "@glimpzio/ui";
 import { useAnalytics, useExchange } from "@glimpzio/hooks";
 import { submitEmail } from "./actions";
 
@@ -60,16 +60,14 @@ export function Save(props: ReferralProps): JSX.Element {
                     can reach out to you.
                 </Text>
                 <Form
-                    direction="vertical"
-                    size="full"
                     // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
                     action={async (formData) => {
                         await submitEmail(fieldNameEmail, fieldNameSubscribe, formData, props.inviteId);
                         setSuccess();
                     }}
                 >
-                    <Input name={fieldNameEmail} type="email" placeholder="youremail@xyz.com" required={true} />
-                    <Checkbox label="Keep this box checked to receive additional marketing emails from Glimpz." name={fieldNameSubscribe} defaultChecked={true} />
+                    <FormInput name={fieldNameEmail} type="email" placeholder="youremail@xyz.com" required={true} />
+                    <FormCheckbox label="Keep this box checked to receive additional marketing emails from Glimpz." name={fieldNameSubscribe} defaultChecked={true} />
                     <Button
                         type="submit"
                         color="indigo"

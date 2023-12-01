@@ -1,10 +1,9 @@
 "use client";
 
-import { Button, FormDescription, Form, FormHeading, Input, FormUpload } from "@glimpzio/ui";
-import { useAnalytics } from "@glimpzio/hooks/analytics";
+import { Button, Form, FormHeading, FormInput, FormUpload } from "@glimpzio/ui";
+import { useAnalytics } from "@glimpzio/hooks";
 import { DeviceFloppy } from "tabler-icons-react";
 import { upsertUser } from "./actions";
-import { useEffect, useState } from "react";
 
 interface ProfileProps {
     id: string;
@@ -41,8 +40,6 @@ export function Edit(props: ProfileProps): JSX.Element | null {
 
     return (
         <Form
-            direction="vertical"
-            size="full"
             pad={false}
             // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
             action={async (formData) => {
@@ -61,13 +58,11 @@ export function Edit(props: ProfileProps): JSX.Element | null {
                 );
             }}
         >
-            <FormHeading>Private Profile</FormHeading>
-            <FormDescription>These details will not be displayed publicly on your profile.</FormDescription>
-            <Input label="Personal email" name={fieldPersonalEmail} type="email" placeholder="johndoe@xyz.com" required={true} defaultValue={props.email} />
-            <FormHeading>Public Profile</FormHeading>
-            <FormDescription>These details will be displayed publicly on your profile.</FormDescription>
-            <Input label="First name" name={fieldFirstName} type="text" placeholder="John" required={true} defaultValue={props.firstName} />
-            <Input label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={true} defaultValue={props.lastName} />
+            <FormHeading title="Private Profile" description="These details will not be displayed publicly on your profile." />
+            <FormInput label="Personal email" name={fieldPersonalEmail} type="email" placeholder="johndoe@xyz.com" required={true} defaultValue={props.email} />
+            <FormHeading title="Public Profile" description="These details will be displayed publicly on your profile." />
+            <FormInput label="First name" name={fieldFirstName} type="text" placeholder="John" required={true} defaultValue={props.firstName} />
+            <FormInput label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={true} defaultValue={props.lastName} />
             <FormUpload
                 name={fieldProfilePicture}
                 urlName={fieldProfilePictureUrl}
@@ -75,7 +70,7 @@ export function Edit(props: ProfileProps): JSX.Element | null {
                 accept=".jpg, .jpeg, .png"
                 defaultUrl={props.profilePicture ? props.profilePicture : undefined}
             />
-            <Input
+            <FormInput
                 label="Bio"
                 name={fieldBio}
                 type="textarea"
@@ -83,10 +78,17 @@ export function Edit(props: ProfileProps): JSX.Element | null {
                 required={true}
                 defaultValue={props.bio}
             />
-            <Input label="Work email" name={fieldProfileEmail} type="email" placeholder="johndoe@xyz.com" required={false} defaultValue={props.profile.email ? props.profile.email : undefined} />
-            <Input label="Work phone" name={fieldProfilePhone} type="tel" placeholder="+01 2345 6789" required={false} defaultValue={props.profile.phone ? props.profile.phone : undefined} />
-            <Input label="Website" name={fieldProfileWebsite} type="url" placeholder="https://website.com" required={false} defaultValue={props.profile.website ? props.profile.website : undefined} />
-            <Input
+            <FormInput label="Work email" name={fieldProfileEmail} type="email" placeholder="johndoe@xyz.com" required={false} defaultValue={props.profile.email ? props.profile.email : undefined} />
+            <FormInput label="Work phone" name={fieldProfilePhone} type="tel" placeholder="+01 2345 6789" required={false} defaultValue={props.profile.phone ? props.profile.phone : undefined} />
+            <FormInput
+                label="Website"
+                name={fieldProfileWebsite}
+                type="url"
+                placeholder="https://website.com"
+                required={false}
+                defaultValue={props.profile.website ? props.profile.website : undefined}
+            />
+            <FormInput
                 label="LinkedIn"
                 name={fieldProfileLinkedIn}
                 type="url"

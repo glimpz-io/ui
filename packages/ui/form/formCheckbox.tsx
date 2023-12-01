@@ -12,7 +12,7 @@ interface Props {
     defaultChecked?: boolean;
 }
 
-export function Checkbox({ className = "", label, name, onChange, disabled, defaultChecked }: Props): JSX.Element {
+export function FormCheckbox({ className = "", label, name, onChange, disabled, defaultChecked }: Props): JSX.Element {
     const isLoading = useContext(contextLoading);
 
     const global = ` ${className}`;

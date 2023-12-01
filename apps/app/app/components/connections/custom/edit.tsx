@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Container, Form, Input } from "@glimpzio/ui";
+import { Button, Container, Form, FormInput } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
 import { upsertConnection } from "../actions";
 import { DeviceFloppy } from "tabler-icons-react";
@@ -35,8 +35,6 @@ export function Edit(props: CustomConnectionProps): JSX.Element {
 
     return (
         <Form
-            direction="vertical"
-            size="full"
             pad={false}
             // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
             action={async (formData) => {
@@ -44,14 +42,14 @@ export function Edit(props: CustomConnectionProps): JSX.Element {
             }}
         >
             <Container pad={false} direction="horizontal">
-                <Input label="First name" name={fieldFirstName} type="text" placeholder="John" required={false} defaultValue={props.firstName ? props.firstName : undefined} />
-                <Input label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={false} defaultValue={props.lastName ? props.lastName : undefined} />
+                <FormInput label="First name" name={fieldFirstName} type="text" placeholder="John" required={false} defaultValue={props.firstName ? props.firstName : undefined} />
+                <FormInput label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={false} defaultValue={props.lastName ? props.lastName : undefined} />
             </Container>
-            <Input label="Email" name={fieldEmail} type="email" placeholder="johndoe@xyz.com" required={false} defaultValue={props.email ? props.email : undefined} />
-            <Input label="Phone" name={fieldPhone} type="tel" placeholder="+01 2345 6789" required={false} defaultValue={props.phone ? props.phone : undefined} />
-            <Input label="Website" name={fieldWebsite} type="url" placeholder="https://website.com" required={false} defaultValue={props.website ? props.website : undefined} />
-            <Input label="LinkedIn" name={fieldLinkedIn} type="url" placeholder="https://www.linkedin.com/in/johndoe" required={false} defaultValue={props.linkedin ? props.linkedin : undefined} />
-            <Input
+            <FormInput label="Email" name={fieldEmail} type="email" placeholder="johndoe@xyz.com" required={false} defaultValue={props.email ? props.email : undefined} />
+            <FormInput label="Phone" name={fieldPhone} type="tel" placeholder="+01 2345 6789" required={false} defaultValue={props.phone ? props.phone : undefined} />
+            <FormInput label="Website" name={fieldWebsite} type="url" placeholder="https://website.com" required={false} defaultValue={props.website ? props.website : undefined} />
+            <FormInput label="LinkedIn" name={fieldLinkedIn} type="url" placeholder="https://www.linkedin.com/in/johndoe" required={false} defaultValue={props.linkedin ? props.linkedin : undefined} />
+            <FormInput
                 label="Notes"
                 name={fieldNotes}
                 type="textarea"
