@@ -3,7 +3,7 @@
 import { Button, FormDescription, Form, FormHeading, Input, FormUpload } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
 import { Plus } from "tabler-icons-react";
-import { upsertUserCreate } from "./actions";
+// import { upsertUserCreate } from "./actions";
 
 export function Create(): JSX.Element {
     const analytics = useAnalytics();
@@ -30,19 +30,19 @@ export function Create(): JSX.Element {
             action={async (formData) => {
                 console.log(formData.get(fieldProfilePicture));
 
-                await upsertUserCreate(
-                    // fieldFirstName,
-                    // fieldLastName,
-                    // fieldPersonalEmail,
-                    // fieldBio,
-                    fieldProfilePicture,
-                    fieldProfilePictureUrl,
-                    // fieldProfileEmail,
-                    // fieldProfilePhone,
-                    // fieldProfileWebsite,
-                    // fieldProfileLinkedIn,
-                    formData
-                );
+                // await upsertUserCreate(
+                //     // fieldFirstName,
+                //     // fieldLastName,
+                //     // fieldPersonalEmail,
+                //     // fieldBio,
+                //     fieldProfilePicture,
+                //     fieldProfilePictureUrl,
+                //     // fieldProfileEmail,
+                //     // fieldProfilePhone,
+                //     // fieldProfileWebsite,
+                //     // fieldProfileLinkedIn,
+                //     formData
+                // );
             }}
         >
             {/* <FormHeading>Private Profile</FormHeading>

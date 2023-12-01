@@ -3,9 +3,6 @@
     "version": "0.0.0",
     "private": true,
     "dependencies": {
-        "@apollo/client": "^3.8.0-rc.2",
-        "@apollo/experimental-nextjs-app-support": "^0.5.1",
-        "apollo-upload-client": "^18.0.0",
         "eslint-custom-config": "*",
         "mixpanel-browser": "^2.47.0",
         "next": "^14.0.3",
@@ -14,7 +11,6 @@
         "tsconfig": "*"
     },
     "devDependencies": {
-        "@types/apollo-upload-client": "^17.0.0",
         "@types/mixpanel-browser": "^2.47.5",
         "@types/node": "^20.5.2",
         "@types/react": "^18.2.39",

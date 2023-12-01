@@ -2,34 +2,13 @@ import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import Image from "next/image";
 import { Contact } from "../../components/invite/contact";
-import { getClient } from "@glimpzio/hooks/graphql";
-import { gql } from "@apollo/client";
 import { Banner } from "../../components/invite/banner";
 import { Save } from "../../components/invite/save";
+import { GetInviteQuery, GetInviteQueryType, getClient } from "@glimpzio/utils";
 
 interface Request {
     params: {
         inviteId: string;
-    };
-}
-
-interface Data {
-    invite: {
-        id: string;
-        userId: string;
-        expiresAt: number;
-        publicProfile: {
-            firstName: string;
-            lastName: string;
-            bio: string;
-            profilePicture: string | null;
-            profile: {
-                email: string | null;
-                phone: string | null;
-                website: string | null;
-                linkedin: string | null;
-            };
-        };
     };
 }
 
@@ -39,31 +18,9 @@ export default async function Page(req: Request): Promise<JSX.Element> {
     const apiUrl = process.env.API_URL;
     if (!apiUrl) throw Error("missing API url");
 
-    const client = await getClient(apiUrl);
+    const client = getClient(apiUrl);
 
-    const query = gql`
-        query GetInvite($id: ID!) {
-            invite(id: $id) {
-                id
-                userId
-                expiresAt
-                publicProfile {
-                    firstName
-                    lastName
-                    bio
-                    profilePicture
-                    profile {
-                        email
-                        phone
-                        website
-                        linkedin
-                    }
-                }
-            }
-        }
-    `;
-
-    const { data: invite } = await client().query<Data>({ query, variables: { id: inviteId } });
+    const { data: invite } = await client().query<GetInviteQueryType>({ query: GetInviteQuery, variables: { id: inviteId } });
     const data = invite.invite;
 
     return (

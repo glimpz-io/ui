@@ -1,14 +1,9 @@
 "use server";
 
-import { gql } from "@apollo/client";
 import { AUTH_HEADER } from "@glimpzio/config";
-import { getClient, getClientFile } from "@glimpzio/hooks/graphql";
+import { UpsertUserQuery, getClient } from "@glimpzio/utils";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
-
-interface Data {
-    uploadProfilePicture: string;
-}
 
 export async function upsertUser(
     fieldFirstName: string,
@@ -29,34 +24,7 @@ export async function upsertUser(
     const authToken = headers().get(AUTH_HEADER);
     if (!authToken) throw Error("auth token missing");
 
-    const upsertClient = await getClient(apiUrl, authToken);
-
-    const upsertQuery = gql`
-        mutation UpsertUser(
-            $firstName: String!
-            $lastName: String!
-            $personalEmail: String!
-            $bio: String!
-            $profilePicture: String
-            $email: String
-            $phone: String
-            $website: String
-            $linkedin: String
-        ) {
-            upsertUser(
-                input: {
-                    firstName: $firstName
-                    lastName: $lastName
-                    email: $personalEmail
-                    bio: $bio
-                    profilePicture: $profilePicture
-                    profile: { email: $email, phone: $phone, website: $website, linkedin: $linkedin }
-                }
-            ) {
-                id
-            }
-        }
-    `;
+    const upsertClient = getClient(apiUrl, authToken);
 
     const firstName = formData.get(fieldFirstName);
     const lastName = formData.get(fieldLastName);
@@ -69,23 +37,8 @@ export async function upsertUser(
     const website = formData.get(fieldProfileWebsite);
     const linkedin = formData.get(fieldProfileLinkedIn);
 
-    if (profilePicture.size) {
-        const fileClient = await getClientFile(apiUrl, authToken);
-
-        const fileQuery = gql`
-            mutation UploadProfilePicture($file: Upload!) {
-                uploadProfilePicture(file: $file)
-            }
-        `;
-
-        const { data } = await fileClient.mutate<Data>({ mutation: fileQuery, variables: { file: profilePicture } });
-        if (!data) throw Error("missing data");
-
-        profilePictureUrl = data.uploadProfilePicture;
-    }
-
     await upsertClient().mutate({
-        mutation: upsertQuery,
+        mutation: UpsertUserQuery,
         variables: {
             firstName,
             lastName,

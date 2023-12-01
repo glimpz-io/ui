@@ -1,8 +1,7 @@
 "use server";
 
-import { gql } from "@apollo/client";
 import { AUTH_HEADER } from "@glimpzio/config";
-import { getClient } from "@glimpzio/hooks/graphql";
+import { UpsertConnectionQuery, getClient } from "@glimpzio/utils";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
@@ -23,22 +22,7 @@ export async function upsertConnection(
     const authToken = headers().get(AUTH_HEADER);
     if (!authToken) throw Error("auth token missing");
 
-    const client = await getClient(apiUrl, authToken);
-
-    const query = gql`
-        mutation UpsertConnection($id: ID, $firstName: String, $lastName: String, $email: String, $phone: String, $website: String, $linkedin: String, $notes: String) {
-            upsertCustomConnection(id: $id, customConnection: { firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, website: $website, linkedin: $linkedin, notes: $notes }) {
-                id
-                email
-                firstName
-                lastName
-                notes
-                phone
-                website
-                linkedin
-            }
-        }
-    `;
+    const client = getClient(apiUrl, authToken);
 
     const firstName = formData.get(fieldFirstName);
     const lastName = formData.get(fieldLastName);
@@ -49,7 +33,7 @@ export async function upsertConnection(
     const notes = formData.get(fieldNotes);
 
     await client().mutate({
-        mutation: query,
+        mutation: UpsertConnectionQuery,
         variables: {
             id,
             firstName,

@@ -1,5 +1,4 @@
 export * from "./subscribed";
-export * from "./analytics";
-export * from "./graphql";
+export * from "./useAnalytics";
 export * from "./exchange";
 export * from "./useOrigin";
