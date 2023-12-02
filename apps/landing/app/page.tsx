@@ -1,6 +1,8 @@
 import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
-import Index from "./components";
+import dynamic from "next/dynamic";
+
+const Index = dynamic(() => import("./components"));
 
 interface Request {
     searchParams: {

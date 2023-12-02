@@ -102,7 +102,7 @@ export default function Edit(props: EditProps): JSX.Element {
                     size="small"
                     icon={trashIcon}
                     onClick={() => {
-                        analytics.track && analytics.track("Delete Custom Connection", { "Connection Id": props.id });
+                        analytics.track && analytics.track("Delete Custom Connection", { "Connection ID": props.id });
                         startTransition(() => deleteConnection(props.id));
                     }}
                 >

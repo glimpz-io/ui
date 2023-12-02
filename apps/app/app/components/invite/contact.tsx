@@ -4,7 +4,7 @@ import { BrandLinkedin, World, Mail, Phone } from "tabler-icons-react";
 import { Copy, Link } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
 
-interface ReferralProps {
+interface ContactProps {
     userId: string;
     profile: {
         email: string | null;
@@ -14,7 +14,7 @@ interface ReferralProps {
     };
 }
 
-export default function Contact({ userId, profile }: ReferralProps): JSX.Element {
+export default function Contact(props: ContactProps): JSX.Element {
     const analytics = useAnalytics();
 
     const phoneIcon = () => <Phone />;
@@ -24,47 +24,47 @@ export default function Contact({ userId, profile }: ReferralProps): JSX.Element
 
     return (
         <>
-            {profile.email && (
+            {props.profile.email && (
                 <Copy
                     icon={emailIcon}
-                    value={profile.email}
+                    value={props.profile.email}
                     onClick={() => {
-                        analytics.track && analytics.track("Copy Profile Email", { "User ID": userId });
+                        analytics.track && analytics.track("Copy Profile Email", { "User ID": props.userId });
                     }}
                 />
             )}
-            {profile.phone && (
+            {props.profile.phone && (
                 <Copy
                     icon={phoneIcon}
-                    value={profile.phone}
+                    value={props.profile.phone}
                     onClick={() => {
-                        analytics.track && analytics.track("Copy Profile Phone", { "User ID": userId });
+                        analytics.track && analytics.track("Copy Profile Phone", { "User ID": props.userId });
                     }}
                 />
             )}
-            {profile.website && (
+            {props.profile.website && (
                 <Link
                     color="indigo"
                     size="large"
-                    href={profile.website}
+                    href={props.profile.website}
                     newTab={true}
                     icon={webIcon}
                     onClick={() => {
-                        analytics.track && analytics.track("Goto Profile Website", { "User ID": userId });
+                        analytics.track && analytics.track("Goto Profile Website", { "User ID": props.userId });
                     }}
                 >
                     Website
                 </Link>
             )}
-            {profile.linkedin && (
+            {props.profile.linkedin && (
                 <Link
-                    href={profile.linkedin}
+                    href={props.profile.linkedin}
                     color="darkblue"
                     icon={linkedInIcon}
                     size="large"
                     newTab={true}
                     onClick={() => {
-                        analytics.track && analytics.track("Goto Profile LinkedIn", { "User ID": userId });
+                        analytics.track && analytics.track("Goto Profile LinkedIn", { "User ID": props.userId });
                     }}
                 >
                     LinkedIn

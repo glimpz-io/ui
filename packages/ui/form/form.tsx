@@ -4,7 +4,6 @@ import { createContext, useTransition } from "react";
 
 interface Props {
     children: any;
-    className?: string;
     action?: (formData: FormData) => void;
     pad?: boolean;
     grow?: boolean;
@@ -12,13 +11,13 @@ interface Props {
 
 export const contextLoading = createContext<boolean>(false);
 
-export function Form({ children, className = "", action, pad = true, grow = true }: Props): JSX.Element {
+export function Form({ children, action, pad = true, grow = true }: Props): JSX.Element {
     const [isPending, startTransition] = useTransition();
 
     const padding = pad ? "p-6" : "";
     const full = grow ? "w-full" : "";
 
-    const global = `${padding} ${full} ${className}`;
+    const global = `${padding} ${full}`;
 
     return (
         <contextLoading.Provider value={isPending}>

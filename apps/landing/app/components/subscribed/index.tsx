@@ -4,23 +4,23 @@ import { useAnalytics, useOrigin, useReferral } from "@glimpzio/hooks";
 import { Copy, Link } from "@glimpzio/ui";
 import { BrandFacebook, BrandLinkedin, BrandTwitter, Link as LinkIcon } from "tabler-icons-react";
 
-interface ReferralProps {
+interface IndexProps {
     referral?: string;
 }
 
-export default function Index({ referral }: ReferralProps): JSX.Element {
-    useReferral(referral);
+export default function Index(props: IndexProps): JSX.Element {
+    useReferral(props.referral);
     const analytics = useAnalytics();
     const origin = useOrigin();
 
-    if (referral) analytics.identify(referral);
+    if (props.referral) analytics.identify(props.referral);
 
     const linkIcon = () => <LinkIcon />;
     const twitterIcon = () => <BrandTwitter />;
     const facebookIcon = () => <BrandFacebook />;
     const linkedInIcon = () => <BrandLinkedin />;
 
-    const signupUrl = referral && origin ? `${origin}?referral=${referral}` : null;
+    const signupUrl = props.referral && origin ? `${origin}?referral=${props.referral}` : null;
     const signupUrlEncoded = signupUrl ? encodeURIComponent(signupUrl) : null;
     const socialText = signupUrl
         ? encodeURIComponent(

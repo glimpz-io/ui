@@ -3,16 +3,16 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-interface ReferralProps {
+interface IndexProps {
     referer?: string;
 }
 
-export default function Index({ referer }: ReferralProps): null {
+export default function Index(props: IndexProps): null {
     const router = useRouter();
 
     useEffect(() => {
         setTimeout(() => {
-            if (referer) router.push(decodeURIComponent(referer));
+            if (props.referer) router.push(decodeURIComponent(props.referer));
         }, 500);
     }, [router]);
 

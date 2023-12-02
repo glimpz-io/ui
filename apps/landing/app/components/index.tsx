@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import { useAnalytics, useIsReferred } from "@glimpzio/hooks";
 import { Form, FormButton, FormInput } from "@glimpzio/ui";
 
-interface ReferralProps {
+interface IndexProps {
     referral?: string;
 }
 
-export default function Index({ referral }: ReferralProps): JSX.Element {
+export default function Index(props: IndexProps): JSX.Element {
     useIsReferred(useRouter());
     const analytics = useAnalytics();
 
@@ -21,7 +21,7 @@ export default function Index({ referral }: ReferralProps): JSX.Element {
         <Form
             // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
             action={async (formData) => {
-                await submitEmail(fieldName, formData, referral);
+                await submitEmail(fieldName, formData, props.referral);
             }}
         >
             <FormInput type="email" name={fieldName} placeholder="youremail@xyz.com" required={true} />
@@ -29,7 +29,7 @@ export default function Index({ referral }: ReferralProps): JSX.Element {
                 size="large"
                 icon={mailIcon}
                 onClick={() => {
-                    analytics.track && analytics.track("Email Signup", { "Signup Type": referral ? "Referral" : "Direct", Referer: referral });
+                    analytics.track && analytics.track("Email Signup", { "Signup Type": props.referral ? "Referral" : "Direct", Referer: props.referral });
                 }}
             >
                 Join Waitlist

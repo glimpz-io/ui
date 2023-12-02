@@ -45,5 +45,5 @@ export const viewport: Viewport = {
 };
 
 export default function ProfileLayout({ children }: { children: React.ReactNode }) {
-    return <div style={{ minWidth: 480 }}>{children}</div>;
+    return <>{children}</>;
 }
