@@ -3,7 +3,7 @@
 import { Form, FormButton, FormHeading, FormInput, FormUpload } from "@glimpzio/ui";
 import { useAnalytics } from "@glimpzio/hooks";
 import { DeviceFloppy, Plus } from "tabler-icons-react";
-import { upsertUser } from "./actions";
+import { uploadImage, upsertUser } from "./actions";
 
 interface ProfileProps {
     id?: string;
@@ -44,18 +44,34 @@ export default function Profile(props: ProfileProps): JSX.Element | null {
             pad={false}
             // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
             action={async (formData) => {
+                const { publicUrl, uploadUrl } = await uploadImage();
+
+                const profilePicture = formData.get(fieldProfilePicture) as File;
+                let profilePictureUrl = formData.get(fieldProfilePictureUrl) as string | null;
+
+                if (profilePicture.size) {
+                    const uploaded = await fetch(uploadUrl, {
+                        method: "PUT",
+                        body: profilePicture,
+                        headers: {
+                            "Content-Type": profilePicture.type,
+                        },
+                    });
+
+                    if (uploaded.ok) profilePictureUrl = publicUrl;
+                }
+
                 await upsertUser(
                     fieldFirstName,
                     fieldLastName,
                     fieldPersonalEmail,
                     fieldBio,
-                    fieldProfilePicture,
-                    fieldProfilePictureUrl,
                     fieldProfileEmail,
                     fieldProfilePhone,
                     fieldProfileWebsite,
                     fieldProfileLinkedIn,
-                    formData
+                    formData,
+                    profilePictureUrl
                 );
             }}
         >

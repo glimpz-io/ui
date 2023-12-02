@@ -141,3 +141,19 @@ export const GetCustomConnectionsQuery = gql`
         }
     }
 `;
+
+export interface GetUploadType {
+    upload: {
+        uploadUrl: string;
+        publicUrl: string;
+    };
+}
+
+export const GetUploadQuery = gql`
+    query Upload {
+        upload {
+            uploadUrl
+            publicUrl
+        }
+    }
+`;
