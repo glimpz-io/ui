@@ -36,7 +36,7 @@ export const GetUserQuery = gql`
     }
 `;
 
-export interface GetInviteQueryType {
+export interface GetInviteType {
     invite: {
         id: string;
         userId: string;

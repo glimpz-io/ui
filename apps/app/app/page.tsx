@@ -2,7 +2,7 @@ import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import { cookies, headers } from "next/headers";
 import { AUTH_HEADER, INVITE_ID_COOKIE } from "@glimpzio/config";
-import { CreateInviteQuery, CreateInviteType, GetInviteQuery, GetInviteQueryType, getClient } from "@glimpzio/utils";
+import { CreateInviteQuery, CreateInviteType, GetInviteQuery, GetInviteType, getClient } from "@glimpzio/utils";
 import dynamic from "next/dynamic";
 
 const Index = dynamic(() => import("./components"), { ssr: false });
@@ -35,7 +35,7 @@ export default async function Page(): Promise<JSX.Element> {
         inviteData = data?.createInvite;
     } else {
         try {
-            const { data } = await client().query<GetInviteQueryType>({ query: GetInviteQuery, variables: { id: inviteId.value } });
+            const { data } = await client().query<GetInviteType>({ query: GetInviteQuery, variables: { id: inviteId.value } });
             inviteData = data.invite;
         } catch {
             const { data } = await client().mutate<CreateInviteType>({ mutation: CreateInviteQuery });

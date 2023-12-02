@@ -4,7 +4,7 @@ import { Form, FormButton, FormHeading, FormInput, FormUpload } from "@glimpzio/
 import { useAnalytics } from "@glimpzio/hooks";
 import { DeviceFloppy, Plus } from "tabler-icons-react";
 import { uploadImage, upsertUser } from "./actions";
-import { cropImage } from "@glimpzio/utils/crop";
+import { cropToSquare, resizeSquare } from "@glimpzio/utils/crop";
 
 interface ProfileProps {
     id?: string;
@@ -51,13 +51,14 @@ export default function Profile(props: ProfileProps): JSX.Element | null {
                 let profilePictureUrl = formData.get(fieldProfilePictureUrl) as string | null;
 
                 if (profilePicture.size) {
-                    const cropped = await cropImage(profilePicture, 0, 0, 500, 500);
+                    const cropped = await cropToSquare(profilePicture);
+                    const resized = await resizeSquare(cropped, 400);
 
                     const uploaded = await fetch(uploadUrl, {
                         method: "PUT",
-                        body: cropped,
+                        body: resized,
                         headers: {
-                            "Content-Type": cropped.type,
+                            "Content-Type": resized.type,
                         },
                     });
 

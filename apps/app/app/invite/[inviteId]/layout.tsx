@@ -1,7 +1,7 @@
 import { META_COLOR_APP, META_IMAGE_APP, META_URL_APP } from "@glimpzio/config";
 import "@glimpzio/ui/styles.css";
 import type { Metadata, Viewport } from "next";
-import { GetInviteQuery, GetInviteQueryType, getClient } from "@glimpzio/utils";
+import { GetInviteQuery, GetInviteType, getClient } from "@glimpzio/utils";
 
 interface Request {
     params: {
@@ -17,7 +17,7 @@ export async function generateMetadata(req: Request): Promise<Metadata> {
 
     const client = getClient(apiUrl);
 
-    const { data: invite } = await client().query<GetInviteQueryType>({ query: GetInviteQuery, variables: { id: inviteId } });
+    const { data: invite } = await client().query<GetInviteType>({ query: GetInviteQuery, variables: { id: inviteId } });
     const data = invite.invite;
 
     const userName = `${data.publicProfile.firstName} ${data.publicProfile.lastName}`;

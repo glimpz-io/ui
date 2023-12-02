@@ -1,7 +1,7 @@
 import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import Image from "next/image";
-import { GetInviteQuery, GetInviteQueryType, getClient } from "@glimpzio/utils";
+import { GetInviteQuery, GetInviteType, getClient } from "@glimpzio/utils";
 import dynamic from "next/dynamic";
 
 const Contact = dynamic(() => import("../../components/invite/contact"), { ssr: false });
@@ -22,7 +22,7 @@ export default async function Page(req: Request): Promise<JSX.Element> {
 
     const client = getClient(apiUrl);
 
-    const { data: invite } = await client().query<GetInviteQueryType>({ query: GetInviteQuery, variables: { id: inviteId } });
+    const { data: invite } = await client().query<GetInviteType>({ query: GetInviteQuery, variables: { id: inviteId } });
     const data = invite.invite;
 
     return (
@@ -42,7 +42,7 @@ export default async function Page(req: Request): Promise<JSX.Element> {
                 )}
             </Container>
             <Text type="title" alignment="centre">
-                {data.publicProfile.firstName} {data.publicProfile.lastName}
+                {data.publicProfile.firstName} <Text type="highlight">{data.publicProfile.lastName}</Text>
             </Text>
             <Text type="p" alignment="centre">
                 {data.publicProfile.bio}
