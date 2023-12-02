@@ -1,10 +1,12 @@
 import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import Image from "next/image";
-import { Contact } from "../../components/invite/contact";
-import { Banner } from "../../components/invite/banner";
-import { Save } from "../../components/invite/save";
 import { GetInviteQuery, GetInviteQueryType, getClient } from "@glimpzio/utils";
+import dynamic from "next/dynamic";
+
+const Contact = dynamic(() => import("../../components/invite/contact"), { ssr: false });
+const Banner = dynamic(() => import("../../components/invite/banner"), { ssr: false });
+const Save = dynamic(() => import("../../components/invite/save"), { ssr: false });
 
 interface Request {
     params: {

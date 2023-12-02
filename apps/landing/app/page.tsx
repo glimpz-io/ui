@@ -1,6 +1,6 @@
 import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
-import { Index } from "./components";
+import Index from "./components";
 
 interface Request {
     searchParams: {

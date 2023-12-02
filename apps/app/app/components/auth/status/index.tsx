@@ -7,7 +7,7 @@ interface ReferralProps {
     referer?: string;
 }
 
-export function Index({ referer }: ReferralProps): null {
+export default function Index({ referer }: ReferralProps): null {
     const router = useRouter();
 
     useEffect(() => {

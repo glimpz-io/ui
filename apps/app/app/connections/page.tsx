@@ -3,8 +3,10 @@ import { Container } from "@glimpzio/ui/container";
 import { headers } from "next/headers";
 import { AUTH_HEADER, ID_HEADER } from "@glimpzio/config";
 import { Link } from "@glimpzio/ui/link";
-import { Create } from "../components/connections/create";
 import { GetCustomConnectionsQuery, GetCustomConnectionsType, getClient } from "@glimpzio/utils";
+import dynamic from "next/dynamic";
+
+const Create = dynamic(() => import("../components/connections/create"), { ssr: false });
 
 export default async function Page(): Promise<JSX.Element> {
     const apiUrl = process.env.API_URL;
@@ -29,7 +31,7 @@ export default async function Page(): Promise<JSX.Element> {
             </Text>
             <Create userId={userId} />
             {data.customConnections.length > 0 ? (
-                <>
+                <Container pad={false}>
                     {data.customConnections.map((connection) => (
                         <Container key={connection.id} direction="vertical" className="bg-zinc-900 rounded-md">
                             <Container pad={false}>
@@ -50,7 +52,7 @@ export default async function Page(): Promise<JSX.Element> {
                             </Link>
                         </Container>
                     ))}
-                </>
+                </Container>
             ) : (
                 <Text alignment="centre" type="small">
                     No connections.

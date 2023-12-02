@@ -11,7 +11,7 @@ interface CustomConnectionProps {
     userId: string;
 }
 
-export function Delete(props: CustomConnectionProps): JSX.Element {
+export default function Delete(props: CustomConnectionProps): JSX.Element {
     const analytics = useAnalytics();
     const [showModal, setShowModal] = useState<boolean>(false);
     const [_, startTransition] = useTransition();

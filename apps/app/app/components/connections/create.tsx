@@ -10,7 +10,7 @@ interface CreateProps {
     userId: string;
 }
 
-export function Create(props: CreateProps): JSX.Element {
+export default function Create(props: CreateProps): JSX.Element {
     const analytics = useAnalytics();
     const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -59,10 +59,8 @@ export function Create(props: CreateProps): JSX.Element {
                         setShowModal(false);
                     }}
                 >
-                    <Container pad={false} direction="horizontal">
-                        <FormInput label="First name" name={fieldFirstName} type="text" placeholder="John" required={false} />
-                        <FormInput label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={false} />
-                    </Container>
+                    <FormInput label="First name" name={fieldFirstName} type="text" placeholder="John" required={false} />
+                    <FormInput label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={false} />
                     <FormInput label="Email" name={fieldEmail} type="email" placeholder="johndoe@xyz.com" required={false} />
                     <FormInput label="Phone" name={fieldPhone} type="tel" placeholder="+01 2345 6789" required={false} />
                     <FormInput label="Website" name={fieldWebsite} type="url" placeholder="https://website.com" required={false} />

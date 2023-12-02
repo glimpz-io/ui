@@ -7,7 +7,7 @@ interface ReferralProps {
     userId: string;
 }
 
-export function Banner({ userId }: ReferralProps): JSX.Element {
+export default function Banner({ userId }: ReferralProps): JSX.Element {
     const analytics = useAnalytics();
 
     return (

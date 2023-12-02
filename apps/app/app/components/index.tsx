@@ -15,7 +15,7 @@ interface InviteProps {
     };
 }
 
-export function Index(props: InviteProps): JSX.Element {
+export default function Index(props: InviteProps): JSX.Element {
     const analytics = useAnalytics();
     const origin = useOrigin();
     const [expiry, setExpiry] = useState<number | null>(null);

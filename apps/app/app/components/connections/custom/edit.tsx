@@ -18,7 +18,7 @@ interface CustomConnectionProps {
     linkedin: string | null;
 }
 
-export function Edit(props: CustomConnectionProps): JSX.Element {
+export default function Edit(props: CustomConnectionProps): JSX.Element {
     const analytics = useAnalytics();
 
     analytics.identify(props.userId);

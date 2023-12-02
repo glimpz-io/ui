@@ -10,7 +10,7 @@ interface ReferralProps {
     referral?: string;
 }
 
-export function Index({ referral }: ReferralProps): JSX.Element {
+export default function Index({ referral }: ReferralProps): JSX.Element {
     useIsReferred(useRouter());
     const analytics = useAnalytics();
 

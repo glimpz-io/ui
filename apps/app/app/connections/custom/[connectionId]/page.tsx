@@ -2,9 +2,11 @@ import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import { headers } from "next/headers";
 import { AUTH_HEADER } from "@glimpzio/config";
-import { Edit } from "../../../components/connections/custom/edit";
-import { Delete } from "../../../components/connections/custom/delete";
 import { GetCustomConnectionQuery, GetCustomConnectionType, getClient } from "@glimpzio/utils";
+import dynamic from "next/dynamic";
+
+const Delete = dynamic(() => import("../../../components/connections/custom/delete"), { ssr: false });
+const Edit = dynamic(() => import("../../../components/connections/custom/edit"), { ssr: false });
 
 interface Request {
     params: {

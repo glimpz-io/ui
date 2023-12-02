@@ -20,7 +20,7 @@ interface ProfileProps {
     };
 }
 
-export function Profile(props: ProfileProps): JSX.Element | null {
+export default function Profile(props: ProfileProps): JSX.Element | null {
     const analytics = useAnalytics();
 
     if (props.id) analytics.identify(props.id);

@@ -13,7 +13,7 @@ interface ReferralProps {
     };
 }
 
-export function Save(props: ReferralProps): JSX.Element {
+export default function Save(props: ReferralProps): JSX.Element {
     const analytics = useAnalytics();
     const { setShowModal, setSuccess, showModal, success } = useExchange(props.userId);
 

@@ -2,8 +2,10 @@ import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import { cookies, headers } from "next/headers";
 import { AUTH_HEADER, INVITE_ID_COOKIE } from "@glimpzio/config";
-import { Index } from "./components";
 import { CreateInviteQuery, CreateInviteType, GetInviteQuery, GetInviteQueryType, getClient } from "@glimpzio/utils";
+import dynamic from "next/dynamic";
+
+const Index = dynamic(() => import("./components"), { ssr: false });
 
 interface Data {
     id: string;

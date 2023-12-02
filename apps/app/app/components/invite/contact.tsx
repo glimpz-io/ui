@@ -14,7 +14,7 @@ interface ReferralProps {
     };
 }
 
-export function Contact({ userId, profile }: ReferralProps): JSX.Element {
+export default function Contact({ userId, profile }: ReferralProps): JSX.Element {
     const analytics = useAnalytics();
 
     const phoneIcon = () => <Phone />;

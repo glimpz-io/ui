@@ -2,9 +2,11 @@ import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import { headers } from "next/headers";
 import { AUTH_HEADER } from "@glimpzio/config";
-import { Profile } from "../components/profile/profile";
 import Image from "next/image";
 import { GetUserQuery, GetUserType, getClient } from "@glimpzio/utils";
+import dynamic from "next/dynamic";
+
+const Profile = dynamic(() => import("../components/profile/profile"), { ssr: false });
 
 export default async function Page(): Promise<JSX.Element> {
     const apiUrl = process.env.API_URL;
