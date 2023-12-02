@@ -17,8 +17,9 @@ export default function Save(props: SaveProps): JSX.Element {
     const analytics = useAnalytics();
     const { setShowModal, setSuccess, showModal, success } = useExchange(props.userId);
 
-    const fieldNameEmail = "email";
-    const fieldNameSubscribe = "subscribe";
+    const fieldEmail = "email";
+    const fieldName = "name";
+    const fieldSubscribe = "subscribe";
 
     const remainingHours = Math.ceil((props.expiresAt - Math.floor(Date.now() / 1000)) / (60 * 60));
 
@@ -62,12 +63,14 @@ export default function Save(props: SaveProps): JSX.Element {
                 <Form
                     // eslint-disable-next-line @typescript-eslint/no-misused-promises -- server actions
                     action={async (formData) => {
-                        await submitEmail(fieldNameEmail, fieldNameSubscribe, formData, props.inviteId);
+                        await submitEmail(fieldEmail, fieldName, fieldSubscribe, formData, props.inviteId);
                         setSuccess();
                     }}
+                    pad={false}
                 >
-                    <FormInput name={fieldNameEmail} type="email" placeholder="youremail@xyz.com" required={true} />
-                    <FormCheckbox label="Keep this box checked to receive additional marketing emails from Glimpz." name={fieldNameSubscribe} defaultChecked={true} />
+                    <FormInput name={fieldEmail} type="email" placeholder="youremail@xyz.com" required={true} label="Email" />
+                    <FormInput name={fieldName} type="text" placeholder="John Doe" required={false} label="Name" />
+                    <FormCheckbox label="Keep this box checked to receive additional marketing emails from Glimpz." name={fieldSubscribe} defaultChecked={true} />
                     <FormButton
                         size="large"
                         onClick={() => {

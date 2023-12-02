@@ -17,9 +17,9 @@ export const UpsertUserQuery = gql`
     }
 `;
 
-export const ConnectByEmailQuery = gql`
-    mutation ConnectByEmail($inviteId: ID!, $email: String!, $subscribe: Boolean!) {
-        connectByEmail(inviteId: $inviteId, email: $email, subscribe: $subscribe) {
+export const ConnectQuery = gql`
+    mutation Connect($inviteId: ID!, $email: String!, $firstName: String, $lastName: String, $subscribe: Boolean!) {
+        connect(inviteId: $inviteId, connection: { email: $email, firstName: $firstName, lastName: $lastName }, subscribe: $subscribe) {
             id
         }
     }

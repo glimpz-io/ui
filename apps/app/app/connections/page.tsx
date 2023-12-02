@@ -31,7 +31,7 @@ export default async function Page(): Promise<JSX.Element> {
             </Text>
             <Create userId={userId} />
             {data.customConnections.length > 0 ? (
-                <Container pad={false}>
+                <Container direction="vertical" pad={false}>
                     {data.customConnections.map((connection) => (
                         <Container key={connection.id} direction="vertical" className="bg-zinc-900 rounded-md">
                             <Container pad={false}>
