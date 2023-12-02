@@ -6,7 +6,7 @@ import { AddressBook, Logout, Plug, User } from "tabler-icons-react";
 
 const links: Record<string, () => JSX.Element> = { "/": () => <Plug />, "/connections": () => <AddressBook />, "/profile": () => <User />, "/api/auth/signout": () => <Logout /> };
 
-export function Nav(): JSX.Element {
+export default function Nav(): JSX.Element {
     return (
         <Container direction="horizontal" size="half">
             {Object.entries(links).map((x, i) => {

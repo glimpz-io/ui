@@ -1,10 +1,10 @@
 "use client";
 
-import { Button, FormCheckbox, Form, FormInput, Link, Modal, Text } from "@glimpzio/ui";
+import { FormCheckbox, Form, FormInput, Link, Modal, Text, FormButton } from "@glimpzio/ui";
 import { useAnalytics, useExchange } from "@glimpzio/hooks";
 import { submitEmail } from "./actions";
 
-interface ReferralProps {
+interface SaveProps {
     inviteId: string;
     userId: string;
     expiresAt: number;
@@ -13,7 +13,7 @@ interface ReferralProps {
     };
 }
 
-export default function Save(props: ReferralProps): JSX.Element {
+export default function Save(props: SaveProps): JSX.Element {
     const analytics = useAnalytics();
     const { setShowModal, setSuccess, showModal, success } = useExchange(props.userId);
 
@@ -35,7 +35,7 @@ export default function Save(props: ReferralProps): JSX.Element {
                         href="#"
                         onClick={() => {
                             setShowModal(true);
-                            analytics.track("Open Connect Modal", { "User ID": props.userId });
+                            analytics.track && analytics.track("Open Connect Modal", { "User ID": props.userId });
                         }}
                         color="yellow"
                         size="small"
@@ -68,16 +68,14 @@ export default function Save(props: ReferralProps): JSX.Element {
                 >
                     <FormInput name={fieldNameEmail} type="email" placeholder="youremail@xyz.com" required={true} />
                     <FormCheckbox label="Keep this box checked to receive additional marketing emails from Glimpz." name={fieldNameSubscribe} defaultChecked={true} />
-                    <Button
-                        type="submit"
-                        color="indigo"
+                    <FormButton
                         size="large"
                         onClick={() => {
-                            analytics.track("Submit Connect Email", { "User ID": props.userId });
+                            analytics.track && analytics.track("Submit Connect Email", { "User ID": props.userId });
                         }}
                     >
                         Submit
-                    </Button>
+                    </FormButton>
                 </Form>
             </Modal>
         </>

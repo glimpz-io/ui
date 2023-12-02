@@ -5,8 +5,8 @@ import { AUTH_HEADER } from "@glimpzio/config";
 import { GetCustomConnectionQuery, GetCustomConnectionType, getClient } from "@glimpzio/utils";
 import dynamic from "next/dynamic";
 
-const Delete = dynamic(() => import("../../../components/connections/custom/delete"), { ssr: false });
 const Edit = dynamic(() => import("../../../components/connections/custom/edit"), { ssr: false });
+const Index = dynamic(() => import("../../../components/connections/custom/index"), { ssr: false });
 
 interface Request {
     params: {
@@ -30,11 +30,22 @@ export default async function Page(req: Request): Promise<JSX.Element> {
 
     return (
         <Container direction="vertical" size="half">
-            <Text alignment="centre" type="title">
-                Contact <Text type="highlight">Details</Text>
-            </Text>
             <Edit {...data} />
-            <Delete userId={data.userId} id={data.id} />
+            {!data.firstName ? (
+                <Text alignment="centre" type="title">
+                    Contact <Text type="highlight">Details</Text>
+                </Text>
+            ) : (
+                <Text alignment="centre" type="title">
+                    {data.firstName} <Text type="highlight">{data.lastName}</Text>
+                </Text>
+            )}
+            {data.notes && (
+                <Text type="p" alignment="centre">
+                    {data.notes}
+                </Text>
+            )}
+            <Index {...data} />
         </Container>
     );
 }

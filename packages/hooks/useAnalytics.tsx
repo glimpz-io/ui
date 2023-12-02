@@ -2,7 +2,7 @@
 
 import mixpanel, { Mixpanel } from "mixpanel-browser";
 import Script from "next/script";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const contextAnalytics = createContext<Mixpanel | undefined>(undefined);
 
@@ -40,6 +40,19 @@ export function AnalyticsProvider({ children, mixpanelToken, facebookId }: Props
 
 export function useAnalytics() {
     const analytics = useContext(contextAnalytics);
+    const [mounted, setMounted] = useState<boolean>(false);
+
+    useEffect(() => {
+        setMounted(true);
+
+        return () => setMounted(false);
+    }, [setMounted]);
+
+    function identify(userId: string) {
+        if (!analytics) throw Error("analytics context not yet initialized");
+
+        analytics.identify(userId);
+    }
 
     function track(eventName: string, options?: Object) {
         if (!analytics) throw Error("analytics context not yet initialized");
@@ -49,9 +62,5 @@ export function useAnalytics() {
         fbq("trackCustom", eventName, options);
     }
 
-    function identify(userId: string) {
-        analytics!.identify(userId);
-    }
-
-    return { track, identify };
+    return { identify, track: mounted ? track : null };
 }

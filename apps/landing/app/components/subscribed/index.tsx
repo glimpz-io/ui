@@ -39,7 +39,7 @@ export default function Index({ referral }: ReferralProps): JSX.Element {
                     icon={linkIcon}
                     value={signupUrl}
                     onClick={() => {
-                        analytics.track("Copy Code");
+                        analytics.track && analytics.track("Copy Code");
                     }}
                 />
             )}
@@ -51,7 +51,7 @@ export default function Index({ referral }: ReferralProps): JSX.Element {
                     size="large"
                     newTab={true}
                     onClick={() => {
-                        analytics.track("Share LinkedIn");
+                        analytics.track && analytics.track("Share LinkedIn");
                     }}
                 >
                     Share To LinkedIn
@@ -65,7 +65,7 @@ export default function Index({ referral }: ReferralProps): JSX.Element {
                     size="large"
                     newTab={true}
                     onClick={() => {
-                        analytics.track("Share Twitter");
+                        analytics.track && analytics.track("Share Twitter");
                     }}
                 >
                     Share To Twitter
@@ -79,7 +79,7 @@ export default function Index({ referral }: ReferralProps): JSX.Element {
                     size="large"
                     newTab={true}
                     onClick={() => {
-                        analytics.track("Share Facebook");
+                        analytics.track && analytics.track("Share Facebook");
                     }}
                 >
                     Share To Facebook

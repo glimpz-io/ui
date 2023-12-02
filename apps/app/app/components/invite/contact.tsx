@@ -29,16 +29,16 @@ export default function Contact({ userId, profile }: ReferralProps): JSX.Element
                     icon={emailIcon}
                     value={profile.email}
                     onClick={() => {
-                        analytics.track("Copy Profile Email", { "User ID": userId });
+                        analytics.track && analytics.track("Copy Profile Email", { "User ID": userId });
                     }}
                 />
             )}
             {profile.phone && (
                 <Copy
                     icon={phoneIcon}
-                    value={"+" + profile.phone}
+                    value={profile.phone}
                     onClick={() => {
-                        analytics.track("Copy Profile Phone", { "User ID": userId });
+                        analytics.track && analytics.track("Copy Profile Phone", { "User ID": userId });
                     }}
                 />
             )}
@@ -50,7 +50,7 @@ export default function Contact({ userId, profile }: ReferralProps): JSX.Element
                     newTab={true}
                     icon={webIcon}
                     onClick={() => {
-                        analytics.track("Goto Profile Website", { "User ID": userId });
+                        analytics.track && analytics.track("Goto Profile Website", { "User ID": userId });
                     }}
                 >
                     Website
@@ -64,7 +64,7 @@ export default function Contact({ userId, profile }: ReferralProps): JSX.Element
                     size="large"
                     newTab={true}
                     onClick={() => {
-                        analytics.track("Goto Profile LinkedIn", { "User ID": userId });
+                        analytics.track && analytics.track("Goto Profile LinkedIn", { "User ID": userId });
                     }}
                 >
                     LinkedIn

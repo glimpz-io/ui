@@ -19,7 +19,7 @@ export default function Banner({ userId }: ReferralProps): JSX.Element {
                 size="small"
                 newTab={true}
                 onClick={() => {
-                    analytics.track("Create Profile Banner Referral", { "User ID": userId });
+                    analytics.track && analytics.track("Create Profile Banner Referral", { "User ID": userId });
                 }}
             >
                 here

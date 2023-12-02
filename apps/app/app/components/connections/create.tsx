@@ -34,7 +34,7 @@ export default function Create(props: CreateProps): JSX.Element {
                     <Button
                         onClick={() => {
                             setShowModal(true);
-                            analytics.track("New Custom Connection Modal");
+                            analytics.track && analytics.track("New Custom Connection Modal");
                         }}
                         color="blue"
                         icon={plusIcon}
@@ -62,7 +62,7 @@ export default function Create(props: CreateProps): JSX.Element {
                     <FormInput label="First name" name={fieldFirstName} type="text" placeholder="John" required={false} />
                     <FormInput label="Last name" name={fieldLastName} type="text" placeholder="Doe" required={false} />
                     <FormInput label="Email" name={fieldEmail} type="email" placeholder="johndoe@xyz.com" required={false} />
-                    <FormInput label="Phone" name={fieldPhone} type="tel" placeholder="+01 2345 6789" required={false} />
+                    <FormInput label="Phone" name={fieldPhone} type="tel" placeholder="01 2345 6789" required={false} />
                     <FormInput label="Website" name={fieldWebsite} type="url" placeholder="https://website.com" required={false} />
                     <FormInput label="LinkedIn" name={fieldLinkedIn} type="url" placeholder="https://www.linkedin.com/in/johndoe" required={false} />
                     <FormInput
@@ -75,7 +75,7 @@ export default function Create(props: CreateProps): JSX.Element {
                     <FormButton
                         size="large"
                         onClick={() => {
-                            analytics.track("Create Custom Connection");
+                            analytics.track && analytics.track("Create Custom Connection");
                         }}
                     >
                         Submit

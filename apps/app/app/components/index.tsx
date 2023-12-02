@@ -5,7 +5,7 @@ import { useAnalytics, useOrigin } from "@glimpzio/hooks";
 import { useEffect, useState } from "react";
 import { INVITE_ID_COOKIE } from "@glimpzio/config";
 
-interface InviteProps {
+interface IndexProps {
     id: string;
     userId: string;
     expiresAt: number;
@@ -15,7 +15,7 @@ interface InviteProps {
     };
 }
 
-export default function Index(props: InviteProps): JSX.Element {
+export default function Index(props: IndexProps): JSX.Element {
     const analytics = useAnalytics();
     const origin = useOrigin();
     const [expiry, setExpiry] = useState<number | null>(null);
@@ -68,7 +68,7 @@ export default function Index(props: InviteProps): JSX.Element {
             <Copy
                 value={url}
                 onClick={() => {
-                    analytics.track("Copy Profile Code");
+                    analytics.track && analytics.track("Copy Profile Code");
                 }}
             />
         </Container>

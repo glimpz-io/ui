@@ -80,7 +80,7 @@ export default function Profile(props: ProfileProps): JSX.Element | null {
                 defaultValue={props.bio}
             />
             <FormInput label="Work email" name={fieldProfileEmail} type="email" placeholder="johndoe@xyz.com" required={false} defaultValue={props.profile?.email ? props.profile.email : undefined} />
-            <FormInput label="Work phone" name={fieldProfilePhone} type="tel" placeholder="+01 2345 6789" required={false} defaultValue={props.profile?.phone ? props.profile.phone : undefined} />
+            <FormInput label="Work phone" name={fieldProfilePhone} type="tel" placeholder="01 2345 6789" required={false} defaultValue={props.profile?.phone ? props.profile.phone : undefined} />
             <FormInput
                 label="Website"
                 name={fieldProfileWebsite}
@@ -102,7 +102,7 @@ export default function Profile(props: ProfileProps): JSX.Element | null {
                     size="large"
                     icon={iconFloppy}
                     onClick={() => {
-                        analytics.track("Save Profile");
+                        analytics.track && analytics.track("Save Profile");
                     }}
                 >
                     Save
@@ -112,7 +112,7 @@ export default function Profile(props: ProfileProps): JSX.Element | null {
                     size="large"
                     icon={plusIcon}
                     onClick={() => {
-                        analytics.track("Create Profile");
+                        analytics.track && analytics.track("Create Profile");
                     }}
                 >
                     Create Profile

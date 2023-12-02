@@ -3,7 +3,9 @@ import { AnalyticsProvider } from "@glimpzio/hooks";
 import "@glimpzio/ui/styles.css";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
-import { Nav } from "./components/nav";
+import dynamic from "next/dynamic";
+
+const Nav = dynamic(() => import("./components/nav"), { ssr: false });
 
 export const metadata: Metadata = {
     metadataBase: new URL(META_URL_APP),

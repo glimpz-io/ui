@@ -29,7 +29,7 @@ export default function Index({ referral }: ReferralProps): JSX.Element {
                 size="large"
                 icon={mailIcon}
                 onClick={() => {
-                    analytics.track("Email Signup", { "Signup Type": referral ? "Referral" : "Direct", Referer: referral });
+                    analytics.track && analytics.track("Email Signup", { "Signup Type": referral ? "Referral" : "Direct", Referer: referral });
                 }}
             >
                 Join Waitlist
