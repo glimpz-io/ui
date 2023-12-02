@@ -29,18 +29,9 @@ export default async function Page(req: Request): Promise<JSX.Element> {
         <Container direction="vertical" size="half">
             <Banner userId={data.userId} />
             <Save inviteId={data.id} userId={data.userId} expiresAt={data.expiresAt} publicProfile={data.publicProfile} />
-            <Container direction="vertical" size="full" className="bg-sky-500 rounded-md">
-                {data.publicProfile.profilePicture && (
-                    <Image
-                        priority={true}
-                        src={data.publicProfile.profilePicture}
-                        alt="Profile picture."
-                        width={150}
-                        height={150}
-                        className={`rounded-full drop-shadow-md ${data.publicProfile.profilePicture ? "" : "invisible"}`}
-                    />
-                )}
-            </Container>
+            {data.publicProfile.profilePicture && (
+                <Image priority={true} src={data.publicProfile.profilePicture} alt="Profile picture." width={250} height={250} className="rounded-full ring-2 ring-zinc-900 drop-shadow-md" />
+            )}
             <Text type="title" alignment="centre">
                 {data.publicProfile.firstName} <Text type="highlight">{data.publicProfile.lastName}</Text>
             </Text>
