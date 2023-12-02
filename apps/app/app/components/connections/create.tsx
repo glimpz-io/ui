@@ -33,8 +33,8 @@ export default function Create(props: CreateProps): JSX.Element {
                 <Container grow={false} pad={false}>
                     <Button
                         onClick={() => {
-                            setShowModal(true);
                             analytics.track && analytics.track("New Custom Connection Modal");
+                            setShowModal(true);
                         }}
                         color="blue"
                         icon={plusIcon}

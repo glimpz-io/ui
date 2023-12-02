@@ -34,8 +34,8 @@ export default function Save(props: SaveProps): JSX.Element {
                     <Link
                         href="#"
                         onClick={() => {
-                            setShowModal(true);
                             analytics.track && analytics.track("Open Connect Modal", { "User ID": props.userId });
+                            setShowModal(true);
                         }}
                         color="yellow"
                         size="small"
