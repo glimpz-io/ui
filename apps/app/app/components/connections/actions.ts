@@ -1,9 +1,10 @@
 "use server";
 
-import { AUTH_HEADER } from "@glimpzio/config";
-import { UpsertConnectionQuery, getClient } from "@glimpzio/utils";
+import { AUTH_HEADER, ID_HEADER } from "@glimpzio/config";
+import { GetCustomConnectionsQuery, GetCustomConnectionsType, UpsertConnectionQuery, getClient } from "@glimpzio/utils";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function upsertConnection(
     id: string | null,
@@ -47,4 +48,8 @@ export async function upsertConnection(
     });
 
     revalidatePath("/connections");
+}
+
+export async function updatePage(pageSize: number, page: number) {
+    redirect(`/connections?page=${page}&pageSize=${pageSize}`);
 }

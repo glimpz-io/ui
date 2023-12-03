@@ -16,5 +16,5 @@ export function Container({ children, className = "", direction = "horizontal", 
 
     const global = `${full} ${padding} ${alignment} ${length} ${className}`;
 
-    return <div className={"flex mx-auto justify-between items-center " + global}>{children}</div>;
+    return <div className={`flex mx-auto justify-between items-center ${global}`}>{children}</div>;
 }

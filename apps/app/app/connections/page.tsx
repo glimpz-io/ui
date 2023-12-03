@@ -1,14 +1,22 @@
 import { Text } from "@glimpzio/ui/text";
 import { Container } from "@glimpzio/ui/container";
 import { headers } from "next/headers";
-import { AUTH_HEADER, ID_HEADER } from "@glimpzio/config";
-import { Link } from "@glimpzio/ui/link";
+import { AUTH_HEADER, ID_HEADER, PAGE_SIZE } from "@glimpzio/config";
 import { GetCustomConnectionsQuery, GetCustomConnectionsType, getClient } from "@glimpzio/utils";
 import dynamic from "next/dynamic";
 
 const Create = dynamic(() => import("../components/connections/create"), { ssr: false });
+const Connections = dynamic(() => import("../components/connections/connections"), { ssr: false });
+const Navigate = dynamic(() => import("../components/connections/navigate"), { ssr: false });
 
-export default async function Page(): Promise<JSX.Element> {
+interface Request {
+    searchParams: {
+        page?: "success" | "logout";
+        pageSize?: string;
+    };
+}
+
+export default async function Page(req: Request): Promise<JSX.Element> {
     const apiUrl = process.env.API_URL;
     if (!apiUrl) throw Error("missing API url");
 
@@ -22,7 +30,12 @@ export default async function Page(): Promise<JSX.Element> {
 
     const client = getClient(apiUrl, authToken);
 
-    const { data } = await client().query<GetCustomConnectionsType>({ query: GetCustomConnectionsQuery });
+    let page: number = 1;
+    let pageSize: number = PAGE_SIZE;
+    if (req.searchParams.page) page = Math.max(1, parseInt(req.searchParams.page));
+    if (req.searchParams.pageSize) pageSize = parseInt(req.searchParams.pageSize);
+
+    const { data } = await client().query<GetCustomConnectionsType>({ query: GetCustomConnectionsQuery, variables: { limit: PAGE_SIZE, offset: (page - 1) * pageSize } });
 
     return (
         <Container direction="vertical" size="half">
@@ -30,34 +43,8 @@ export default async function Page(): Promise<JSX.Element> {
                 Your <Text type="highlight">Contacts</Text>
             </Text>
             <Create userId={userId} />
-            {data.customConnections.length > 0 ? (
-                <Container direction="vertical" pad={false}>
-                    {data.customConnections.map((connection) => (
-                        <Container key={connection.id} direction="vertical" className="bg-zinc-900 rounded-md">
-                            <Container pad={false}>
-                                <Text type="small">{connection.email}</Text>
-                            </Container>
-                            <Container direction="horizontal" pad={false}>
-                                <Text type="p">
-                                    <Text type="bold">
-                                        {connection.firstName} {connection.lastName}
-                                    </Text>
-                                </Text>
-                                <Text type="small" alignment="right">
-                                    Connected on <Text type="bold">{new Date(connection.connectedAt * 1000).toDateString()}</Text>
-                                </Text>
-                            </Container>
-                            <Link color="lightblue" size="large" href={`/connections/custom/${connection.id}`}>
-                                View More
-                            </Link>
-                        </Container>
-                    ))}
-                </Container>
-            ) : (
-                <Text alignment="centre" type="small">
-                    No connections.
-                </Text>
-            )}
+            <Connections connections={data.customConnections} />
+            <Navigate page={page} pageSize={pageSize} />
         </Container>
     );
 }

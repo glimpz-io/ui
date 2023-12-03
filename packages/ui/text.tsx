@@ -15,7 +15,7 @@ export function Text({ children, className, type, alignment = "left" }: Props): 
 
     const global = `w-full ${textDirection} ${className}`;
 
-    if (type === "title") return <h1 className={"text-8xl text-white font-bold " + global}>{children}</h1>;
+    if (type === "title") return <h1 className={`text-8xl text-white font-bold ${global}`}>{children}</h1>;
     if (type === "highlight")
         return (
             <span
@@ -30,18 +30,18 @@ export function Text({ children, className, type, alignment = "left" }: Props): 
                 {children}
             </span>
         );
-    if (type === "bold") return <span className={"font-bold " + global}>{children}</span>;
-    if (type === "h2") return <h2 className={"text-2xl text-neutral-200 font-semibold w-full " + global}>{children}</h2>;
-    if (type === "h3") return <h3 className={"text-xl text-neutral-300 font-medium w-full " + global}>{children}</h3>;
-    if (type === "p") return <p className={"text-lg text-neutral-400 font-normal w-full " + global}>{children}</p>;
-    if (type === "small") return <p className={"text-md text-neutral-500 font-normal w-full " + global}>{children}</p>;
+    if (type === "bold") return <span className={`font-bold ${global}`}>{children}</span>;
+    if (type === "h2") return <h2 className={`text-2xl text-neutral-200 font-semibold w-full ${global}`}>{children}</h2>;
+    if (type === "h3") return <h3 className={`text-xl text-neutral-300 font-medium w-full ${global}`}>{children}</h3>;
+    if (type === "p") return <p className={`text-lg text-neutral-400 font-normal w-full ${global}`}>{children}</p>;
+    if (type === "small") return <p className={`text-md text-neutral-500 font-normal w-full ${global}`}>{children}</p>;
     if (type === "warning")
         return (
             <div className={"flex justify-between items-start w-full space-x-4 text-yellow-400 text-lg font-normal"}>
                 <span>
                     <AlertTriangle />
                 </span>
-                <span className={"w-full " + global}>{children}</span>
+                <span className={`w-full ${global}`}>{children}</span>
             </div>
         );
     if (type === "success")
@@ -50,7 +50,7 @@ export function Text({ children, className, type, alignment = "left" }: Props): 
                 <span>
                     <Check />
                 </span>
-                <span className={"w-full " + global}>{children}</span>
+                <span className={`w-full ${global}`}>{children}</span>
             </div>
         );
 

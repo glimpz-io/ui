@@ -126,8 +126,8 @@ export interface GetCustomConnectionsType {
 }
 
 export const GetCustomConnectionsQuery = gql`
-    query GetCustomConnections {
-        customConnections {
+    query GetCustomConnections($limit: Int!, $offset: Int!) {
+        customConnections(limit: $limit, offset: $offset) {
             id
             userId
             connectedAt

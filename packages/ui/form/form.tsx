@@ -21,7 +21,7 @@ export function Form({ children, action, pad = true, grow = true }: Props): JSX.
 
     return (
         <contextLoading.Provider value={isPending}>
-            <form className={"flex flex-col space-y-4 mx-auto justify-between items-center " + global} action={(formData) => (action ? startTransition(() => action(formData)) : undefined)}>
+            <form className={`flex flex-col space-y-4 mx-auto justify-between items-center ${global}`} action={(formData) => (action ? startTransition(() => action(formData)) : undefined)}>
                 {children}
             </form>
         </contextLoading.Provider>
