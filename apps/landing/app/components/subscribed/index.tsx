@@ -28,7 +28,7 @@ export default function Index(props: IndexProps): JSX.Element {
           )
         : null;
 
-    const linkedInLink = `https://www.linkedin.com/company/glimpzio`;
+    const linkedInLink = "https://www.linkedin.com/company/glimpzio";
     const twitterLink = socialText ? `https://twitter.com/intent/tweet?text=${socialText}` : null;
     const facebookLink = signupUrlEncoded ? `https://www.facebook.com/share.php?u=${signupUrlEncoded}` : null;
 
