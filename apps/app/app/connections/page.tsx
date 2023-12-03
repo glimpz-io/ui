@@ -30,8 +30,8 @@ export default async function Page(req: Request): Promise<JSX.Element> {
 
     const client = getClient(apiUrl, authToken);
 
-    let page: number = 1;
-    let pageSize: number = PAGE_SIZE;
+    let page = 1;
+    let pageSize = PAGE_SIZE;
     if (req.searchParams.page) page = Math.max(1, parseInt(req.searchParams.page));
     if (req.searchParams.pageSize) pageSize = parseInt(req.searchParams.pageSize);
 

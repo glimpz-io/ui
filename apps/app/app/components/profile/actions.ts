@@ -15,7 +15,6 @@ export async function uploadImage() {
     const client = getClient(apiUrl, authToken);
 
     const { data } = await client().query<GetUploadType>({ query: GetUploadQuery });
-    if (!data) throw Error("failed to get upload");
 
     return data.upload;
 }

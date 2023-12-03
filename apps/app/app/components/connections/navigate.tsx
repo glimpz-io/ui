@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Container, Text } from "@glimpzio/ui";
+import { Button, Container } from "@glimpzio/ui";
 import { useTransition } from "react";
 import { ArrowLeft, ArrowRight } from "tabler-icons-react";
 import { updatePage } from "./actions";

@@ -17,11 +17,13 @@ export default async function Page(): Promise<JSX.Element> {
 
     const client = getClient(apiUrl, authToken);
 
-    let user: GetUserType["user"] | undefined = undefined;
+    let user: GetUserType["user"] | undefined;
     try {
         const { data } = await client().query<GetUserType>({ query: GetUserQuery });
         user = data.user;
-    } catch {}
+    } catch {
+        user = undefined;
+    }
 
     return (
         <Container direction="vertical" size="half">
