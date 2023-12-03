@@ -28,7 +28,7 @@ export default function Index(props: IndexProps): JSX.Element {
           )
         : null;
 
-    const linkedInLink = signupUrlEncoded ? `https://www.linkedin.com/sharing/share-offsite/?url=${signupUrlEncoded}` : null;
+    const linkedInLink = `https://www.linkedin.com/company/glimpzio`;
     const twitterLink = socialText ? `https://twitter.com/intent/tweet?text=${socialText}` : null;
     const facebookLink = signupUrlEncoded ? `https://www.facebook.com/share.php?u=${signupUrlEncoded}` : null;
 
@@ -43,20 +43,18 @@ export default function Index(props: IndexProps): JSX.Element {
                     }}
                 />
             )}
-            {linkedInLink && (
-                <Link
-                    href={linkedInLink}
-                    color="darkblue"
-                    icon={linkedInIcon}
-                    size="large"
-                    newTab={true}
-                    onClick={() => {
-                        analytics.track && analytics.track("Share LinkedIn");
-                    }}
-                >
-                    Share To LinkedIn
-                </Link>
-            )}
+            <Link
+                href={linkedInLink}
+                color="darkblue"
+                icon={linkedInIcon}
+                size="large"
+                newTab={true}
+                onClick={() => {
+                    analytics.track && analytics.track("Follow LinkedIn Page");
+                }}
+            >
+                Follow Us On LinkedIn
+            </Link>
             {twitterLink && (
                 <Link
                     href={twitterLink}
